@@ -398,9 +398,9 @@ body {
 
           <div class="h-5 w-px bg-white/15 shrink-0"></div>
 
-          <button id="btn-wardrobe" class="hud-btn h-8 px-2 rounded-xl flex items-center gap-1 text-[11px] font-bold text-rose-300 shrink-0 whitespace-nowrap" title="Tủ Giáp Spider-Verse (22 bộ)">
+          <button id="btn-wardrobe" class="hud-btn h-8 px-2 rounded-xl flex items-center gap-1 text-[11px] font-bold text-rose-300 shrink-0 whitespace-nowrap" title="Tủ Giáp Spider-Verse (28 bộ)">
             <span>🕷️</span>
-            <span id="hud-suit-count" class="tabular-nums">2/22</span>
+            <span id="hud-suit-count" class="tabular-nums">8/28</span>
           </button>
 
           <button id="btn-achievements" class="hud-btn h-8 px-2 rounded-xl flex items-center gap-1 text-[11px] font-bold text-amber-300 shrink-0 whitespace-nowrap" title="20 Thành tựu & Thử thách">
@@ -460,7 +460,7 @@ body {
             <div id="settings-suit-name" class="font-extrabold text-white truncate">Peter Parker (Cổ điển)</div>
             <div id="settings-suit-skill" class="text-[11px] text-amber-300 truncate">+10% lực đẩy nhả tơ</div>
           </div>
-          <button id="btn-open-wardrobe-from-settings" class="hud-btn px-2.5 py-1.5 rounded-lg bg-rose-600 text-white font-bold text-[11px] shrink-0">22 Giáp</button>
+          <button id="btn-open-wardrobe-from-settings" class="hud-btn px-2.5 py-1.5 rounded-lg bg-rose-600 text-white font-bold text-[11px] shrink-0">28 Giáp</button>
         </div>
 
         <div class="grid grid-cols-2 gap-2">
@@ -481,7 +481,7 @@ body {
           </div>
         </div>
 
-        <!-- CAMERA VIEW + 8 CUSTOM SPEED TRAILS -->
+        <!-- CAMERA VIEW + 14 CUSTOM SPEED TRAILS -->
         <div class="border-t border-white/10 pt-2.5 grid grid-cols-2 gap-2">
           <div>
             <div class="text-[10px] uppercase tracking-wider font-bold text-slate-300 mb-1">🔭 Góc nhìn</div>
@@ -492,16 +492,22 @@ body {
             </select>
           </div>
           <div>
-            <div class="text-[10px] uppercase tracking-wider font-bold text-slate-300 mb-1">✨ Vệt Bay (8 kiểu)</div>
+            <div class="text-[10px] uppercase tracking-wider font-bold text-slate-300 mb-1">✨ Vệt Bay (14 kiểu)</div>
             <select id="sel-trail" class="w-full py-1.5 px-2 rounded-lg bg-white/10 border border-white/15 text-slate-100 text-xs font-bold outline-none">
               <option value="suit" class="bg-slate-900">🕷️ Theo Giáp</option>
               <option value="prism" class="bg-slate-900">🌈 Cầu Vồng</option>
+              <option value="aurora" class="bg-slate-900">🌌 Cực Quang</option>
+              <option value="spiderverse" class="bg-slate-900">🕸️ Glitch Đa Vũ Trụ</option>
               <option value="lightning" class="bg-slate-900">⚡ Sét Venom</option>
+              <option value="plasma" class="bg-slate-900">🔮 Plasma Tím</option>
               <option value="fire" class="bg-slate-900">🔥 Lửa Phượng</option>
-              <option value="galaxy" class="bg-slate-900">🌌 Ngân Hà</option>
+              <option value="emerald" class="bg-slate-900">🐉 Rồng Ngọc</option>
+              <option value="ice" class="bg-slate-900">❄️ Bão Băng</option>
+              <option value="galaxy" class="bg-slate-900">🌠 Ngân Hà</option>
               <option value="neon" class="bg-slate-900">💠 Neon Kép</option>
               <option value="sakura" class="bg-slate-900">🌸 Anh Đào</option>
               <option value="gold" class="bg-slate-900">👑 Hoàng Kim</option>
+              <option value="void" class="bg-slate-900">🖤 Hố Đen</option>
             </select>
           </div>
         </div>
@@ -526,7 +532,11 @@ body {
         </div>
 
         <div class="border-t border-white/10 pt-2.5 space-y-1.5">
-          <div class="text-[10px] uppercase tracking-wider font-bold text-slate-300 mb-1">Hiệu năng &amp; Đồ họa</div>
+          <div class="text-[10px] uppercase tracking-wider font-bold text-slate-300 mb-1">Chiến đấu &amp; Đồ họa</div>
+          <label class="flex items-center justify-between text-emerald-300 font-semibold cursor-pointer">
+            <span>🎯 Hỗ trợ ngắm Aim-Assist</span>
+            <input id="chk-aim-assist" type="checkbox" checked class="accent-emerald-400" />
+          </label>
           <label class="flex items-center justify-between text-slate-200 cursor-pointer">
             <span>Hiệu ứng gió &amp; Zoom tốc độ</span>
             <input id="chk-wind-fx" type="checkbox" checked class="accent-rose-500" />
@@ -556,12 +566,12 @@ body {
     </div>
   </div>
 
-  <!-- SUITS WARDROBE MODAL (22 SUITS!) -->
+  <!-- SUITS WARDROBE MODAL (28 SUITS!) -->
   <section id="overlay-wardrobe" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/75">
     <div class="hud-glass rounded-3xl max-w-2xl w-full max-h-[87dvh] flex flex-col border border-white/20 shadow-2xl overflow-hidden">
       <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
         <div>
-          <h2 class="text-lg font-black text-white flex items-center gap-2">🕷️ TỦ GIÁP SPIDER-VERSE (22 BỘ)</h2>
+          <h2 class="text-lg font-black text-white flex items-center gap-2">🕷️ TỦ GIÁP SPIDER-VERSE (28 BỘ)</h2>
           <p class="text-xs text-slate-300 mt-0.5">Chinh phục <strong>20 thử thách (Đồng → Bạc → Vàng → Huyền Thoại → Vũ Trụ)</strong> để mở giáp, kỹ năng &amp; tiếng tơ riêng!</p>
         </div>
         <button id="btn-wardrobe-close" class="hud-btn w-8 h-8 rounded-xl bg-white/10 text-white font-bold">✕</button>
@@ -645,7 +655,7 @@ body {
   <section id="overlay-pause" class="fixed inset-0 z-20 hidden items-center justify-center p-4 bg-slate-950/55">
     <div class="hud-glass rounded-3xl max-w-xs w-full p-6 text-center border border-white/20">
       <h2 class="comic-title text-2xl font-black text-white mb-2">TẠM DỪNG</h2>
-      <p class="text-xs text-slate-300 mb-5">Mở thanh công cụ (&lt;) góc trên phải để đổi 22 Bộ Giáp, 8 Vệt bay hoặc xem 20 Thành Tựu!</p>
+      <p class="text-xs text-slate-300 mb-5">Mở thanh công cụ (&lt;) góc trên phải để đổi 28 Bộ Giáp, 14 Vệt bay hoặc chuyển chế độ Tự Do ngắm cảnh!</p>
       <div class="flex flex-col gap-2">
         <button id="btn-resume" class="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-black text-sm cursor-pointer">TIẾP TỤC ĐU DÂY</button>
         <button id="btn-pause-restart" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-100 font-bold text-xs cursor-pointer">Chơi lại từ đầu</button>
@@ -665,21 +675,21 @@ body {
 
       <h1 class="comic-title text-2xl sm:text-4xl font-black text-white mb-1.5">NGƯỜI NHỆN ĐU DÂY</h1>
       <p class="text-xs sm:text-sm text-slate-200/90 leading-relaxed mb-3.5 sm:mb-4">
-        Đu tơ xuyên <strong>7 khu vực New York</strong>, chiến đấu với <strong>6 Boss phim &amp; 3 loại bot</strong> bằng <strong>Bắn Tơ</strong>, gặp <strong>9 Siêu Anh Hùng Marvel</strong> và mở khóa đủ <strong>22 bộ Giáp + 8 Vệt bay</strong>!
+        Đu tơ xuyên <strong>7 khu vực New York</strong>, gặp <strong>12 Siêu Anh Hùng Marvel</strong>, trải nghiệm <strong>28 bộ Giáp + 14 Vệt bay</strong> — chọn <strong>Thử thách</strong> đấu 6 Boss hoặc <strong>Tự do</strong> ngắm cảnh chill!
       </p>
 
       <div class="grid grid-cols-3 gap-2 text-left mb-4 sm:mb-5">
         <div class="rounded-xl bg-white/5 border border-white/10 p-2">
-          <div class="text-[11px] font-extrabold text-rose-400 mb-0.5">🕷️ 22 Giáp &amp; 8 Vệt</div>
-          <div class="text-[10px] sm:text-[11px] text-slate-300 leading-snug">Kỹ năng, bắn tơ &amp; vệt bay riêng biệt.</div>
+          <div class="text-[11px] font-extrabold text-rose-400 mb-0.5">🕷️ 28 Giáp &amp; 14 Vệt</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-300 leading-snug">6 giáp mới mở sẵn &amp; 14 vệt bay cực đẹp.</div>
         </div>
         <div class="rounded-xl bg-white/5 border border-white/10 p-2">
-          <div class="text-[11px] font-extrabold text-amber-300 mb-0.5">⚡ 6 Boss &amp; 9 Hero</div>
-          <div class="text-[10px] sm:text-[11px] text-slate-300 leading-snug">Doc Ock, Venom, Goblin, Electro &amp; Avengers.</div>
+          <div class="text-[11px] font-extrabold text-amber-300 mb-0.5">⚡ 6 Boss &amp; 12 Hero</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-300 leading-snug">Panther, Wanda, Marvel, Avengers &amp; 6 Boss.</div>
         </div>
         <div class="rounded-xl bg-white/5 border border-white/10 p-2">
-          <div class="text-[11px] font-extrabold text-sky-300 mb-0.5">🏙️ 7 Khu NYC</div>
-          <div class="text-[10px] sm:text-[11px] text-slate-300 leading-snug">Midtown, SoHo, Chinatown, Park &amp; Roosevelt.</div>
+          <div class="text-[11px] font-extrabold text-sky-300 mb-0.5">🌈 Tự Do Ngắm Cảnh</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-300 leading-snug">Không địch, cầu vồng, cực quang &amp; khinh khí cầu.</div>
         </div>
       </div>
 
@@ -688,7 +698,7 @@ body {
           BẮT ĐẦU ĐU DÂY
         </button>
         <button id="btn-start-wardrobe" class="py-3 sm:py-3.5 px-3 sm:px-3.5 rounded-2xl bg-white/12 hover:bg-white/20 text-white font-bold text-xs sm:text-sm transition cursor-pointer whitespace-nowrap">
-          🕷️ 22 Giáp
+          🕷️ 28 Giáp
         </button>
         <button id="btn-start-settings" class="py-3 sm:py-3.5 px-3 rounded-2xl bg-white/12 hover:bg-white/20 text-sky-200 font-bold text-sm transition cursor-pointer" title="Mở bảng Tinh chỉnh">
           ⚙️
@@ -756,7 +766,7 @@ body {
       let baseScale = 1;
       let camZoom = 1;
 
-      const settings = { physics: 'standard', cameraView: 'wide', windFx: true, screenShake: true, liteMode: false, trailStyle: 'suit', showFps: false };
+      const settings = { physics: 'standard', cameraView: 'wide', aimAssist: true, windFx: true, screenShake: true, liteMode: false, trailStyle: 'suit', showFps: false };
       const PHYSICS_PRESETS = {
         standard: { gravity: 880, pump: 225, maxVx: 980, reel: 275 },
         turbo:    { gravity: 1020, pump: 310, maxVx: 1180, reel: 345 },
@@ -1329,6 +1339,54 @@ body {
           soundType: 'carnage', soundLabel: 'Tơ huyết quỷ cộng sinh',
           skillTitle: 'Cơn Cuồng Nộ Huyết Quỷ', skillDesc: 'Xúc tu đỏ rực; +32% toàn bộ điểm + Hút Xu tầm rộng!',
           special: 'carnage_tendrils', unlockKey: 'legend_100k', perks: { scoreMult: 1.32, passiveMagnet: 210, dashRegenMult: 1.25 }
+        },
+        final_swing: {
+          name: 'No Way Home (Final Swing)', tier: 'Mở sẵn', swatch: 'from-rose-600 via-blue-500 to-sky-300',
+          primary: '#e11d48', secondary: '#2563eb', accent: '#f8fafc', eyeFill: '#ffffff', eyeRim: '#0f172a',
+          webColor: '#ffffff', trailColor: 'rgba(59, 130, 246, 0.78)',
+          soundType: 'classic', soundLabel: 'Tơ ánh kim cổ điển',
+          skillTitle: 'Khởi Đầu Mới NYC', skillDesc: 'Ánh xanh ánh kim; +12% lực nhả tơ & gặp Hero nhanh hơn!',
+          special: 'final_sheen', unlockKey: null, perks: { releaseBoost: 1.12, heroFreqMult: 0.85 }
+        },
+        advanced2: {
+          name: 'PS5 Advanced Suit 2.0', tier: 'Mở sẵn', swatch: 'from-orange-500 via-red-600 to-white',
+          primary: '#ef4444', secondary: '#1d4ed8', accent: '#ffffff', eyeFill: '#ffffff', eyeRim: '#09090b',
+          webColor: '#f8fafc', trailColor: 'rgba(248, 250, 252, 0.78)',
+          soundType: 'velocity', soundLabel: 'Tơ cánh lưới PS5',
+          skillTitle: 'Cánh Lưới Lướt Gió', skillDesc: 'Nhện trắng lớn + Cánh lưới dưới tay; giảm rơi -22% & tốc độ +14%!',
+          special: 'web_wings', unlockKey: null, perks: { fallDamp: 0.78, maxVxMult: 1.14 }
+        },
+        spider_india: {
+          name: 'Spider-Man India (Pavitr)', tier: 'Mở sẵn', swatch: 'from-cyan-400 via-orange-500 to-amber-300',
+          primary: '#ea580c', secondary: '#06b6d4', accent: '#fde047', eyeFill: '#ffffff', eyeRim: '#0f172a',
+          webColor: '#fef08a', trailColor: 'rgba(6, 182, 212, 0.78)',
+          soundType: 'multiverse', soundLabel: 'Tơ vòng vàng Mumbattan',
+          skillTitle: 'Vũ Điệu Đa Vũ Trụ', skillDesc: 'Khăn choàng bay & vòng tay vàng; +25% Nhào Lộn & hồi Dash +20%!',
+          special: 'india_sash', unlockKey: null, perks: { stuntMult: 1.25, dashRegenMult: 1.20 }
+        },
+        black_gold: {
+          name: 'Black & Gold (Ma Thuật)', tier: 'Mở sẵn', swatch: 'from-zinc-950 via-amber-400 to-orange-500',
+          primary: '#09090b', secondary: '#18181b', accent: '#facc15', eyeFill: '#fef08a', eyeRim: '#f59e0b',
+          webColor: '#fde047', trailColor: 'rgba(251, 146, 60, 0.80)',
+          soundType: 'royal', soundLabel: 'Tơ phép thuật Eldritch',
+          skillTitle: 'Tơ Ma Thuật Strange', skillDesc: 'Vòng phép Strange trên tay; Bắn tơ xa +16% & +18% điểm!',
+          special: 'mystic_runes', unlockKey: null, perks: { reachMult: 1.16, scoreMult: 1.18 }
+        },
+        arachknight: {
+          name: 'Arachknight (Ánh Trăng)', tier: 'Mở sẵn', swatch: 'from-slate-100 via-slate-300 to-sky-200',
+          primary: '#f8fafc', secondary: '#cbd5e1', accent: '#38bdf8', eyeFill: '#e0f2fe', eyeRim: '#334155',
+          webColor: '#e0f2fe', trailColor: 'rgba(226, 232, 240, 0.80)',
+          soundType: 'cosmic', soundLabel: 'Tơ trăng khuyết bạc',
+          skillTitle: 'Áo Choàng Ánh Trăng', skillDesc: 'Áo choàng trắng mũ trùm; tự hút Xu (140px) & giảm rơi -18%!',
+          special: 'moon_cape', unlockKey: null, perks: { passiveMagnet: 140, fallDamp: 0.82 }
+        },
+        miles_prowler: {
+          name: 'Miles Earth-42 (Prowler)', tier: 'Mở sẵn', swatch: 'from-zinc-950 via-purple-600 to-fuchsia-500',
+          primary: '#18181b', secondary: '#581c87', accent: '#e879f9', eyeFill: '#e879f9', eyeRim: '#09090b',
+          webColor: '#f0abfc', trailColor: 'rgba(217, 70, 239, 0.82)',
+          soundType: 'plasma', soundLabel: 'Tơ vuốt neon Earth-42',
+          skillTitle: 'Vuốt Neon Earth-42', skillDesc: 'Vuốt năng lượng tím rực; +18% tốc độ & hồi Bứt tốc +22%!',
+          special: 'prowler_claws', unlockKey: null, perks: { maxVxMult: 1.18, dashRegenMult: 1.22 }
         }
       };
       const SUIT_KEYS = Object.keys(SUITS);
@@ -1338,6 +1396,7 @@ body {
       // ============================================================
       const ACH_STORAGE_KEY = 'spiderman_nyc_achievements_v3';
       const TIER_STYLES = {
+        'Mở sẵn':      'bg-emerald-500/30 text-emerald-200 border-emerald-400/55',
         'Đồng':        'bg-amber-700/35 text-amber-200 border-amber-500/40',
         'Bạc':         'bg-slate-400/25 text-slate-200 border-slate-300/40',
         'Vàng':        'bg-yellow-500/25 text-yellow-200 border-yellow-400/50',
@@ -1799,6 +1858,7 @@ body {
       let boss = null;
       let bossProjectiles = [];
       let webBlasts = [];
+      let skyBalloons = [];
       let heroCameos = [], roofPigeons = [], particles = [], popups = [];
 
       let nextBuildingX = -220, nextFarX = -300, nextMidX = -300, nextLandmarkX = 200;
@@ -1936,33 +1996,50 @@ body {
                 const t = i / (count - 1) - 0.5;
                 tokens.push({ x: centerX + t * 140, y: arcBaseY + t * t * 120, r: 14, collected: false, phase: i * 0.5 });
               }
-            } else if (roll < 0.68) {
-              const ry = 235 + Math.random() * 195;
+            } else if (roll < (gameMode === 'zen' ? 0.78 : 0.68)) {
+              const ry = 225 + Math.random() * 195;
               boostRings.push({ x: centerX, y: ry, r: 36, triggered: false, phase: Math.random() * Math.PI * 2 });
-              if (Math.random() < 0.35) {
-                boostRings.push({ x: centerX + 165, y: Math.max(130, ry - 68), r: 34, triggered: false, phase: 1.5 });
+              if (Math.random() < (gameMode === 'zen' ? 0.58 : 0.35)) {
+                boostRings.push({ x: centerX + 165, y: Math.max(125, ry - 68), r: 34, triggered: false, phase: 1.5 });
               }
-            } else if (roll < 0.80) {
+            } else if (roll < 0.88) {
               const pTypes = ['overcharge', 'magnet', 'shield'];
               const pType = pTypes[Math.floor(Math.random() * pTypes.length)];
               powerups.push({ x: centerX, y: 210 + Math.random() * 210, type: pType, r: 18, collected: false, phase: Math.random() * 6 });
             }
 
             const distM = Math.max(0, (nextBuildingX - startX) / 14);
-            if (distM > 35 && Math.random() < Math.min(0.62, 0.24 + distM / 1100)) {
-              const eRoll = Math.random();
-              const kind = (distM > 90 && eRoll < 0.35) ? 'laser_bot' : ((distM > 140 && eRoll < 0.65) ? 'shock_mine' : 'recon');
-              drones.push({
-                kind,
-                x: nextBuildingX + w + 55,
-                baseY: 205 + Math.random() * 255,
-                y: 300,
-                r: kind === 'shock_mine' ? 22 : (kind === 'laser_bot' ? 21 : 20),
-                amp: kind === 'shock_mine' ? 18 : (kind === 'laser_bot' ? 54 : 34 + Math.random() * 44),
-                freq: kind === 'shock_mine' ? 2.4 : (kind === 'laser_bot' ? 1.2 : 1.5 + Math.random() * 1.4),
+            if (gameMode === 'arcade') {
+              if (distM > 35 && Math.random() < Math.min(0.62, 0.24 + distM / 1100)) {
+                const eRoll = Math.random();
+                const kind = (distM > 90 && eRoll < 0.35) ? 'laser_bot' : ((distM > 140 && eRoll < 0.65) ? 'shock_mine' : 'recon');
+                drones.push({
+                  kind,
+                  x: nextBuildingX + w + 55,
+                  baseY: 205 + Math.random() * 255,
+                  y: 300,
+                  r: kind === 'shock_mine' ? 22 : (kind === 'laser_bot' ? 21 : 20),
+                  amp: kind === 'shock_mine' ? 18 : (kind === 'laser_bot' ? 54 : 34 + Math.random() * 44),
+                  freq: kind === 'shock_mine' ? 2.4 : (kind === 'laser_bot' ? 1.2 : 1.5 + Math.random() * 1.4),
+                  phase: Math.random() * Math.PI * 2,
+                  fireTimer: 0.65 + Math.random() * 0.75,
+                  alive: true, nearMissed: false
+                });
+              }
+            } else if (Math.random() < 0.44) {
+              // Zen Free-Swing exclusive: Festive NYC Hot-Air Balloons you can bounce off for fireworks!
+              const bPalettes = [
+                ['#f43f5e', '#fef08a'], ['#38bdf8', '#f8fafc'], ['#a855f7', '#f472b6'],
+                ['#10b981', '#fde047'], ['#f97316', '#38bdf8']
+              ];
+              const pal = bPalettes[Math.floor(Math.random() * bPalettes.length)];
+              skyBalloons.push({
+                x: nextBuildingX + w + 40,
+                baseY: 165 + Math.random() * 195,
+                y: 220, r: 28,
+                col1: pal[0], col2: pal[1],
                 phase: Math.random() * Math.PI * 2,
-                fireTimer: 0.65 + Math.random() * 0.75,
-                alive: true, nearMissed: false
+                bounced: false
               });
             }
             lastEntityX = nextBuildingX;
@@ -1976,11 +2053,12 @@ body {
         while (boostRings.length && boostRings[0].x < cullX) boostRings.shift();
         while (powerups.length && powerups[0].x < cullX) powerups.shift();
         while (drones.length && drones[0].x < cullX) drones.shift();
+        while (skyBalloons.length && skyBalloons[0].x < cullX) skyBalloons.shift();
         while (roofPigeons.length && roofPigeons[0].x < cullX) roofPigeons.shift();
       }
 
       // ============================================================
-      // 9 FLYING MARVEL HERO CAMEOS (SHUFFLED BAG + FULL COMIC ART!)
+      // 12 FLYING MARVEL HERO CAMEOS (SHUFFLED BAG + FULL COMIC ART!)
       // ============================================================
       const HERO_CAMEO_TYPES = [
         { type: 'ironman',   name: 'Iron Man',         quote: 'Đua tốc độ không, nhóc?',     color: '#f59e0b', buffText: 'ĐỒNG ĐỘI IRON MAN! Đầy Bứt tốc +350' },
@@ -1988,9 +2066,12 @@ body {
         { type: 'falcon',    name: 'Captain America',  quote: 'On your left, Spider-Man!',   color: '#3b82f6', buffText: 'KHIÊN CAPTAIN AMERICA! +420' },
         { type: 'torch',     name: 'Human Torch',      quote: 'Flame On! Bắt kịp không?',    color: '#f97316', buffText: 'LUỒNG LỬA HUMAN TORCH! +350' },
         { type: 'thor',      name: 'Thor',             quote: 'Sức mạnh sấm sét Midgard!',   color: '#38bdf8', buffText: 'KHIÊN SÉT THOR (6.5s)! +400' },
-        { type: 'wolverine', name: 'Wolverine',        quote: 'Tránh ra nào, nhóc Nhện!',    color: '#facc15', buffText: 'CÚ VỒ ADAMANTIUM! Quét Drone +450' },
+        { type: 'wolverine', name: 'Wolverine',        quote: 'Tránh ra nào, nhóc Nhện!',    color: '#facc15', buffText: 'CÚ VỒ ADAMANTIUM! +450' },
         { type: 'deadpool',  name: 'Deadpool',         quote: 'Này Spidey! Đừng cắt khung!', color: '#ef4444', buffText: 'DEADPOOL KÉO COMBO! +3 Combo +400' },
         { type: 'surfer',    name: 'Silver Surfer',    quote: 'Lướt cùng dải ngân hà!',      color: '#67e8f9', buffText: 'SÓNG VŨ TRỤ SURFER! Siêu tốc +500' },
+        { type: 'panther',   name: 'Black Panther',    quote: 'Wakanda Forever! Đua nào!',   color: '#a855f7', buffText: 'XUNG VIBRANIUM PANTHER! +460' },
+        { type: 'wanda',     name: 'Scarlet Witch',    quote: 'Ma thuật đỏ rực NYC!',        color: '#f43f5e', buffText: 'MA THUẬT HỖN MANG WANDA! +480' },
+        { type: 'marvel',    name: 'Captain Marvel',   quote: 'Cao hơn, xa hơn, nhanh hơn!', color: '#facc15', buffText: 'SIÊU TỐC BINARY MARVEL! +520' },
         { type: 'ally',      name: 'Spider-Gwen',      quote: 'Đu cùng nhau nào bạn!',       color: '#ec4899', buffText: 'ĐỒNG ĐỘI SPIDER-VERSE! +320' }
       ];
       let heroBag = [];
@@ -2008,20 +2089,24 @@ body {
       function spawnHeroCameo() {
         const def = drawNextHeroDef();
         const isPortal = def.type === 'strange';
-        const fromRight = def.type === 'ironman' || def.type === 'thor' || def.type === 'surfer' || def.type === 'wolverine';
+        const fromRight = def.type === 'ironman' || def.type === 'thor' || def.type === 'surfer' || def.type === 'wolverine' || def.type === 'wanda';
         heroCameos.push({
           ...def,
           x: isPortal ? camX + viewW + 170 : (fromRight ? camX + viewW + 160 : camX - 110),
-          y: 175 + Math.random() * 195, baseY: 175 + Math.random() * 195,
-          vx: isPortal ? 0 : (fromRight ? -235 : player.vx + 225),
-          phase: 0, interacted: false, life: 10.5
+          y: 165 + Math.random() * 210, baseY: 165 + Math.random() * 210,
+          vx: isPortal ? 0 : (fromRight ? -225 : player.vx + 220),
+          phase: 0, interacted: false, life: 11.5
         });
       }
 
       function updateHeroCameos(dt) {
-        const freqMult = SUITS[currentSuit].perks.heroFreqMult || 1;
+        const freqMult = (SUITS[currentSuit].perks.heroFreqMult || 1) * (gameMode === 'zen' ? 0.52 : 1.0);
+        const maxHeroes = gameMode === 'zen' ? 2 : 1;
         nextHeroTimer -= dt;
-        if (nextHeroTimer <= 0 && heroCameos.length === 0) { spawnHeroCameo(); nextHeroTimer = (7.5 + Math.random() * 4.5) * freqMult; }
+        if (nextHeroTimer <= 0 && heroCameos.length < maxHeroes) {
+          spawnHeroCameo();
+          nextHeroTimer = (gameMode === 'zen' ? (3.2 + Math.random() * 2.4) : (7.5 + Math.random() * 4.5)) * freqMult;
+        }
         const scoreMult = SUITS[currentSuit].perks.scoreMult || 1;
         for (let i = heroCameos.length - 1; i >= 0; i--) {
           const h = heroCameos[i]; h.phase += dt * 4; h.life -= dt;
@@ -2041,14 +2126,17 @@ body {
                 : h.type === 'wolverine' ? '#facc15'
                 : h.type === 'deadpool' ? '#f43f5e'
                 : h.type === 'surfer' ? '#a5f3fc'
+                : h.type === 'panther' ? '#c084fc'
+                : h.type === 'wanda' ? '#fb7185'
+                : h.type === 'marvel' ? '#fde047'
                 : '#ec4899';
-              particles.push({ x: h.x - Math.sign(h.vx || 1) * 18, y: h.y + (Math.random() - 0.5) * 10, vx: -h.vx * 0.2, vy: (Math.random() - 0.5) * 35, life: 0.30, maxLife: 0.30, size: h.type === 'torch' ? 5 : 3.2, color: col });
+              particles.push({ x: h.x - Math.sign(h.vx || 1) * 18, y: h.y + (Math.random() - 0.5) * 10, vx: -h.vx * 0.2, vy: (Math.random() - 0.5) * 35, life: 0.30, maxLife: 0.30, size: (h.type === 'torch' || h.type === 'marvel') ? 5 : 3.2, color: col });
             }
           }
           const targetX = h.type === 'strange' ? h.x + 40 : h.x;
-          if (!h.interacted && state === 'playing' && Math.hypot(player.x - targetX, player.y - h.y) < 96) {
+          if (!h.interacted && state === 'playing' && Math.hypot(player.x - targetX, player.y - h.y) < 104) {
             h.interacted = true; AudioFX.playHeroTeamup(); recordStat('heroesMet', 1);
-            spawnShockwave(targetX, h.y, h.color, 98); spawnParticles(targetX, h.y, 24, h.color, 80, 280, 2.5, 5.5);
+            spawnShockwave(targetX, h.y, h.color, 102); spawnParticles(targetX, h.y, 26, h.color, 80, 280, 2.5, 5.5);
             spawnPopup(player.x, player.y - 48, h.buffText, h.color, 19);
             if (h.type === 'ironman') { bonusScore += Math.round(350 * combo * scoreMult); player.dashEnergy = 100; player.vx = Math.max(player.vx + 180, 680); }
             else if (h.type === 'strange') { bonusScore += Math.round(400 * combo * scoreMult); player.vx = Math.max(player.vx + 280, 780); player.vy = -180; player.dashEnergy = Math.min(100, player.dashEnergy + 50); }
@@ -2067,9 +2155,17 @@ body {
               bonusScore += Math.round(400 * combo * scoreMult);
               combo = Math.min(10, combo + 3); comboTimer = 5.5; recordStat('maxCombo', combo, true);
               player.magnetTimer = Math.max(player.magnetTimer, 6.0);
-            } else if (h.type === 'surfer') {
-              bonusScore += Math.round(500 * combo * scoreMult);
-              player.vx = Math.max(player.vx + 260, 820); player.shieldTimer = Math.max(player.shieldTimer, 5.5); player.dashEnergy = 100;
+            } else if (h.type === 'surfer' || h.type === 'marvel') {
+              bonusScore += Math.round(520 * combo * scoreMult);
+              player.vx = Math.max(player.vx + 270, 840); player.shieldTimer = Math.max(player.shieldTimer, 5.5); player.dashEnergy = 100;
+            } else if (h.type === 'panther') {
+              bonusScore += Math.round(460 * combo * scoreMult);
+              player.vx = Math.max(player.vx + 230, 760); player.dashEnergy = 100;
+              combo = Math.min(10, combo + 2); comboTimer = 5.2; recordStat('maxCombo', combo, true);
+            } else if (h.type === 'wanda') {
+              bonusScore += Math.round(480 * combo * scoreMult);
+              player.vy = -240; player.magnetTimer = Math.max(player.magnetTimer, 7.0);
+              spawnFireworkBurst(targetX, h.y - 60);
             } else {
               bonusScore += Math.round(320 * combo * scoreMult); combo = Math.min(10, combo + 2); comboTimer = 5.0; recordStat('maxCombo', combo, true);
             }
@@ -2083,13 +2179,13 @@ body {
       // ============================================================
       const BOSS_ORDER = ['goblin', 'electro', 'vulture', 'mysterio', 'docock', 'venom'];
       const BOSS_META = {
-        goblin:   { spawn: '🎃 GREEN GOBLIN XUẤT HIỆN!', defeat: 'ĐÁNH BẠI GOBLIN!',    color: '#4ade80', pts: 620, projHit: 'TRÚNG BOM BÍ NGÔ!',   projBreak: 'PHÁ BOM!',        ko: 'Bom Bí Ngô của Green Goblin đã hạ gục Người Nhện!' },
-        electro:  { spawn: '⚡ ELECTRO XUẤT HIỆN!',      defeat: 'HẠ GỤC ELECTRO!',     color: '#38bdf8', pts: 680, projHit: 'TRÚNG SÉT ELECTRO!',  projBreak: 'PHÁ CẦU SÉT!',    ko: 'Tia sét của Electro đã hạ gục Người Nhện!' },
-        vulture:  { spawn: '🦅 VULTURE XUẤT HIỆN!',      defeat: 'HẠ GỤC VULTURE!',     color: '#22c55e', pts: 720, projHit: 'TRÚNG LÔNG THÉP!',    projBreak: 'CHÉM LÔNG THÉP!', ko: 'Lưỡi lông thép của Vulture đã hạ gục Người Nhện!' },
-        mysterio: { spawn: '🔮 MYSTERIO XUẤT HIỆN!',     defeat: 'PHÁ ẢO ẢNH MYSTERIO!',color: '#c084fc', pts: 760, projHit: 'TRÚNG CẦU ẢO ẢNH!',   projBreak: 'PHÁ ẢO ẢNH!',     ko: 'Cầu ảo ảnh của Mysterio đã đánh lừa Người Nhện!' },
-        docock:   { spawn: '🐙 DOC OCK XUẤT HIỆN!',      defeat: 'HẠ GỤC DOC OCK!',     color: '#f97316', pts: 800, projHit: 'TRÚNG MẢNH VỠ OCK!',  projBreak: 'PHÁ MẢNH VỠ!',    ko: 'Cánh tay cơ khí của Doc Ock đã hạ gục Người Nhện!' },
-        venom:    { spawn: '🖤 VENOM XUẤT HIỆN!',        defeat: 'HẠ GỤC VENOM!',       color: '#f43f5e', pts: 850, projHit: 'TRÚNG TƠ VENOM!',     projBreak: 'PHÁ TƠ ĐEN!',     ko: 'Venom đã nuốt chửng Người Nhện trên bầu trời NYC!' },
-        bot:      { spawn: '',                           defeat: '',                    color: '#fb7185', pts: 350, projHit: 'TRÚNG ĐẠN ĐỊCH!',     projBreak: 'PHẢN ĐÒN ĐẠN!',   ko: 'Hỏa lực Drone NYC đã hạ gục Người Nhện!' }
+        goblin:   { name: 'GREEN GOBLIN', spawn: '🎃 GREEN GOBLIN XUẤT HIỆN!', defeat: 'ĐÁNH BẠI GOBLIN!',    color: '#4ade80', pts: 620, projHit: 'TRÚNG BOM BÍ NGÔ!',   projBreak: 'PHÁ BOM!',        ko: 'Bom Bí Ngô của Green Goblin đã hạ gục Người Nhện!' },
+        electro:  { name: 'ELECTRO',      spawn: '⚡ ELECTRO XUẤT HIỆN!',      defeat: 'HẠ GỤC ELECTRO!',     color: '#38bdf8', pts: 680, projHit: 'TRÚNG SÉT ELECTRO!',  projBreak: 'PHÁ CẦU SÉT!',    ko: 'Tia sét của Electro đã hạ gục Người Nhện!' },
+        vulture:  { name: 'VULTURE',      spawn: '🦅 VULTURE XUẤT HIỆN!',      defeat: 'HẠ GỤC VULTURE!',     color: '#22c55e', pts: 720, projHit: 'TRÚNG LÔNG THÉP!',    projBreak: 'CHÉM LÔNG THÉP!', ko: 'Lưỡi lông thép của Vulture đã hạ gục Người Nhện!' },
+        mysterio: { name: 'MYSTERIO',     spawn: '🔮 MYSTERIO XUẤT HIỆN!',     defeat: 'PHÁ ẢO ẢNH MYSTERIO!',color: '#c084fc', pts: 760, projHit: 'TRÚNG CẦU ẢO ẢNH!',   projBreak: 'PHÁ ẢO ẢNH!',     ko: 'Cầu ảo ảnh của Mysterio đã đánh lừa Người Nhện!' },
+        docock:   { name: 'DOC OCK',      spawn: '🐙 DOC OCK XUẤT HIỆN!',      defeat: 'HẠ GỤC DOC OCK!',     color: '#f97316', pts: 800, projHit: 'TRÚNG MẢNH VỠ OCK!',  projBreak: 'PHÁ MẢNH VỠ!',    ko: 'Cánh tay cơ khí của Doc Ock đã hạ gục Người Nhện!' },
+        venom:    { name: 'VENOM',        spawn: '🖤 VENOM XUẤT HIỆN!',        defeat: 'HẠ GỤC VENOM!',       color: '#f43f5e', pts: 850, projHit: 'TRÚNG TƠ VENOM!',     projBreak: 'PHÁ TƠ ĐEN!',     ko: 'Venom đã nuốt chửng Người Nhện trên bầu trời NYC!' },
+        bot:      { name: 'ĐỊCH',         spawn: '',                           defeat: '',                    color: '#fb7185', pts: 350, projHit: 'TRÚNG ĐẠN ĐỊCH!',     projBreak: 'PHẢN ĐÒN ĐẠN!',   ko: 'Hỏa lực kẻ địch NYC đã hạ gục Người Nhện!' }
       };
       let bossBag = [];
       function drawNextBossKind() {
@@ -2135,44 +2231,96 @@ body {
         return false;
       }
 
+      function findBestAimTarget(ox = player.x, oy = player.y) {
+        if (!settings.aimAssist) return null;
+        let targetRef = null, targetType = null, bestScore = 1350;
+        const minX = camX - 40, maxX = camX + viewW + 180;
+        const checkTarget = (tx, ty, ref, type, priorityBonus = 0) => {
+          if (tx < minX || tx > maxX) return;
+          const rawDist = Math.hypot(tx - ox, ty - oy);
+          if (rawDist > 1350) return;
+          const score = rawDist - priorityBonus;
+          if (score < bestScore) { bestScore = score; targetRef = ref; targetType = type; }
+        };
+        // Priority 1: Dangerous incoming projectile near Spider-Man
+        for (let i = 0; i < bossProjectiles.length; i++) {
+          const p = bossProjectiles[i];
+          const d = Math.hypot(p.x - ox, p.y - oy);
+          if (d < 360) checkTarget(p.x, p.y, p, 'proj', 240);
+          else checkTarget(p.x, p.y, p, 'proj', 60);
+        }
+        // Priority 2: Active Movie Boss
+        if (boss && boss.life > 0) checkTarget(boss.x, boss.y, boss, 'boss', 180);
+        // Priority 3: Any live villain on screen (Oscorp Trooper, Prowler, Shocker)
+        for (let i = 0; i < drones.length; i++) {
+          if (drones[i].alive) checkTarget(drones[i].x, drones[i].y, drones[i], 'drone', 110);
+        }
+        return targetRef ? { ref: targetRef, type: targetType } : null;
+      }
+
       function triggerWebBlast() {
         if (state !== 'playing' || player.webBlastCooldown > 0) return;
         const suit = SUITS[currentSuit];
-        player.webBlastCooldown = 0.85;
+        player.webBlastCooldown = 0.38;
         AudioFX.playWebBlast();
 
-        // Smart auto-aim at nearest threat ahead (boss, enemy projectile, or drone)
-        let target = null, bestD = 560;
-        const checkTarget = (tx, ty) => {
-          if (tx < player.x - 20) return;
-          const d = Math.hypot(tx - player.x, ty - player.y);
-          if (d < bestD) { bestD = d; target = { x: tx, y: ty }; }
-        };
-        if (boss) checkTarget(boss.x, boss.y);
-        for (let i = 0; i < bossProjectiles.length; i++) checkTarget(bossProjectiles[i].x, bossProjectiles[i].y);
-        for (let i = 0; i < drones.length; i++) if (drones[i].alive) checkTarget(drones[i].x, drones[i].y);
+        if (gameMode === 'zen') {
+          const fx = player.x + 175, fy = Math.max(85, player.y - 55);
+          spawnFireworkBurst(fx, fy);
+          spawnShockwave(fx, fy, suit.webColor, 78);
+          const pts = Math.round(120 * combo * (suit.perks.scoreMult || 1)); bonusScore += pts;
+          spawnPopup(fx, fy - 24, `🎆 PHÁO HOA TƠ! +${pts}`, '#fde047', 17);
+          return;
+        }
 
-        const spd = Math.max(920, player.vx + 560);
+        const locked = findBestAimTarget(player.x, player.y);
+        const targetRef = locked ? locked.ref : null;
+        const targetType = locked ? locked.type : null;
+
+        const spd = Math.max(1280, player.vx + 860);
         let vx = spd, vy = 0;
-        if (target) {
-          const ang = Math.atan2(target.y - player.y, target.x - player.x);
+        if (targetRef) {
+          const ang = Math.atan2(targetRef.y - player.y, targetRef.x - player.x);
           vx = Math.cos(ang) * spd; vy = Math.sin(ang) * spd;
         }
-        webBlasts.push({ x: player.x + 22, y: player.y - 4, vx, vy, r: 14, color: suit.webColor, accent: suit.accent, life: 1.0 });
-        spawnParticles(player.x + 22, player.y - 4, 8, suit.webColor, 40, 150, 2, 4);
+        webBlasts.push({
+          x: player.x + 22, y: player.y - 4, vx, vy, spd, r: 16,
+          color: suit.webColor, accent: suit.accent, life: 1.4,
+          targetRef, targetType
+        });
+        spawnParticles(player.x + 22, player.y - 4, 9, suit.webColor, 40, 150, 2, 4);
       }
 
       function updateWebBlasts(dt) {
         const suit = SUITS[currentSuit], scoreMult = suit.perks.scoreMult || 1;
         for (let i = webBlasts.length - 1; i >= 0; i--) {
           const wb = webBlasts[i];
+          // True 100% Aim-Assist homing + automatic mid-flight re-target if original target vanished!
+          if (settings.aimAssist) {
+            let tx = null, ty = null;
+            if (wb.targetType === 'boss' && boss && boss.life > 0) { tx = boss.x; ty = boss.y; }
+            else if (wb.targetType === 'drone' && wb.targetRef && wb.targetRef.alive) { tx = wb.targetRef.x; ty = wb.targetRef.y; }
+            else if (wb.targetType === 'proj' && wb.targetRef && bossProjectiles.indexOf(wb.targetRef) !== -1) { tx = wb.targetRef.x; ty = wb.targetRef.y; }
+            else {
+              const nextLock = findBestAimTarget(wb.x, wb.y);
+              if (nextLock) { wb.targetRef = nextLock.ref; wb.targetType = nextLock.type; tx = nextLock.ref.x; ty = nextLock.ref.y; }
+            }
+            if (tx !== null) {
+              const dx = tx - wb.x, dy = ty - wb.y, dist = Math.hypot(dx, dy) || 1;
+              const curSpd = Math.max(wb.spd || 1280, player.vx + 860);
+              const dvx = (dx / dist) * curSpd, dvy = (dy / dist) * curSpd;
+              const steer = dist < 90 ? 1.0 : Math.min(1, dt * 28);
+              wb.vx += (dvx - wb.vx) * steer;
+              wb.vy += (dvy - wb.vy) * steer;
+            }
+          }
           wb.x += wb.vx * dt; wb.y += wb.vy * dt; wb.life -= dt;
           let hit = false;
 
           // 1. Intercept enemy / boss projectiles!
           for (let j = bossProjectiles.length - 1; j >= 0; j--) {
             const p = bossProjectiles[j];
-            if (Math.hypot(wb.x - p.x, wb.y - p.y) < wb.r + p.r + 10) {
+            if (Math.hypot(wb.x - p.x, wb.y - p.y) < wb.r + p.r + 16) {
               const pts = Math.round(240 * combo * scoreMult); bonusScore += pts;
               player.dashEnergy = Math.min(100, player.dashEnergy + 12);
               AudioFX.playSmash(); spawnParticles(p.x, p.y, 14, wb.color, 60, 220, 2, 4.5);
@@ -2183,16 +2331,16 @@ body {
           }
           if (hit) { webBlasts.splice(i, 1); continue; }
 
-          // 2. Blast regular enemy bots!
+          // 2. Blast regular villains!
           for (let j = 0; j < drones.length; j++) {
             const d = drones[j]; if (!d.alive) continue;
-            if (Math.hypot(wb.x - d.x, wb.y - d.y) < wb.r + d.r + 8) {
+            if (Math.hypot(wb.x - d.x, wb.y - d.y) < wb.r + d.r + 20) {
               d.alive = false; combo = Math.min(10, combo + 1); comboTimer = 4.6; recordStat('maxCombo', combo, true);
               const pts = Math.round(380 * combo * scoreMult); bonusScore += pts;
               player.dashEnergy = Math.min(100, player.dashEnergy + 16);
               AudioFX.playSmash(); addScreenShake(5, 0.14);
               spawnParticles(d.x, d.y, 22, wb.color, 80, 280, 2.5, 5.5);
-              spawnPopup(d.x, d.y - 22, `BỌC TƠ HẠ ĐỊCH! +${pts}`, '#4ade80', 19);
+              spawnPopup(d.x, d.y - 22, `TRÚNG ĐỊCH! +${pts}`, '#4ade80', 19);
               progressMission('smash', 1); recordStat('smashes', 1);
               hit = true; break;
             }
@@ -2200,20 +2348,20 @@ body {
           if (hit) { webBlasts.splice(i, 1); continue; }
 
           // 3. Damage & stun Movie Bosses (3 hits KO!)
-          if (boss && Math.hypot(wb.x - boss.x, wb.y - boss.y) < wb.r + 36) {
-            boss.hp--; boss.hitFlash = 0.22; boss.x += 28;
+          if (boss && Math.hypot(wb.x - boss.x, wb.y - boss.y) < wb.r + 48) {
+            boss.hp--; boss.hitFlash = 0.26; boss.x += 20;
             AudioFX.playSmash(); addScreenShake(6, 0.16);
-            spawnParticles(boss.x, boss.y, 18, wb.color, 70, 240, 2.5, 5);
+            spawnParticles(boss.x, boss.y, 20, wb.color, 70, 250, 2.5, 5.5);
             if (boss.hp <= 0) {
               defeatCurrentBoss();
             } else {
               const pts = Math.round(180 * combo * scoreMult); bonusScore += pts;
-              spawnPopup(boss.x, boss.y - 34, `TRÚNG TƠ! (${boss.hp}/${boss.maxHp} HP)`, '#fde047', 18);
+              spawnPopup(boss.x, boss.y - 36, `TRÚNG BOSS! (${boss.hp}/${boss.maxHp} HP)`, '#fde047', 19);
             }
             webBlasts.splice(i, 1); continue;
           }
 
-          if (wb.life <= 0 || wb.x > camX + viewW + 220 || wb.y < -80 || wb.y > GROUND_Y + 40) webBlasts.splice(i, 1);
+          if (wb.life <= 0 || wb.x < camX - 240 || wb.x > camX + viewW + 340 || wb.y < -160 || wb.y > GROUND_Y + 80) webBlasts.splice(i, 1);
         }
       }
 
@@ -2225,26 +2373,31 @@ body {
           const kind = drawNextBossKind();
           bossSeq++;
           boss = {
-            kind,
-            x: camX + viewW + 140, y: 185, baseY: 185,
-            phase: 0, attackTimer: 1.15, life: 13.5,
+            kind, name: BOSS_META[kind].name,
+            x: camX + viewW + 120, y: 185, baseY: 185,
+            phase: 0, attackTimer: 1.25, life: 16.0,
             hp: 3, maxHp: 3, hitFlash: 0
           };
           nextBossDist = maxDistance + 135 + Math.random() * 65;
           spawnPopup(player.x + 100, player.y - 60, BOSS_META[kind].spawn, BOSS_META[kind].color, 19);
-          showToast('🔥', `${BOSS_META[kind].spawn}! Bấm 🕸️ BẮN hạ Boss!`);
+          showToast('🔥', `${BOSS_META[kind].spawn} — Bấm 🕸️ BẮN hoặc BỨT TỐC!`);
         }
 
         if (boss) {
           const bMeta = BOSS_META[boss.kind];
-          boss.phase += dt * (boss.kind === 'vulture' || boss.kind === 'venom' ? 4.2 : 3.3);
+          boss.phase += dt * (boss.kind === 'vulture' || boss.kind === 'venom' ? 4.0 : 3.2);
           boss.life -= dt;
           if (boss.hitFlash > 0) boss.hitFlash = Math.max(0, boss.hitFlash - dt);
           const leadDist = isPortrait ? clamp(viewW * 0.36, 260, 420) : (boss.kind === 'vulture' || boss.kind === 'venom' ? 310 : 350);
           const targetBossX = player.x + leadDist;
           const catchRate = boss.x < targetBossX ? 5.2 : 2.6;
           boss.x += (targetBossX - boss.x) * Math.min(1, dt * catchRate);
-          boss.y = boss.baseY + Math.sin(boss.phase) * (boss.kind === 'vulture' || boss.kind === 'venom' ? 76 : 60);
+          boss.y = boss.baseY + Math.sin(boss.phase) * (boss.kind === 'vulture' || boss.kind === 'venom' ? 72 : 56);
+
+          // Gentle magnetic lunge when Spider-Man dashes near the Boss (makes 1-Hit KO ram feel awesome!)
+          if (player.dashTimer > 0 && boss.x > player.x - 40 && boss.x - player.x < 440) {
+            player.y += (boss.y - player.y) * Math.min(1, dt * 6.5);
+          }
 
           if (Math.random() < 0.55) {
             particles.push({
@@ -2280,7 +2433,7 @@ body {
             }
           }
 
-          if (Math.hypot(player.x - boss.x, player.y - boss.y) < 54 && (player.dashTimer > 0 || player.shieldTimer > 0)) {
+          if (Math.hypot(player.x - boss.x, player.y - boss.y) < 76 && (player.dashTimer > 0 || player.shieldTimer > 0)) {
             defeatCurrentBoss();
           } else if (boss.life <= 0) {
             boss.x += 480 * dt; boss.y -= 260 * dt;
@@ -2508,12 +2661,12 @@ body {
         startX = player.x; camZoom = 1; resizeCanvas();
         camX = player.x - viewW * 0.25; camY = 0;
         score = 0; bonusScore = 0; maxDistance = 0; lastRecordedDist = 0; maxSpeedKmh = 0;
-        combo = 1; comboTimer = 0; swingCount = 0; nextBossDist = 95; bossSeq = 0; nextHeroTimer = 4.5;
+        combo = 1; comboTimer = 0; swingCount = 0; nextBossDist = 95; bossSeq = 0; nextHeroTimer = gameMode === 'zen' ? 1.8 : 4.5;
         heroBag = []; bossBag = [];
         currentDistrictIdx = 0;
 
         buildings = []; farSkyline = []; midSkyline = []; landmarks = [];
-        tokens = []; boostRings = []; powerups = []; drones = []; boss = null; bossProjectiles = []; webBlasts = [];
+        tokens = []; boostRings = []; powerups = []; drones = []; boss = null; bossProjectiles = []; webBlasts = []; skyBalloons = [];
         heroCameos = []; roofPigeons = []; particles = []; popups = []; steamPuffs = []; streetSteam = [];
         rainSplashes = []; windRibbons = []; windStreaks = []; shockwaves = []; fireworks = [];
         nextBuildingX = -220; nextFarX = -300; nextMidX = -300; nextLandmarkX = 200;
@@ -2893,63 +3046,88 @@ body {
           }
         }
 
-        // 3 Active Attacking Enemy Types (in BOTH Arcade & Zen modes!)
+        // Combat in Arcade mode; Peaceful Scenic Wonders + Balloons in Zen mode!
         let dangerNear = false;
-        const senseRadius = 175 + env.wFog * 165 + (suit.perks.reachMult ? 60 : 0);
-        for (let i = 0; i < drones.length; i++) {
-          const d = drones[i]; if (!d.alive) continue;
-          d.y = d.baseY + Math.sin(elapsedTime * d.freq + d.phase) * d.amp;
-          const pulseBonus = d.kind === 'shock_mine' ? (Math.sin(elapsedTime * 5 + d.phase) > 0.65 ? 8 : 0) : 0;
-          const hitR = d.r + 22 + pulseBonus;
-          const dist = Math.hypot(player.x - d.x, player.y - d.y);
-          if (dist < senseRadius) dangerNear = true;
+        if (gameMode === 'arcade') {
+          const senseRadius = 175 + env.wFog * 165 + (suit.perks.reachMult ? 60 : 0);
+          for (let i = 0; i < drones.length; i++) {
+            const d = drones[i]; if (!d.alive) continue;
+            d.y = d.baseY + Math.sin(elapsedTime * d.freq + d.phase) * d.amp;
+            const pulseBonus = d.kind === 'shock_mine' ? (Math.sin(elapsedTime * 5 + d.phase) > 0.65 ? 8 : 0) : 0;
+            const hitR = d.r + 22 + pulseBonus;
+            const dist = Math.hypot(player.x - d.x, player.y - d.y);
+            if (dist < senseRadius) dangerNear = true;
 
-          // Active enemy shooting when ahead of Spider-Man!
-          const dxAhead = d.x - player.x;
-          if (dxAhead > 70 && dxAhead < viewW * 0.92) {
-            d.fireTimer = (d.fireTimer ?? 0.9) - dt;
-            if (d.fireTimer <= 0) {
-              d.fireTimer = d.kind === 'laser_bot' ? 1.85 : (d.kind === 'shock_mine' ? 2.15 : 2.05);
-              AudioFX.playEnemyShot();
-              const ang = Math.atan2(player.y - d.y, player.x - d.x);
-              const spd = d.kind === 'laser_bot' ? 420 : (d.kind === 'shock_mine' ? 310 : 340);
-              bossProjectiles.push({
-                kind: d.kind === 'laser_bot' ? 'laser' : (d.kind === 'shock_mine' ? 'sonic' : 'plasma'),
-                bossKind: 'bot',
-                x: d.x - 14, y: d.y,
-                vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd,
-                r: d.kind === 'shock_mine' ? 12 : 9
-              });
+            // Active enemy shooting when ahead of Spider-Man!
+            const dxAhead = d.x - player.x;
+            if (dxAhead > 70 && dxAhead < viewW * 0.92) {
+              d.fireTimer = (d.fireTimer ?? 0.9) - dt;
+              if (d.fireTimer <= 0) {
+                d.fireTimer = d.kind === 'laser_bot' ? 1.85 : (d.kind === 'shock_mine' ? 2.15 : 2.05);
+                AudioFX.playEnemyShot();
+                const ang = Math.atan2(player.y - d.y, player.x - d.x);
+                const spd = d.kind === 'laser_bot' ? 420 : (d.kind === 'shock_mine' ? 310 : 340);
+                bossProjectiles.push({
+                  kind: d.kind === 'laser_bot' ? 'laser' : (d.kind === 'shock_mine' ? 'sonic' : 'plasma'),
+                  bossKind: 'bot',
+                  x: d.x - 14, y: d.y,
+                  vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd,
+                  r: d.kind === 'shock_mine' ? 12 : 9
+                });
+              }
+            }
+
+            if (dist < hitR) {
+              const eName = d.kind === 'laser_bot' ? 'PROWLER' : (d.kind === 'shock_mine' ? 'SHOCKER' : 'LÍNH OSCORP');
+              const eColor = d.kind === 'laser_bot' ? '#e879f9' : (d.kind === 'shock_mine' ? '#facc15' : '#4ade80');
+              const basePts = d.kind === 'shock_mine' ? 480 : (d.kind === 'laser_bot' ? 440 : 400);
+              if (player.dashTimer > 0 || player.shieldTimer > 0) {
+                d.alive = false; combo = Math.min(10, combo + 1); comboTimer = 4.6; recordStat('maxCombo', combo, true);
+                const pts = Math.round(basePts * combo * scoreMult); bonusScore += pts;
+                player.dashEnergy = Math.min(100, player.dashEnergy + (suit.perks.smashDashBonus || 28));
+                AudioFX.playSmash(); addScreenShake(9, 0.25);
+                spawnParticles(d.x, d.y, 26, suit.special === 'ghost_flame' ? '#38bdf8' : eColor, 90, 320, 3, 6);
+                spawnPopup(d.x, d.y - 28, player.shieldTimer > 0 ? `KHIÊN HẠ ${eName}! +${pts}` : `HẠ ${eName}! +${pts}`, eColor, 22);
+                progressMission('smash', 1); recordStat('smashes', 1);
+              } else {
+                d.alive = false;
+                player.vx = Math.max(160, player.vx * 0.65);
+                if (applyPlayerDamage(`TRÚNG ${eName}!`, '#f87171', `${eName} đã hạ gục Người Nhện trên bầu trời NYC!`, d.x, d.y)) return;
+              }
+            } else if (!d.nearMissed && dist < hitR + 34 && player.x > d.x + 14) {
+              d.nearMissed = true;
+              const pts = Math.round(150 * combo * stuntMult * scoreMult); bonusScore += pts;
+              spawnPopup(player.x, player.y - 36, `NÉ SÁT NÚT! +${pts}`, '#a7f3d0', 17);
             }
           }
 
-          if (dist < hitR) {
-            const eName = d.kind === 'laser_bot' ? 'SENTINEL' : (d.kind === 'shock_mine' ? 'MÌN SÓNG ÂM' : 'DRONE');
-            const eColor = d.kind === 'laser_bot' ? '#e879f9' : (d.kind === 'shock_mine' ? '#facc15' : '#fb923c');
-            const basePts = d.kind === 'shock_mine' ? 480 : (d.kind === 'laser_bot' ? 440 : 400);
-            if (player.dashTimer > 0 || player.shieldTimer > 0) {
-              d.alive = false; combo = Math.min(10, combo + 1); comboTimer = 4.6; recordStat('maxCombo', combo, true);
-              const pts = Math.round(basePts * combo * scoreMult); bonusScore += pts;
-              player.dashEnergy = Math.min(100, player.dashEnergy + (suit.perks.smashDashBonus || 28));
-              AudioFX.playSmash(); addScreenShake(9, 0.25);
-              spawnParticles(d.x, d.y, 26, suit.special === 'ghost_flame' ? '#38bdf8' : eColor, 90, 320, 3, 6);
-              spawnPopup(d.x, d.y - 28, player.shieldTimer > 0 ? `KHIÊN PHÁ ${eName}! +${pts}` : `PHÁ ${eName}! +${pts}`, eColor, 22);
-              progressMission('smash', 1); recordStat('smashes', 1);
-            } else {
-              d.alive = false;
-              player.vx = Math.max(160, player.vx * 0.65);
-              if (applyPlayerDamage(`TRÚNG ${eName}!`, '#f87171', `${eName} đã hạ gục Người Nhện trên bầu trời NYC!`, d.x, d.y)) return;
+          updateWebBlasts(dt);
+          updateBossEncounters(dt);
+          if (state !== 'playing') return;
+        } else {
+          // Zen Free-Swing mode: Festive bouncy Hot-Air Balloons + joyous NYC sky fireworks!
+          for (let i = 0; i < skyBalloons.length; i++) {
+            const bl = skyBalloons[i];
+            bl.y = bl.baseY + Math.sin(elapsedTime * 1.8 + bl.phase) * 18;
+            if (!bl.bounced && Math.hypot(player.x - bl.x, player.y - bl.y) < bl.r + 28) {
+              bl.bounced = true;
+              player.vy = -460; player.vx = Math.max(player.vx + 160, 620);
+              player.flipping = true; player.spinVel = 12.5;
+              player.dashEnergy = Math.min(100, player.dashEnergy + 35);
+              combo = Math.min(10, combo + 1); comboTimer = 5.0; recordStat('maxCombo', combo, true);
+              const pts = Math.round(300 * combo * scoreMult); bonusScore += pts;
+              AudioFX.playHeroTeamup();
+              spawnFireworkBurst(bl.x, bl.y - 30);
+              spawnShockwave(bl.x, bl.y, bl.col1, 86);
+              spawnPopup(bl.x, bl.y - 36, `🎈 NHÚN KHINH KHÍ CẦU! +${pts}`, bl.col2, 19);
             }
-          } else if (!d.nearMissed && dist < hitR + 34 && player.x > d.x + 14) {
-            d.nearMissed = true;
-            const pts = Math.round(150 * combo * stuntMult * scoreMult); bonusScore += pts;
-            spawnPopup(player.x, player.y - 36, `NÉ SÁT NÚT! +${pts}`, '#a7f3d0', 17);
+          }
+          fireworkCooldown -= dt;
+          if (fireworkCooldown <= 0) {
+            fireworkCooldown = 2.6 + Math.random() * 2.4;
+            spawnFireworkBurst(camX + viewW * (0.45 + Math.random() * 0.45), 75 + Math.random() * 140);
           }
         }
-
-        updateWebBlasts(dt);
-        updateBossEncounters(dt);
-        if (state !== 'playing') return;
 
         if (player.y > GROUND_Y - 115) dangerNear = true;
         if (player.y >= GROUND_Y - 12) {
@@ -3103,6 +3281,12 @@ body {
         if (hudCache.dashDisabled !== disabled) { hudCache.dashDisabled = disabled; btnDash.disabled = disabled; }
         const blastCd = player.webBlastCooldown > 0 || state !== 'playing';
         if (hudCache.blastDisabled !== blastCd && btnWebBlast) { hudCache.blastDisabled = blastCd; btnWebBlast.style.opacity = blastCd ? '0.45' : '1'; }
+        const blastLocked = state === 'playing' && settings.aimAssist && !!findBestAimTarget(player.x, player.y);
+        if (hudCache.blastLocked !== blastLocked && btnWebBlast) {
+          hudCache.blastLocked = blastLocked;
+          btnWebBlast.style.borderColor = blastLocked ? '#34d399' : '';
+          btnWebBlast.style.background = blastLocked ? 'rgba(16, 185, 129, 0.28)' : '';
+        }
         updateEnvHud();
       }
 
@@ -3136,6 +3320,42 @@ body {
             ctx.fillRect(s.rx * viewW, -worldOffsetY + s.ry * starH, d, d);
           }
           ctx.globalAlpha = 1;
+        }
+        // Zen Free-Swing scenic wonders: Luminous NYC Rainbow (day) & Aurora Borealis (night/dawn)!
+        if (gameMode === 'zen') {
+          if (L.daylight > 0.36) {
+            ctx.save();
+            const rbX = viewW * 0.56, rbY = GROUND_Y - 10, baseR = Math.min(viewW * 0.62, 540);
+            const rbAlpha = clamp((L.daylight - 0.36) * 0.28, 0.04, 0.17);
+            const rbCols = ['#f43f5e', '#fb923c', '#facc15', '#4ade80', '#38bdf8', '#a855f7'];
+            ctx.lineWidth = 10; ctx.globalAlpha = rbAlpha;
+            for (let c = 0; c < rbCols.length; c++) {
+              ctx.strokeStyle = rbCols[c];
+              ctx.beginPath(); ctx.arc(rbX, rbY, baseR - c * 10, Math.PI * 1.06, Math.PI * 1.94); ctx.stroke();
+            }
+            ctx.restore();
+          } else {
+            ctx.save();
+            const aurY = skyTopY + Math.min(180, viewH * 0.22);
+            const aurAlpha = clamp((0.42 - L.daylight) * 0.55, 0.06, 0.26);
+            const bands = [
+              { col: 'rgba(52, 211, 153, 0.9)', dy: 0, w: 34, amp: 24, spd: 0.7 },
+              { col: 'rgba(56, 189, 248, 0.85)', dy: 24, w: 26, amp: 20, spd: 0.9 },
+              { col: 'rgba(168, 85, 247, 0.8)', dy: 46, w: 22, amp: 26, spd: 0.55 }
+            ];
+            ctx.globalAlpha = aurAlpha; ctx.lineCap = 'round';
+            for (let b = 0; b < bands.length; b++) {
+              const bd = bands[b];
+              ctx.strokeStyle = bd.col; ctx.lineWidth = bd.w;
+              ctx.beginPath();
+              for (let sx = -40; sx <= viewW + 40; sx += 80) {
+                const sy = aurY + bd.dy + Math.sin(sx * 0.0055 + elapsedTime * bd.spd + b * 1.3) * bd.amp;
+                if (sx === -40) ctx.moveTo(sx, sy); else ctx.lineTo(sx, sy);
+              }
+              ctx.stroke();
+            }
+            ctx.restore();
+          }
         }
         for (let i = 0; i < fireworks.length; i++) {
           const fw = fireworks[i]; ctx.fillStyle = fw.color; ctx.globalAlpha = clamp(fw.life, 0, 1);
@@ -3999,6 +4219,80 @@ body {
             ctx.beginPath(); ctx.ellipse(3, -18, 7.2, 8.4, 0.12, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
             ctx.fillStyle = '#ffffff'; ctx.fillRect(5.5, -20, 4.5, 2.2);
             ctx.restore();
+          } else if (h.type === 'panther') {
+            // Black Panther leaping mid-air with purple Vibranium kinetic glow & silver claws!
+            ctx.save(); ctx.scale(dir, 1);
+            ctx.drawImage(GLOW_SPRITES.purple, -34, -34, 68, 68);
+            drawHeroLimb(-4, 7, -15, 16, -22, 24, '#09090b', '#18181b', 5.8, 5);
+            drawHeroLimb(4, 7, 13, 13, 8, 23, '#09090b', '#18181b', 5.8, 5);
+            drawHeroLimb(-3, -6, -14, -2, -21, 5, '#09090b', '#18181b', 5.2, 4.6);
+            // Sleek black Vibranium torso with glowing purple kinetic stripes & silver claw necklace
+            ctx.fillStyle = '#09090b'; ctx.strokeStyle = '#a855f7'; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.moveTo(-7.5, -10); ctx.lineTo(8, -10); ctx.lineTo(5.5, 10); ctx.lineTo(-5.5, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(0.5, -8, 6, 0.25, Math.PI - 0.25); ctx.stroke();
+            ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 1.4;
+            ctx.beginPath(); ctx.moveTo(-4, -2); ctx.lineTo(5, -2); ctx.moveTo(-3, 3); ctx.lineTo(4, 3); ctx.stroke();
+            // Slashing front arm with silver Vibranium claws
+            drawHeroLimb(5, -6, 15, -9, 23, -5, '#09090b', '#18181b', 5.4, 4.8);
+            ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.moveTo(23, -7); ctx.lineTo(32, -10); ctx.moveTo(24, -5); ctx.lineTo(33, -5); ctx.moveTo(23, -3); ctx.lineTo(31, 0); ctx.stroke();
+            // Iconic Panther mask with pointed ears & crisp white eyes
+            ctx.fillStyle = '#09090b'; ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1.4;
+            ctx.beginPath(); ctx.ellipse(2, -17, 7.2, 8.2, 0.1, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(-2, -23); ctx.lineTo(-4, -29); ctx.lineTo(2, -24); ctx.moveTo(3, -23); ctx.lineTo(6, -29); ctx.lineTo(7, -22); ctx.fill();
+            ctx.fillStyle = '#f8fafc'; ctx.fillRect(4.5, -19, 4.2, 2.2);
+            ctx.restore();
+          } else if (h.type === 'wanda') {
+            // Scarlet Witch levitating with billowing crimson coat, tiara & Chaos Magic orbs!
+            ctx.save(); ctx.scale(dir, 1);
+            const wave = Math.sin(elapsedTime * 10) * 5;
+            ctx.drawImage(GLOW_SPRITES.orange, -36, -34, 72, 72);
+            // Flowing crimson coat/cape
+            ctx.fillStyle = '#9f1239'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.moveTo(-6, -10); ctx.quadraticCurveTo(-22, 6 + wave, -26, 26); ctx.lineTo(2, 22); ctx.lineTo(6, -10); ctx.closePath(); ctx.fill(); ctx.stroke();
+            drawHeroLimb(-2, 9, -7, 19, -4, 28, '#18181b', '#881337', 5.4, 4.6);
+            drawHeroLimb(4, 9, 9, 18, 6, 28, '#18181b', '#881337', 5.4, 4.6);
+            // Crimson corset armor torso
+            ctx.fillStyle = '#be123c'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.moveTo(-6.5, -10); ctx.lineTo(7.5, -10); ctx.lineTo(5.5, 10); ctx.lineTo(-5.5, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
+            // Casting arms with glowing red Chaos Magic spheres!
+            drawHeroLimb(-3, -6, -12, -3, -19, -7, '#be123c', '#fde68a', 4.8, 4.2);
+            drawHeroLimb(5, -6, 15, -5, 23, -9, '#be123c', '#fde68a', 4.8, 4.2);
+            ctx.fillStyle = '#fb7185'; ctx.strokeStyle = '#ffe4e6'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(26, -10, 5.5 + Math.sin(elapsedTime * 14) * 1.2, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.beginPath(); ctx.arc(-21, -8, 4.2, 0, Math.PI * 2); ctx.fill();
+            // Head, flowing auburn hair & iconic Scarlet Witch M-tiara!
+            ctx.fillStyle = '#7c2d12'; ctx.beginPath(); ctx.ellipse(-1, -17, 9.5, 9, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = '#fde68a'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.ellipse(2, -17, 6.4, 7.4, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#e11d48'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.3;
+            ctx.beginPath(); ctx.moveTo(-3, -22); ctx.lineTo(0, -29); ctx.lineTo(2, -23); ctx.lineTo(5, -29); ctx.lineTo(8, -21); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#fb7185'; ctx.fillRect(4.5, -18.5, 3.2, 2);
+            ctx.restore();
+          } else if (h.type === 'marvel') {
+            // Captain Marvel blasting through the sky in radiant golden Binary energy!
+            ctx.save(); ctx.scale(dir, 1); ctx.rotate(0.14);
+            ctx.drawImage(GLOW_SPRITES.gold, -40, -34, 80, 68);
+            const jet = 20 + Math.sin(elapsedTime * 34) * 6;
+            ctx.fillStyle = '#fde047'; ctx.beginPath(); ctx.moveTo(-22, 0); ctx.lineTo(-22 - jet, 4); ctx.lineTo(-22, 8); ctx.closePath(); ctx.fill();
+            drawHeroLimb(-7, 4, -16, 6, -24, 7, '#1d4ed8', '#dc2626', 5.6, 5);
+            drawHeroLimb(-5, -1, -14, 1, -22, 2, '#1d4ed8', '#dc2626', 5.6, 5);
+            drawHeroLimb(4, -5, -5, -8, -13, -4, '#dc2626', '#facc15', 5, 4.4);
+            // Red, Blue & Gold Captain Marvel suit with golden 8-point star emblem
+            ctx.fillStyle = '#dc2626'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.9;
+            ctx.beginPath(); ctx.roundRect(-10, -8, 22, 14, 5); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#1d4ed8'; ctx.fillRect(-10, -8, 10, 14);
+            ctx.fillStyle = '#fde047'; ctx.beginPath(); ctx.arc(4, -1, 4.2, 0, Math.PI * 2); ctx.fill();
+            // Glowing Binary fist flying forward!
+            drawHeroLimb(6, 2, 16, 4, 25, 1, '#dc2626', '#fde047', 5.2, 4.6);
+            ctx.fillStyle = '#fef9c3'; ctx.beginPath(); ctx.arc(27, 1, 4.8, 0, Math.PI * 2); ctx.fill();
+            // Blonde glowing hair & Binary eyes
+            ctx.fillStyle = '#facc15'; ctx.beginPath(); ctx.moveTo(10, -9); ctx.lineTo(-4, -14); ctx.lineTo(4, -3); ctx.closePath(); ctx.fill();
+            ctx.fillStyle = '#fde68a'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.7;
+            ctx.beginPath(); ctx.ellipse(15, -5, 7, 7.2, 0.1, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#fef08a'; ctx.fillRect(17.5, -7, 4.2, 2.2);
+            ctx.restore();
           } else {
             // Spider-Gwen full-body articulated swinging comic art!
             ctx.save(); ctx.scale(dir, 1);
@@ -4154,154 +4448,340 @@ body {
           ctx.restore();
         }
 
+        // Festive NYC Hot-Air Balloons (Zen Free-Swing exclusive!)
+        for (let i = 0; i < skyBalloons.length; i++) {
+          const bl = skyBalloons[i];
+          const x = bl.x - camX, y = bl.y - camY;
+          if (x < -80 || x > viewW + 80) continue;
+          ctx.save(); ctx.translate(x, y);
+          if (bl.bounced) ctx.globalAlpha = 0.55;
+          // Balloon ropes & wicker basket
+          ctx.strokeStyle = '#fef3c7'; ctx.lineWidth = 1.4;
+          ctx.beginPath(); ctx.moveTo(-8, 16); ctx.lineTo(-5, 31); ctx.moveTo(8, 16); ctx.lineTo(5, 31); ctx.stroke();
+          ctx.fillStyle = '#92400e'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.roundRect(-8, 30, 16, 11, 3); ctx.fill(); ctx.stroke();
+          // Burner flame glow
+          ctx.fillStyle = '#fde047'; ctx.beginPath(); ctx.arc(0, 21, 3.2 + Math.sin(elapsedTime * 16 + bl.phase) * 0.9, 0, Math.PI * 2); ctx.fill();
+          // Striped festive hot-air balloon canopy
+          ctx.fillStyle = bl.col1; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.arc(0, -6, 26, Math.PI * 0.85, Math.PI * 2.15); ctx.lineTo(10, 18); ctx.lineTo(-10, 18); ctx.closePath(); ctx.fill(); ctx.stroke();
+          ctx.fillStyle = bl.col2;
+          ctx.beginPath(); ctx.ellipse(0, -4, 11, 24, 0, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.4;
+          ctx.beginPath(); ctx.ellipse(0, -4, 11, 24, 0, 0, Math.PI * 2); ctx.stroke();
+          ctx.fillStyle = 'rgba(255,255,255,0.45)'; ctx.beginPath(); ctx.arc(-9, -16, 5, 0, Math.PI * 2); ctx.fill();
+          ctx.restore();
+        }
+        if (gameMode !== 'arcade') return;
+
+        const drawCharLimb = (x1, y1, mx, my, x2, y2, upperCol, lowerCol, w1 = 5.4, w2 = 4.6) => {
+          ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+          ctx.strokeStyle = '#09090b'; ctx.lineWidth = w1 + 2.4; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(mx, my); ctx.lineTo(x2, y2); ctx.stroke();
+          ctx.strokeStyle = upperCol; ctx.lineWidth = w1; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(mx, my); ctx.stroke();
+          ctx.strokeStyle = lowerCol; ctx.lineWidth = w2; ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(x2, y2); ctx.stroke();
+        };
+        const villainWideScale = (isPortrait && viewW > 800) ? clamp(viewW / 760, 1.0, 1.28) : 1.0;
+
         for (let i = 0; i < drones.length; i++) {
           const d = drones[i]; if (!d.alive) continue;
-          const x = d.x - camX, y = d.y - camY; if (x < -60 || x > viewW + 60) continue;
-          if (env.wFog > 0.3) { ctx.strokeStyle = `rgba(248, 113, 113, ${(env.wFog * 0.72).toFixed(2)})`; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, d.r + 12 + Math.sin(elapsedTime * 8) * 3, 0, Math.PI * 2); ctx.stroke(); }
-          const ar = d.r * 2.1;
+          const x = d.x - camX, y = d.y - camY; if (x < -90 || x > viewW + 90) continue;
+          if (env.wFog > 0.3) { ctx.strokeStyle = `rgba(248, 113, 113, ${(env.wFog * 0.72).toFixed(2)})`; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, d.r + 14 + Math.sin(elapsedTime * 8) * 3, 0, Math.PI * 2); ctx.stroke(); }
+          const bob = Math.sin(elapsedTime * 7 + d.phase) * 2.5;
+          ctx.save(); ctx.translate(x, y); ctx.scale(villainWideScale, villainWideScale);
 
           if (d.kind === 'laser_bot') {
-            // Sentinel Laser Bot (Magenta/Violet hunter drone with scanning laser!)
-            ctx.drawImage(GLOW_SPRITES.purple, x - ar, y - ar, ar * 2, ar * 2);
-            const scanAlpha = 0.25 + 0.25 * Math.sin(elapsedTime * 9 + d.phase);
-            ctx.strokeStyle = `rgba(232, 121, 249, ${scanAlpha.toFixed(2)})`; ctx.lineWidth = 2.2;
-            ctx.beginPath(); ctx.moveTo(x - 16, y); ctx.lineTo(x - 68, y + Math.sin(elapsedTime * 4 + d.phase) * 18); ctx.stroke();
-            ctx.fillStyle = '#3b0764'; ctx.strokeStyle = '#e879f9'; ctx.lineWidth = 2.2;
-            ctx.beginPath(); ctx.moveTo(x - d.r, y); ctx.lineTo(x - 4, y - d.r * 0.88); ctx.lineTo(x + d.r, y - 6); ctx.lineTo(x + d.r, y + 6); ctx.lineTo(x - 4, y + d.r * 0.88); ctx.closePath(); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#22d3ee'; ctx.fillRect(x - 13, y - 3.5, 11, 7);
-            ctx.fillStyle = '#ffffff'; ctx.fillRect(x - 11, y - 1.5, 5, 3);
+            // PROWLER (Full-body purple/green armored gliding villain with flowing cape & energy claws!)
+            ctx.drawImage(GLOW_SPRITES.purple, -36, -36, 72, 72);
+            const capeWave = Math.sin(elapsedTime * 11 + d.phase) * 5;
+            // Billowing jagged purple cape
+            ctx.fillStyle = '#6b21a8'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.9;
+            ctx.beginPath(); ctx.moveTo(4, -10); ctx.quadraticCurveTo(22, -4 + capeWave, 30, 14 + capeWave); ctx.lineTo(15, 16); ctx.lineTo(20, 24); ctx.lineTo(2, 12); ctx.closePath(); ctx.fill(); ctx.stroke();
+            // Articulated crouched gliding legs with green clawed boots
+            drawCharLimb(2, 8, 9, 17, 4, 25, '#4c1d95', '#22c55e', 5.2, 4.4);
+            drawCharLimb(-3, 8, -9, 16, -5, 24, '#581c87', '#16a34a', 5.2, 4.4);
+            // Back arm
+            drawCharLimb(4, -6, 12, -2, 17, 4, '#581c87', '#22c55e', 4.6, 4);
+            // Athletic armored torso + magenta chest stripe
+            ctx.fillStyle = '#3b0764'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.9;
+            ctx.beginPath(); ctx.moveTo(-7, -10); ctx.lineTo(7, -10); ctx.lineTo(5, 9); ctx.lineTo(-5, 9); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#e879f9'; ctx.fillRect(-4, -5, 7, 3);
+            // Front arm aiming glowing magenta wrist blaster toward Spider-Man
+            drawCharLimb(-4, -6, -13, -4, -21, -2 + bob * 0.4, '#581c87', '#22c55e', 4.8, 4.2);
+            ctx.fillStyle = '#f0abfc'; ctx.beginPath(); ctx.arc(-23, -2 + bob * 0.4, 3.6, 0, Math.PI * 2); ctx.fill();
+            // Iconic Prowler purple cowl & neon glowing eyes
+            ctx.fillStyle = '#581c87'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.ellipse(-1, -17, 6.8, 7.6, -0.08, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#22d3ee'; ctx.fillRect(-7, -19, 4.8, 2.5);
           } else if (d.kind === 'shock_mine') {
-            // Shocker Sonic Mine (Spiked pulsing electromagnetic mine!)
-            const pulse = Math.sin(elapsedTime * 5 + d.phase);
-            ctx.drawImage(GLOW_SPRITES.gold, x - ar, y - ar, ar * 2, ar * 2);
-            ctx.strokeStyle = `rgba(250, 204, 21, ${(0.35 + pulse * 0.25).toFixed(2)})`; ctx.lineWidth = 2.2;
-            ctx.beginPath(); ctx.arc(x, y, d.r + 7 + Math.max(0, pulse) * 8, 0, Math.PI * 2); ctx.stroke();
-            ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 3;
-            ctx.beginPath();
-            for (let sp = 0; sp < 8; sp++) {
-              const a = elapsedTime * 1.6 + (sp / 8) * Math.PI * 2;
-              ctx.moveTo(x + Math.cos(a) * (d.r - 4), y + Math.sin(a) * (d.r - 4));
-              ctx.lineTo(x + Math.cos(a) * (d.r + 7), y + Math.sin(a) * (d.r + 7));
-            }
-            ctx.stroke();
-            ctx.fillStyle = '#1e1b4b'; ctx.strokeStyle = '#facc15'; ctx.lineWidth = 2.4;
-            ctx.beginPath(); ctx.arc(x, y, d.r - 2, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = pulse > 0.4 ? '#fef08a' : '#f59e0b';
-            ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI * 2); ctx.fill();
+            // SHOCKER (Full-body yellow quilted-suit villain with twin oversized silver Vibro-Gauntlets!)
+            const pulse = Math.sin(elapsedTime * 7 + d.phase);
+            ctx.drawImage(GLOW_SPRITES.gold, -38, -38, 76, 76);
+            // Sonic hover rings under boots
+            ctx.strokeStyle = `rgba(250, 204, 21, ${(0.45 + pulse * 0.25).toFixed(2)})`; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.ellipse(0, 27, 13 + pulse * 3, 4, 0, 0, Math.PI * 2); ctx.stroke();
+            // Articulated quilted yellow/brown legs
+            drawCharLimb(3, 9, 7, 17, 5, 25, '#ca8a04', '#78350f', 5.4, 4.6);
+            drawCharLimb(-3, 9, -8, 17, -6, 25, '#eab308', '#78350f', 5.4, 4.6);
+            // Back arm with giant vibro gauntlet
+            drawCharLimb(4, -5, 11, -1, 14, 5, '#ca8a04', '#94a3b8', 5, 6);
+            // Quilted yellow & brown torso with harness
+            ctx.fillStyle = '#eab308'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.9;
+            ctx.beginPath(); ctx.moveTo(-7.5, -10); ctx.lineTo(7.5, -10); ctx.lineTo(6, 10); ctx.lineTo(-6, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.strokeStyle = '#78350f'; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.moveTo(-6, -9); ctx.lineTo(5, 9); ctx.moveTo(6, -9); ctx.lineTo(-5, 9); ctx.stroke();
+            // Front arm charging massive silver Vibro-Shock Gauntlet forward!
+            drawCharLimb(-4, -5, -13, -3, -21, -2, '#eab308', '#cbd5e1', 5, 6.4);
+            ctx.strokeStyle = '#fef08a'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(-25, -2, 5 + Math.max(0, pulse) * 3.5, Math.PI * 0.6, Math.PI * 1.4); ctx.stroke();
+            // Yellow quilted mask head
+            ctx.fillStyle = '#facc15'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.ellipse(-1, -17, 6.8, 7.6, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#78350f'; ctx.fillRect(-7.2, -19.5, 6.5, 4);
+            ctx.fillStyle = '#fef9c3'; ctx.fillRect(-6.5, -18.5, 3.8, 2);
           } else {
-            // Oscorp Recon Drone
-            ctx.drawImage(GLOW_SPRITES.green, x - ar, y - ar, ar * 2, ar * 2);
-            ctx.fillStyle = '#1e293b'; ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, d.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(x - 6, y, 6, 0, Math.PI * 2); ctx.fill();
-            ctx.fillStyle = '#fef08a'; ctx.beginPath(); ctx.arc(x - 7, y - 1, 2.2, 0, Math.PI * 2); ctx.fill();
-            ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x - d.r - 6, y - 6); ctx.lineTo(x + d.r + 6, y - 6); ctx.moveTo(x - d.r - 4, y + 7); ctx.lineTo(x + d.r + 4, y + 7); ctx.stroke();
+            // OSCORP JETPACK TROOPER (Full-body armored flying soldier with thruster pack & plasma rifle!)
+            ctx.drawImage(GLOW_SPRITES.green, -34, -34, 68, 68);
+            // Jetpack & roaring thruster flame on back
+            ctx.fillStyle = '#334155'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.6;
+            ctx.fillRect(5, -10, 7, 15); ctx.strokeRect(5, -10, 7, 15);
+            const fl = 9 + Math.sin(elapsedTime * 34 + d.phase) * 3.5;
+            ctx.fillStyle = '#38bdf8'; ctx.beginPath(); ctx.moveTo(6, 5); ctx.lineTo(9, 5 + fl); ctx.lineTo(12, 5); ctx.closePath(); ctx.fill();
+            ctx.fillStyle = '#fef08a'; ctx.beginPath(); ctx.moveTo(7.5, 5); ctx.lineTo(9, 5 + fl * 0.6); ctx.lineTo(10.5, 5); ctx.closePath(); ctx.fill();
+            // Articulated armored legs hovering
+            drawCharLimb(2, 8, 7, 16, 10, 24, '#1e293b', '#16a34a', 5, 4.4);
+            drawCharLimb(-3, 8, -8, 16, -4, 24, '#334155', '#22c55e', 5, 4.4);
+            // Green/slate armored torso
+            ctx.fillStyle = '#1e293b'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.9;
+            ctx.beginPath(); ctx.moveTo(-7, -10); ctx.lineTo(6.5, -10); ctx.lineTo(5, 9); ctx.lineTo(-5, 9); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#22c55e'; ctx.fillRect(-5, -7, 8, 6);
+            // Front arm holding Oscorp plasma rifle pointing left
+            drawCharLimb(-4, -5, -12, -2, -19, -3, '#334155', '#22c55e', 4.6, 4.2);
+            ctx.fillStyle = '#0f172a'; ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1.3;
+            ctx.fillRect(-28, -5.5, 13, 4.5); ctx.strokeRect(-28, -5.5, 13, 4.5);
+            ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(-28, -3.2, 2.5, 0, Math.PI * 2); ctx.fill();
+            // Oscorp combat helmet with glowing red tactical visor
+            ctx.fillStyle = '#334155'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.ellipse(-1, -17, 6.8, 7.2, -0.06, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#ef4444'; ctx.fillRect(-7.5, -19, 5.5, 3);
+            ctx.fillStyle = '#fef08a'; ctx.fillRect(-6.8, -18.3, 2.6, 1.4);
           }
+          ctx.restore();
         }
 
         if (boss) {
           const gx = boss.x - camX, gy = boss.y - camY;
           ctx.save(); ctx.translate(gx, gy);
-          const bossWideScale = (isPortrait && viewW > 800) ? clamp(viewW / 760, 1.0, 1.30) : 1.0;
-          ctx.save(); ctx.scale(1.12 * bossWideScale, 1.12 * bossWideScale);
+          const bossWideScale = (isPortrait && viewW > 800) ? clamp(viewW / 760, 1.0, 1.32) : 1.0;
+
+          // Pulsing target-lock corner brackets showing the player they can BLAST or DASH the Boss!
+          if (state === 'playing' && boss.life > 0) {
+            const br = (38 + Math.sin(elapsedTime * 8) * 3) * bossWideScale;
+            ctx.strokeStyle = player.webBlastCooldown <= 0 ? 'rgba(52, 211, 153, 0.78)' : 'rgba(250, 204, 21, 0.45)';
+            ctx.lineWidth = 2.2;
+            const c = 10;
+            ctx.beginPath();
+            ctx.moveTo(-br, -br + c); ctx.lineTo(-br, -br); ctx.lineTo(-br + c, -br);
+            ctx.moveTo(br - c, -br); ctx.lineTo(br, -br); ctx.lineTo(br, -br + c);
+            ctx.moveTo(-br, br - c); ctx.lineTo(-br, br); ctx.lineTo(-br + c, br);
+            ctx.moveTo(br - c, br); ctx.lineTo(br, br); ctx.lineTo(br, br - c);
+            ctx.stroke();
+          }
+
+          ctx.save(); ctx.scale(1.16 * bossWideScale, 1.16 * bossWideScale);
           if (boss.kind === 'goblin') {
-            ctx.fillStyle = '#334155'; ctx.strokeStyle = '#a855f7'; ctx.lineWidth = 2.2;
-            ctx.beginPath(); ctx.moveTo(-28, 12); ctx.lineTo(0, 6); ctx.lineTo(28, 12); ctx.lineTo(15, 20); ctx.lineTo(-15, 20); ctx.closePath(); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#f97316'; ctx.beginPath(); ctx.arc(22, 14, 5.5 + Math.sin(elapsedTime * 30) * 1.5, 0, Math.PI * 2); ctx.fill();
-            ctx.fillStyle = '#16a34a'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(-9, -11, 18, 21, 5); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#7e22ce'; ctx.beginPath(); ctx.moveTo(-8, -11); ctx.lineTo(14, -18); ctx.lineTo(4, -24); ctx.lineTo(-10, -16); ctx.closePath(); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#fde047'; ctx.fillRect(-7, -15, 4.5, 3);
+            // GREEN GOBLIN — Full-body articulated crouching on Bat-Wing Goblin Glider holding Pumpkin Bomb!
+            // Goblin Glider with dual exhaust flames
+            const fl = 10 + Math.sin(elapsedTime * 34) * 3.5;
+            ctx.fillStyle = '#f97316'; ctx.beginPath(); ctx.moveTo(22, 22); ctx.lineTo(22 + fl, 25); ctx.lineTo(22, 28); ctx.closePath(); ctx.fill();
+            ctx.fillStyle = '#fef08a'; ctx.beginPath(); ctx.moveTo(22, 23.5); ctx.lineTo(22 + fl * 0.6, 25); ctx.lineTo(22, 26.5); ctx.closePath(); ctx.fill();
+            ctx.fillStyle = '#334155'; ctx.strokeStyle = '#a855f7'; ctx.lineWidth = 2.1;
+            ctx.beginPath(); ctx.moveTo(-30, 22); ctx.lineTo(-10, 17); ctx.lineTo(12, 17); ctx.lineTo(28, 22); ctx.lineTo(16, 28); ctx.lineTo(-16, 28); ctx.closePath(); ctx.fill(); ctx.stroke();
+            // Articulated green/purple crouching legs on glider
+            drawCharLimb(4, 6, 12, 13, 8, 21, '#16a34a', '#7e22ce', 5.6, 5);
+            drawCharLimb(-4, 6, -12, 13, -8, 21, '#15803d', '#6b21a8', 5.6, 5);
+            // Back balancing arm
+            drawCharLimb(5, -7, 14, -4, 21, 1, '#16a34a', '#7e22ce', 5, 4.5);
+            // Muscular green armor + purple tunic
+            ctx.fillStyle = '#7e22ce'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(-8, -11); ctx.lineTo(8, -11); ctx.lineTo(6, 9); ctx.lineTo(-6, 9); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#16a34a'; ctx.fillRect(-6, -10, 12, 7);
+            // Front arm raised throwing glowing Pumpkin Bomb!
+            drawCharLimb(-5, -7, -14, -13, -22, -16, '#16a34a', '#7e22ce', 5.2, 4.6);
+            ctx.fillStyle = '#f97316'; ctx.strokeStyle = '#fde047'; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.arc(-25, -18, 5.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            // Sinister Green Goblin head + pointed purple hood + glowing yellow eyes
+            ctx.fillStyle = '#7e22ce'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.moveTo(-7, -19); ctx.lineTo(16, -24); ctx.lineTo(6, -14); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#16a34a';
+            ctx.beginPath(); ctx.ellipse(-2, -18, 7.2, 7.6, -0.1, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#fde047'; ctx.fillRect(-8, -20.5, 4.5, 2.5);
+            ctx.fillStyle = '#fef08a'; ctx.fillRect(-7.5, -15.5, 5, 1.8);
           } else if (boss.kind === 'electro') {
-            ctx.drawImage(GLOW_SPRITES.cyan, -38, -38, 76, 76);
-            ctx.fillStyle = '#0284c7'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(-10, -12, 20, 25, 5); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#e0f2fe'; ctx.beginPath(); ctx.arc(0, -17, 8.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            // ELECTRO — Full-body floating blue/white lightning villain with golden star crown & crackling arms!
+            ctx.drawImage(GLOW_SPRITES.cyan, -44, -44, 88, 88);
+            // Floating articulated legs
+            drawCharLimb(3, 9, 8, 19, 12, 28, '#0284c7', '#0369a1', 5.6, 4.8);
+            drawCharLimb(-3, 9, -8, 18, -5, 27, '#0ea5e9', '#0284c7', 5.6, 4.8);
+            // Back arm crackling
+            drawCharLimb(5, -7, 14, -10, 22, -6, '#0284c7', '#bae6fd', 5.2, 4.6);
+            // Glowing electric torso with chest lightning core
+            ctx.fillStyle = '#0369a1'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(-9, -11); ctx.lineTo(9, -11); ctx.lineTo(6, 11); ctx.lineTo(-6, 11); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#fde047'; ctx.beginPath(); ctx.moveTo(2, -8); ctx.lineTo(-4, 0); ctx.lineTo(1, 0); ctx.lineTo(-3, 8); ctx.lineTo(4, -1); ctx.lineTo(-1, -1); ctx.closePath(); ctx.fill();
+            // Front arm blasting yellow lightning bolts forward!
+            drawCharLimb(-5, -7, -15, -6, -24, -8, '#0ea5e9', '#e0f2fe', 5.2, 4.6);
             ctx.strokeStyle = '#fde047'; ctx.lineWidth = 2.2;
-            for (let z = 0; z < 5; z++) { const a = elapsedTime * 10 + z * 1.25; ctx.beginPath(); ctx.moveTo(0, -17); ctx.lineTo(Math.cos(a) * 22, -17 + Math.sin(a) * 22); ctx.stroke(); }
+            for (let z = 0; z < 3; z++) {
+              const a = Math.PI + (z - 1) * 0.42 + Math.sin(elapsedTime * 18 + z) * 0.16;
+              ctx.beginPath(); ctx.moveTo(-25, -8); ctx.lineTo(-25 + Math.cos(a) * 14, -8 + Math.sin(a) * 14); ctx.stroke();
+            }
+            // Iconic Electro head + golden star lightning crown!
+            ctx.fillStyle = '#facc15'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.5;
+            for (let s = 0; s < 5; s++) {
+              const a = -Math.PI * 0.85 + s * 0.42;
+              ctx.beginPath(); ctx.moveTo(-1, -19); ctx.lineTo(-1 + Math.cos(a - 0.14) * 8, -19 + Math.sin(a - 0.14) * 8); ctx.lineTo(-1 + Math.cos(a) * 16, -19 + Math.sin(a) * 16); ctx.lineTo(-1 + Math.cos(a + 0.14) * 8, -19 + Math.sin(a + 0.14) * 8); ctx.closePath(); ctx.fill(); ctx.stroke();
+            }
+            ctx.fillStyle = '#e0f2fe'; ctx.strokeStyle = '#0284c7'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.ellipse(-1, -19, 7.2, 7.8, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#fde047'; ctx.fillRect(-6.5, -20.5, 4.5, 2.5);
           } else if (boss.kind === 'vulture') {
-            // VULTURE with giant flapping mechanical green turbine wings!
+            // VULTURE — Full-body armored flight-suit villain with talons & giant mechanical turbine wings!
             const flap = Math.sin(elapsedTime * 10) * 12;
-            ctx.fillStyle = '#14532d'; ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 2.4;
-            ctx.beginPath(); ctx.moveTo(-4, -4); ctx.lineTo(-36, -24 + flap); ctx.lineTo(-42, 4 + flap); ctx.lineTo(-8, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(4, -4); ctx.lineTo(36, -24 - flap * 0.5); ctx.lineTo(42, 4 - flap * 0.5); ctx.lineTo(8, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#4ade80'; ctx.beginPath(); ctx.arc(-22, -4 + flap * 0.5, 4.5, 0, Math.PI * 2); ctx.arc(22, -4 - flap * 0.25, 4.5, 0, Math.PI * 2); ctx.fill();
-            ctx.fillStyle = '#1e293b'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(-9, -9, 18, 22, 5); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#f1f5f9'; ctx.fillRect(-10, -12, 20, 5);
-            ctx.fillStyle = '#166534'; ctx.beginPath(); ctx.arc(0, -17, 7.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#4ade80'; ctx.fillRect(-6, -19, 8, 3.5);
+            // Giant mechanical multi-panel turbine wings
+            ctx.fillStyle = '#14532d'; ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 2.2;
+            ctx.beginPath(); ctx.moveTo(-3, -5); ctx.lineTo(-38, -26 + flap); ctx.lineTo(-44, 2 + flap); ctx.lineTo(-28, 8 + flap * 0.7); ctx.lineTo(-7, 9); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(3, -5); ctx.lineTo(38, -26 - flap * 0.5); ctx.lineTo(44, 2 - flap * 0.5); ctx.lineTo(28, 8 - flap * 0.35); ctx.lineTo(7, 9); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#4ade80'; ctx.beginPath(); ctx.arc(-22, -6 + flap * 0.5, 4.8, 0, Math.PI * 2); ctx.arc(22, -6 - flap * 0.25, 4.8, 0, Math.PI * 2); ctx.fill();
+            // Articulated dangling legs with steel mechanical talon boots!
+            drawCharLimb(3, 9, 8, 19, 4, 29, '#1e293b', '#64748b', 5.6, 4.8);
+            drawCharLimb(-3, 9, -9, 19, -12, 28, '#334155', '#94a3b8', 5.6, 4.8);
+            // Flight bomber jacket + fluffy white fur collar
+            ctx.fillStyle = '#1e293b'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(-9, -10); ctx.lineTo(9, -10); ctx.lineTo(7, 11); ctx.lineTo(-7, 11); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#f1f5f9'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.4;
+            ctx.beginPath(); ctx.roundRect(-11, -13, 22, 6, 3); ctx.fill(); ctx.stroke();
+            // Articulated clawed arms reaching forward
+            drawCharLimb(5, -6, 13, -1, 16, 6, '#334155', '#22c55e', 5, 4.4);
+            drawCharLimb(-5, -6, -15, -3, -22, 2, '#1e293b', '#22c55e', 5, 4.4);
+            // Iconic Vulture helmet with glowing lime visor
+            ctx.fillStyle = '#166534'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.9;
+            ctx.beginPath(); ctx.ellipse(-1, -19, 7.6, 8, -0.06, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#4ade80'; ctx.fillRect(-8, -21, 7.5, 3.6);
           } else if (boss.kind === 'docock') {
-            // DOCTOR OCTOPUS with 4 animated mechanical steel tentacles & glowing red claws!
-            const arms = [
-              [-24, -18, -36, -4 + Math.sin(elapsedTime * 7) * 8],
-              [-26, 8, -38, 22 + Math.cos(elapsedTime * 6.5) * 7],
-              [24, -18, 36, -2 + Math.cos(elapsedTime * 7.2) * 8],
-              [22, 10, 34, 24 + Math.sin(elapsedTime * 6) * 7]
+            // DOCTOR OCTOPUS — Full-body Otto Octavius suspended by 4 articulated mechanical steel tentacles!
+            const tArms = [
+              [-22, -20, -40, -8 + Math.sin(elapsedTime * 7) * 9],
+              [-24, 10, -40, 26 + Math.cos(elapsedTime * 6.5) * 8],
+              [22, -20, 38, -6 + Math.cos(elapsedTime * 7.2) * 9],
+              [22, 10, 36, 26 + Math.sin(elapsedTime * 6) * 8]
             ];
             ctx.lineCap = 'round';
-            for (let a = 0; a < arms.length; a++) {
-              const [cx, cy, ex, ey] = arms[a];
-              ctx.strokeStyle = '#09090b'; ctx.lineWidth = 7.5; ctx.beginPath(); ctx.moveTo(0, 0); ctx.quadraticCurveTo(cx, cy, ex, ey); ctx.stroke();
-              ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 4.2; ctx.beginPath(); ctx.moveTo(0, 0); ctx.quadraticCurveTo(cx, cy, ex, ey); ctx.stroke();
+            // Draw back 2 tentacles first
+            for (let a = 2; a < 4; a++) {
+              const [cx, cy, ex, ey] = tArms[a];
+              ctx.strokeStyle = '#09090b'; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(4, -2); ctx.quadraticCurveTo(cx, cy, ex, ey); ctx.stroke();
+              ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 4.6; ctx.beginPath(); ctx.moveTo(4, -2); ctx.quadraticCurveTo(cx, cy, ex, ey); ctx.stroke();
               ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(ex, ey, 4.2, 0, Math.PI * 2); ctx.fill();
-              ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(ex - 5, ey - 3); ctx.lineTo(ex, ey); ctx.lineTo(ex - 5, ey + 3); ctx.stroke();
             }
-            // Trench coat + turtleneck + iconic goggles
+            // Articulated Otto legs dangling mid-air
+            drawCharLimb(3, 10, 7, 20, 10, 29, '#1e293b', '#09090b', 5.8, 5);
+            drawCharLimb(-3, 10, -8, 20, -6, 29, '#334155', '#09090b', 5.8, 5);
+            // Billowing trench coat & dark green armored turtleneck
             ctx.fillStyle = '#57534e'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(-11, -10); ctx.lineTo(11, -10); ctx.lineTo(15, 18); ctx.lineTo(-15, 18); ctx.closePath(); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#14532d'; ctx.fillRect(-7, -10, 14, 22);
+            ctx.beginPath(); ctx.moveTo(-10, -10); ctx.lineTo(10, -10); ctx.lineTo(15, 16); ctx.lineTo(-14, 15); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#14532d'; ctx.fillRect(-7, -10, 14, 21);
+            // Articulated arms in trench coat sleeves
+            drawCharLimb(5, -6, 12, 1, 15, 8, '#57534e', '#fde68a', 5, 4.2);
+            drawCharLimb(-5, -6, -14, -2, -21, 1, '#57534e', '#fde68a', 5, 4.2);
+            // Otto head, bowl hair & glowing yellow goggles
             ctx.fillStyle = '#fde68a'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
-            ctx.beginPath(); ctx.ellipse(0, -18, 7.6, 8.2, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#451a03'; ctx.beginPath(); ctx.arc(0, -21, 7.8, Math.PI, 0); ctx.fill();
+            ctx.beginPath(); ctx.ellipse(-1, -18, 7.4, 8.2, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#451a03'; ctx.beginPath(); ctx.arc(-1, -21, 7.8, Math.PI, 0); ctx.fill();
             ctx.fillStyle = '#facc15'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.5;
-            ctx.beginPath(); ctx.arc(-4.2, -18, 3.2, 0, Math.PI * 2); ctx.arc(2.5, -18, 3.2, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-          } else if (boss.kind === 'venom') {
-            // VENOM Symbiote Boss with muscular silhouette, jagged white spider, tendrils & snarling tongue!
-            ctx.drawImage(GLOW_SPRITES.purple, -42, -38, 84, 80);
-            ctx.strokeStyle = '#09090b'; ctx.lineWidth = 3.5; ctx.lineCap = 'round';
-            for (let t = 0; t < 4; t++) {
-              const ang = Math.PI * 0.72 + t * 0.25 + Math.sin(elapsedTime * 8 + t) * 0.16;
-              ctx.beginPath(); ctx.moveTo(0, -2); ctx.quadraticCurveTo(Math.cos(ang) * 20, Math.sin(ang) * 18 - 8, Math.cos(ang) * 34, Math.sin(ang) * 28); ctx.stroke();
+            ctx.beginPath(); ctx.arc(-5.2, -18, 3.1, 0, Math.PI * 2); ctx.arc(1.2, -18, 3.1, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            // Draw front 2 menacing tentacles with open claws aimed at Spider-Man!
+            for (let a = 0; a < 2; a++) {
+              const [cx, cy, ex, ey] = tArms[a];
+              ctx.strokeStyle = '#09090b'; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(-4, -2); ctx.quadraticCurveTo(cx, cy, ex, ey); ctx.stroke();
+              ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 4.6; ctx.beginPath(); ctx.moveTo(-4, -2); ctx.quadraticCurveTo(cx, cy, ex, ey); ctx.stroke();
+              ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(ex, ey, 4.4, 0, Math.PI * 2); ctx.fill();
+              ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(ex - 7, ey - 4); ctx.lineTo(ex, ey); ctx.lineTo(ex - 7, ey + 4); ctx.stroke();
             }
-            ctx.fillStyle = '#09090b'; ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5;
-            ctx.beginPath(); ctx.moveTo(-16, -13); ctx.lineTo(16, -13); ctx.lineTo(11, 18); ctx.lineTo(-11, 18); ctx.closePath(); ctx.fill(); ctx.stroke();
-            // White jagged chest spider
-            ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.ellipse(0, -1, 4.5, 6.5, 0, 0, Math.PI * 2); ctx.fill();
+          } else if (boss.kind === 'venom') {
+            // VENOM — Massive hunched full-body muscular symbiote monster with white spider, claws & crimson tongue!
+            ctx.drawImage(GLOW_SPRITES.purple, -46, -42, 92, 86);
+            // Writhing black symbiote tendrils behind back
+            ctx.strokeStyle = '#09090b'; ctx.lineWidth = 3.8; ctx.lineCap = 'round';
+            for (let t = 0; t < 4; t++) {
+              const ang = -0.5 + t * 0.42 + Math.sin(elapsedTime * 8 + t) * 0.16;
+              ctx.beginPath(); ctx.moveTo(6, -4); ctx.quadraticCurveTo(18 + Math.cos(ang) * 14, Math.sin(ang) * 16 - 8, 22 + Math.cos(ang) * 24, Math.sin(ang) * 26); ctx.stroke();
+            }
+            // Thick monstrous articulated symbiote legs
+            drawCharLimb(5, 11, 12, 21, 9, 31, '#09090b', '#18181b', 7.2, 6.2);
+            drawCharLimb(-5, 11, -13, 20, -10, 30, '#09090b', '#18181b', 7.2, 6.2);
+            // Back clawed arm
+            drawCharLimb(8, -8, 17, -1, 21, 8, '#09090b', '#18181b', 6.8, 5.8);
+            // Huge hunched muscular chest with jagged white spider emblem
+            ctx.fillStyle = '#09090b'; ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(-15, -13); ctx.lineTo(15, -13); ctx.lineTo(10, 14); ctx.lineTo(-10, 14); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.ellipse(-1, -1, 4.2, 6, 0, 0, Math.PI * 2); ctx.fill();
             ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.8;
-            ctx.beginPath(); ctx.moveTo(-12, -7); ctx.lineTo(12, 3); ctx.moveTo(-12, 4); ctx.lineTo(12, -6); ctx.moveTo(-10, -1); ctx.lineTo(10, -1); ctx.stroke();
-            // Venom head, huge jagged white eyes & crimson tongue
+            ctx.beginPath(); ctx.moveTo(-12, -7); ctx.lineTo(10, 3); ctx.moveTo(-12, 4); ctx.lineTo(10, -6); ctx.moveTo(-10, -1); ctx.lineTo(9, -1); ctx.stroke();
+            // Massive front arm lunging forward with razor white claws!
+            drawCharLimb(-8, -8, -19, -4, -28, 3, '#09090b', '#18181b', 7.2, 6.2);
+            ctx.strokeStyle = '#f8fafc'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.moveTo(-28, 1); ctx.lineTo(-34, -1); ctx.moveTo(-28, 3); ctx.lineTo(-34, 4); ctx.moveTo(-27, 5); ctx.lineTo(-32, 8); ctx.stroke();
+            // Venom head, huge jagged white eyes, toothy snarl & flickering red tongue
             ctx.fillStyle = '#09090b'; ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1.4;
-            ctx.beginPath(); ctx.ellipse(-1, -20, 10.5, 11, -0.08, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.beginPath(); ctx.ellipse(-4, -20, 10, 10.6, -0.14, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
             ctx.fillStyle = '#ffffff';
-            ctx.beginPath(); ctx.moveTo(-9, -24); ctx.lineTo(-2, -19); ctx.lineTo(-7, -18); ctx.closePath(); ctx.fill();
-            ctx.beginPath(); ctx.moveTo(7, -24); ctx.lineTo(1, -19); ctx.lineTo(6, -18); ctx.closePath(); ctx.fill();
-            // Snarling teeth & flickering red tongue
-            ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(-2, -14, 5.2, 0, Math.PI); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(-12, -24); ctx.lineTo(-5, -19.5); ctx.lineTo(-10, -18.5); ctx.closePath(); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(3, -24); ctx.lineTo(-2, -19.5); ctx.lineTo(2, -18.5); ctx.closePath(); ctx.fill();
+            ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(-6, -14.5, 5, 0, Math.PI); ctx.fill();
             ctx.strokeStyle = '#fb7185'; ctx.lineWidth = 2.6;
-            ctx.beginPath(); ctx.moveTo(-3, -12); ctx.quadraticCurveTo(-12, -9 + Math.sin(elapsedTime * 16) * 3, -16, -5); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(-8, -12.5); ctx.quadraticCurveTo(-17, -10 + Math.sin(elapsedTime * 16) * 3.5, -22, -5); ctx.stroke();
           } else {
-            // MYSTERIO floating in emerald mist with purple cape & luminous glass fishbowl!
-            ctx.drawImage(GLOW_SPRITES.purple, -40, -34, 80, 74);
+            // MYSTERIO — Full-body Master of Illusion with billowing purple cape, gold gauntlets & glass fishbowl!
+            ctx.drawImage(GLOW_SPRITES.purple, -44, -38, 88, 80);
+            const capeWave = Math.sin(elapsedTime * 9) * 5;
+            // Wide billowing purple cape behind body
             ctx.fillStyle = '#7e22ce'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(-10, -10); ctx.lineTo(-26, 22); ctx.lineTo(24, 22); ctx.lineTo(10, -10); ctx.closePath(); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#15803d'; ctx.beginPath(); ctx.roundRect(-9, -10, 18, 22, 4); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#facc15'; ctx.beginPath(); ctx.arc(-9, -9, 3.5, 0, Math.PI * 2); ctx.arc(9, -9, 3.5, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(-8, -11); ctx.lineTo(10, -11); ctx.quadraticCurveTo(26, 6 + capeWave, 30, 24 + capeWave); ctx.lineTo(-18, 24); ctx.closePath(); ctx.fill(); ctx.stroke();
+            // Articulated green legs with gold boots
+            drawCharLimb(3, 10, 7, 19, 5, 29, '#15803d', '#eab308', 5.6, 5);
+            drawCharLimb(-3, 10, -8, 19, -6, 29, '#16a34a', '#facc15', 5.6, 5);
+            // Back casting arm with gold gauntlet
+            drawCharLimb(6, -6, 15, -3, 21, -8, '#15803d', '#facc15', 5, 4.6);
+            // Green quilted armored torso + gold shoulder clasps
+            ctx.fillStyle = '#15803d'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(-9, -11); ctx.lineTo(9, -11); ctx.lineTo(6, 11); ctx.lineTo(-6, 11); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#facc15'; ctx.beginPath(); ctx.arc(-9, -10, 3.6, 0, Math.PI * 2); ctx.arc(9, -10, 3.6, 0, Math.PI * 2); ctx.fill();
+            // Front casting arm holding glowing emerald/violet illusion orb!
+            drawCharLimb(-6, -6, -15, -5, -23, -9, '#16a34a', '#facc15', 5.2, 4.6);
+            ctx.fillStyle = '#a855f7'; ctx.strokeStyle = '#4ade80'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.arc(-26, -10, 5.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            // Iconic luminous swirling glass fishbowl helmet
             ctx.fillStyle = '#e0f2fe'; ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.2;
-            ctx.beginPath(); ctx.arc(0, -18, 10.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = 'rgba(192, 132, 252, 0.55)'; ctx.beginPath(); ctx.arc(-2 + Math.sin(elapsedTime * 5) * 2, -18, 5.5, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(-1, -19, 10.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = 'rgba(192, 132, 252, 0.58)'; ctx.beginPath(); ctx.arc(-3 + Math.sin(elapsedTime * 5) * 2.5, -19, 5.8, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.65)'; ctx.beginPath(); ctx.arc(-5, -23, 2.4, 0, Math.PI * 2); ctx.fill();
           }
           if (boss.hitFlash > 0) {
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.92)'; ctx.lineWidth = 4;
-            ctx.beginPath(); ctx.arc(0, -4, 30, 0, Math.PI * 2); ctx.stroke();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)'; ctx.lineWidth = 4.5;
+            ctx.beginPath(); ctx.arc(0, -4, 34, 0, Math.PI * 2); ctx.stroke();
           }
           ctx.restore();
 
-          // Crisp Boss mini HP bar & label (shows Web-Blast damage clearly!)
+          // Crisp Boss mini HP bar & villain name (shows Web-Blast damage clearly!)
           if (state !== 'photo') {
+            const hpY = -56 * bossWideScale;
             const hpPct = Math.max(0, Math.min(1, (boss.hp || 0) / (boss.maxHp || 3)));
-            ctx.fillStyle = 'rgba(15, 23, 42, 0.85)'; ctx.strokeStyle = 'rgba(255,255,255,0.45)'; ctx.lineWidth = 1.4;
-            ctx.beginPath(); ctx.roundRect(-28, -48, 56, 8, 4); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.88)'; ctx.strokeStyle = 'rgba(255,255,255,0.55)'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.roundRect(-32, hpY, 64, 9, 4.5); ctx.fill(); ctx.stroke();
             ctx.fillStyle = hpPct > 0.35 ? '#f43f5e' : '#facc15';
-            if (hpPct > 0) { ctx.beginPath(); ctx.roundRect(-26.5, -46.5, 53 * hpPct, 5, 2.5); ctx.fill(); }
-            ctx.font = '900 9px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
-            ctx.fillStyle = '#fef08a'; ctx.fillText(boss.name || 'BOSS', 0, -51);
+            if (hpPct > 0) { ctx.beginPath(); ctx.roundRect(-30.5, hpY + 1.5, 61 * hpPct, 6, 3); ctx.fill(); }
+            ctx.font = '900 10px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+            ctx.fillStyle = '#fef08a'; ctx.fillText(boss.name || (BOSS_META[boss.kind] && BOSS_META[boss.kind].name) || 'BOSS', 0, hpY - 3);
           }
           ctx.restore();
         }
@@ -4380,6 +4860,40 @@ body {
           ctx.strokeStyle = '#0f172a'; ctx.lineWidth = 1.2;
           ctx.beginPath(); ctx.moveTo(-1, -5); ctx.lineTo(9, 5); ctx.moveTo(9, -5); ctx.lineTo(-1, 5); ctx.stroke();
           ctx.restore();
+        }
+
+        // Live Aim-Assist Lock-On Crosshair & subtle dashed sightline (shows exact enemy locked!)
+        if (state === 'playing' && settings.aimAssist) {
+          const locked = findBestAimTarget(player.x, player.y);
+          if (locked && locked.ref) {
+            const tx = locked.ref.x - camX, ty = locked.ref.y - camY;
+            const px = player.x - camX, py = player.y - camY;
+            if (tx > -60 && tx < viewW + 60) {
+              const ready = player.webBlastCooldown <= 0;
+              ctx.save();
+              // Subtle dashed aim-assist sightline from Spider-Man to locked target
+              ctx.strokeStyle = ready ? 'rgba(52, 211, 153, 0.36)' : 'rgba(250, 204, 21, 0.22)';
+              ctx.lineWidth = 1.8; ctx.setLineDash([7, 7]); ctx.lineDashOffset = -elapsedTime * 42;
+              ctx.beginPath(); ctx.moveTo(px + 14, py - 4); ctx.lineTo(tx, ty); ctx.stroke();
+              ctx.setLineDash([]);
+              // Pulsing crosshair ring around locked target
+              const r = (locked.type === 'boss' ? 32 : (locked.type === 'drone' ? 24 : 18)) + Math.sin(elapsedTime * 11) * 2.5;
+              ctx.translate(tx, ty);
+              ctx.strokeStyle = ready ? '#34d399' : '#facc15'; ctx.lineWidth = 2.2;
+              ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.stroke();
+              ctx.beginPath();
+              ctx.moveTo(-r - 6, 0); ctx.lineTo(-r + 4, 0); ctx.moveTo(r - 4, 0); ctx.lineTo(r + 6, 0);
+              ctx.moveTo(0, -r - 6); ctx.lineTo(0, -r + 4); ctx.moveTo(0, r - 4); ctx.lineTo(0, r + 6);
+              ctx.stroke();
+              ctx.fillStyle = ready ? '#6ee7b7' : '#fde047';
+              ctx.beginPath(); ctx.arc(0, 0, 2.8, 0, Math.PI * 2); ctx.fill();
+              if (locked.type === 'drone') {
+                ctx.font = '900 8.5px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+                ctx.fillStyle = '#6ee7b7'; ctx.fillText('AIM', 0, r + 4);
+              }
+              ctx.restore();
+            }
+          }
         }
       }
 
@@ -4510,6 +5024,62 @@ body {
                 ctx.fillStyle = `rgba(254, 240, 138, ${(a * 0.95).toFixed(2)})`;
                 ctx.fillRect(x1 - 2, y1 + Math.sin(i * 5) * 6 - 2, 3.2, 3.2);
               }
+            } else if (tStyle === 'aurora') {
+              const wv = Math.sin(elapsedTime * 12 + i * 0.8) * 5 * ratio;
+              ctx.strokeStyle = `rgba(52, 211, 153, ${(a * 0.78).toFixed(2)})`;
+              ctx.lineWidth = 11 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0 + wv); ctx.lineTo(x1, y1 + wv); ctx.stroke();
+              ctx.strokeStyle = `rgba(168, 85, 247, ${(a * 0.72).toFixed(2)})`;
+              ctx.lineWidth = 5 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0 - wv * 0.7); ctx.lineTo(x1, y1 - wv * 0.7); ctx.stroke();
+            } else if (tStyle === 'spiderverse') {
+              // Comic-book RGB halftone glitch streaks!
+              const g = (i % 3 === 0 ? 4 : -3) * ratio;
+              ctx.strokeStyle = `rgba(244, 63, 94, ${(a * 0.84).toFixed(2)})`;
+              ctx.lineWidth = 5.5 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0 - 3, y0 - 4 + g); ctx.lineTo(x1 - 3, y1 - 4 + g); ctx.stroke();
+              ctx.strokeStyle = `rgba(34, 211, 238, ${(a * 0.84).toFixed(2)})`;
+              ctx.lineWidth = 5.5 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0 + 3, y0 + 4 - g); ctx.lineTo(x1 + 3, y1 + 4 - g); ctx.stroke();
+              if (i % 2 === 0) {
+                ctx.fillStyle = `rgba(253, 224, 71, ${(a * 0.92).toFixed(2)})`;
+                ctx.fillRect(x1 - 2, y1 - 2, 4, 4);
+              }
+            } else if (tStyle === 'plasma') {
+              ctx.strokeStyle = `rgba(217, 70, 239, ${(a * 0.82).toFixed(2)})`;
+              ctx.lineWidth = 12 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+              ctx.strokeStyle = `rgba(255, 255, 255, ${(a * 0.92).toFixed(2)})`;
+              ctx.lineWidth = 3.8 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+            } else if (tStyle === 'emerald') {
+              ctx.strokeStyle = `rgba(16, 185, 129, ${(a * 0.82).toFixed(2)})`;
+              ctx.lineWidth = 11.5 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+              ctx.strokeStyle = `rgba(250, 204, 21, ${(a * 0.86).toFixed(2)})`;
+              ctx.lineWidth = 3.6 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+            } else if (tStyle === 'ice') {
+              ctx.strokeStyle = `rgba(56, 189, 248, ${(a * 0.78).toFixed(2)})`;
+              ctx.lineWidth = 10.5 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+              ctx.strokeStyle = `rgba(240, 249, 255, ${(a * 0.92).toFixed(2)})`;
+              ctx.lineWidth = 4 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+              if (i % 2 === 0) {
+                ctx.fillStyle = `rgba(224, 242, 254, ${(a * 0.95).toFixed(2)})`;
+                ctx.fillRect(x1 + Math.sin(i * 4) * 7 - 1.5, y1 + Math.cos(i * 3) * 7 - 1.5, 3, 3);
+              }
+            } else if (tStyle === 'void') {
+              ctx.strokeStyle = `rgba(9, 9, 11, ${(a * 0.88).toFixed(2)})`;
+              ctx.lineWidth = 12 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+              ctx.strokeStyle = `rgba(192, 132, 252, ${(a * 0.75).toFixed(2)})`;
+              ctx.lineWidth = 3.2 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0 - 4 * ratio); ctx.lineTo(x1, y1 - 4 * ratio); ctx.stroke();
+              ctx.strokeStyle = `rgba(248, 250, 252, ${(a * 0.75).toFixed(2)})`;
+              ctx.lineWidth = 2.4 * ratio;
+              ctx.beginPath(); ctx.moveTo(x0, y0 + 4 * ratio); ctx.lineTo(x1, y1 + 4 * ratio); ctx.stroke();
             } else {
               ctx.strokeStyle = suit.trailColor;
               ctx.globalAlpha = a * 0.68;
@@ -4566,10 +5136,21 @@ body {
           ctx.strokeStyle = suit.special === 'nano_cape' ? '#fb7185' : 'transparent'; ctx.lineWidth = 1.4;
           ctx.beginPath(); ctx.moveTo(-6, -9); ctx.quadraticCurveTo(-26, -3 + Math.sin(elapsedTime * 15) * 5, -38, 12); ctx.lineTo(-10, 8); ctx.closePath(); ctx.fill();
           if (suit.special === 'nano_cape') ctx.stroke();
-        } else if (suit.special === 'wing_glider') {
-          ctx.fillStyle = 'rgba(224, 242, 254, 0.52)'; ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 1.2;
-          ctx.beginPath(); ctx.moveTo(-4, -6); ctx.lineTo(-24, 4); ctx.lineTo(-6, 8); ctx.closePath(); ctx.fill(); ctx.stroke();
-          ctx.beginPath(); ctx.moveTo(5, -6); ctx.lineTo(22, -4); ctx.lineTo(6, 7); ctx.closePath(); ctx.fill(); ctx.stroke();
+        } else if (suit.special === 'wing_glider' || suit.special === 'web_wings') {
+          ctx.fillStyle = suit.special === 'web_wings' ? 'rgba(255, 255, 255, 0.56)' : 'rgba(224, 242, 254, 0.52)';
+          ctx.strokeStyle = suit.special === 'web_wings' ? '#e2e8f0' : '#38bdf8'; ctx.lineWidth = 1.3;
+          ctx.beginPath(); ctx.moveTo(-4, -6); ctx.lineTo(-26, 4); ctx.lineTo(-6, 9); ctx.closePath(); ctx.fill(); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(5, -6); ctx.lineTo(24, -4); ctx.lineTo(6, 8); ctx.closePath(); ctx.fill(); ctx.stroke();
+        } else if (suit.special === 'moon_cape') {
+          // Arachknight billowing silver-white Moon Knight cape!
+          const wv = Math.sin(elapsedTime * 11) * 5;
+          ctx.fillStyle = '#f8fafc'; ctx.strokeStyle = '#334155'; ctx.lineWidth = 1.7;
+          ctx.beginPath(); ctx.moveTo(-5, -10); ctx.quadraticCurveTo(-24, 0 + wv, -38, 20 + wv); ctx.lineTo(-14, 18); ctx.lineTo(-2, 8); ctx.closePath(); ctx.fill(); ctx.stroke();
+        } else if (suit.special === 'india_sash') {
+          // Spider-Man India fluttering golden-white sash!
+          const wv = Math.sin(elapsedTime * 13) * 6;
+          ctx.fillStyle = '#fef9c3'; ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.moveTo(-4, -5); ctx.quadraticCurveTo(-20, 4 + wv, -34, 14 + wv); ctx.lineTo(-28, 20 + wv); ctx.lineTo(-4, 6); ctx.closePath(); ctx.fill(); ctx.stroke();
         } else if (suit.special === 'noir_coat') {
           ctx.fillStyle = '#18181b'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.6;
           ctx.beginPath(); ctx.moveTo(-5, -8); ctx.quadraticCurveTo(-22, 2 + Math.sin(elapsedTime * 12) * 5, -34, 22); ctx.lineTo(-10, 18); ctx.lineTo(-2, 8); ctx.closePath(); ctx.fill(); ctx.stroke();
@@ -4631,6 +5212,23 @@ body {
           ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
           ctx.beginPath(); ctx.moveTo(-6, -6); ctx.lineTo(0, -1); ctx.lineTo(6, -7); ctx.moveTo(-4, 4); ctx.lineTo(5, 1); ctx.stroke();
           ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(1, -2, 2.8, 0, Math.PI * 2); ctx.fill();
+        } else if (suit.special === 'web_wings') {
+          // Iconic PS5 Advanced Suit 2.0 Giant White Chest Spider!
+          ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.ellipse(1, -1, 3.6, 5.2, 0, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.8;
+          ctx.beginPath(); ctx.moveTo(-6, -8); ctx.lineTo(7, 4); ctx.moveTo(-6, 5); ctx.lineTo(7, -7); ctx.stroke();
+        } else if (suit.special === 'mystic_runes') {
+          ctx.strokeStyle = '#facc15'; ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.moveTo(-5, -7); ctx.lineTo(6, -7); ctx.moveTo(-4, 0); ctx.lineTo(5, 0); ctx.moveTo(1, -8); ctx.lineTo(1, 7); ctx.stroke();
+          ctx.fillStyle = '#fef08a'; ctx.beginPath(); ctx.arc(1, -2, 2.8, 0, Math.PI * 2); ctx.fill();
+        } else if (suit.special === 'prowler_claws') {
+          ctx.fillStyle = '#581c87'; ctx.fillRect(-5, -6, 11, 12);
+          ctx.strokeStyle = '#e879f9'; ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.moveTo(-5, -6); ctx.lineTo(1, 1); ctx.lineTo(6, -6); ctx.stroke();
+        } else if (suit.special === 'final_sheen') {
+          ctx.fillStyle = '#2563eb'; ctx.fillRect(-5, -2, 3, 10); ctx.fillRect(3, -2, 3, 10);
+          ctx.fillStyle = 'rgba(255,255,255,0.45)'; ctx.fillRect(-4, -8, 10, 2.5);
+          ctx.fillStyle = '#09090b'; ctx.beginPath(); ctx.arc(1, -2, 2.8, 0, Math.PI * 2); ctx.fill();
         } else {
           ctx.fillStyle = suit.secondary; ctx.fillRect(-5, -2, 3, 10); ctx.fillRect(3, -2, 3, 10);
           ctx.fillStyle = suit.accent; ctx.beginPath(); ctx.arc(1, -2, 2.9, 0, Math.PI * 2); ctx.fill();
@@ -4655,10 +5253,25 @@ body {
           ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2.4;
           ctx.beginPath(); ctx.moveTo(frontHandX, frontHandY); ctx.lineTo(frontHandX + 10, frontHandY - 5); ctx.moveTo(backHandX, backHandY); ctx.lineTo(backHandX - 8, backHandY + 4); ctx.stroke();
         }
+        if (suit.special === 'prowler_claws') {
+          ctx.strokeStyle = '#f0abfc'; ctx.lineWidth = 2.4;
+          ctx.beginPath(); ctx.moveTo(frontHandX, frontHandY - 1); ctx.lineTo(frontHandX + 10, frontHandY - 5); ctx.moveTo(frontHandX, frontHandY + 2); ctx.lineTo(frontHandX + 10, frontHandY + 1); ctx.stroke();
+        }
+        if (suit.special === 'mystic_runes') {
+          // Spinning Strange Eldritch mandala ring on front wrist!
+          ctx.strokeStyle = '#fb923c'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(frontHandX, frontHandY, 7.5, 0, Math.PI * 2); ctx.stroke();
+          ctx.strokeStyle = '#fef08a'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(frontHandX, frontHandY, 4.2, 0, Math.PI * 2); ctx.stroke();
+        }
+        if (suit.special === 'india_sash') {
+          ctx.strokeStyle = '#fde047'; ctx.lineWidth = 2.2;
+          ctx.beginPath(); ctx.arc(frontHandX - 2, frontHandY, 3.2, 0, Math.PI * 2); ctx.stroke();
+        }
 
-        if (suit.special === 'hood') {
-          ctx.fillStyle = suit.hoodInner; ctx.beginPath(); ctx.arc(0, -17, 10.6, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = suit.hood; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
+        if (suit.special === 'hood' || suit.special === 'moon_cape') {
+          const hoodFill = suit.special === 'moon_cape' ? '#ffffff' : suit.hood;
+          const hoodIn = suit.special === 'moon_cape' ? '#94a3b8' : suit.hoodInner;
+          ctx.fillStyle = hoodIn; ctx.beginPath(); ctx.arc(0, -17, 10.6, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = hoodFill; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
           ctx.beginPath(); ctx.arc(0, -17, 10.5, Math.PI * 0.55, Math.PI * 1.95); ctx.lineTo(-10, -10); ctx.closePath(); ctx.fill(); ctx.stroke();
         }
 
@@ -4935,6 +5548,11 @@ body {
         settings.trailStyle = e.target.value;
         showToast('✨', `Đã chọn vệt bay: ${e.target.options[e.target.selectedIndex].text}`);
       });
+      const chkAimAssist = document.getElementById('chk-aim-assist');
+      if (chkAimAssist) chkAimAssist.addEventListener('change', (e) => {
+        settings.aimAssist = e.target.checked;
+        showToast('🎯', settings.aimAssist ? 'Đã BẬT Hỗ trợ ngắm Aim-Assist!' : 'Đã TẮT Hỗ trợ ngắm Aim-Assist');
+      });
       document.getElementById('chk-wind-fx').addEventListener('change', (e) => { settings.windFx = e.target.checked; });
       document.getElementById('chk-shake').addEventListener('change', (e) => { settings.screenShake = e.target.checked; });
       document.getElementById('chk-lite').addEventListener('change', (e) => {
@@ -4955,6 +5573,14 @@ body {
         gameMode = mode;
         document.getElementById('btn-mode-arcade').classList.toggle('active', mode === 'arcade');
         document.getElementById('btn-mode-zen').classList.toggle('active', mode === 'zen');
+        if (mode === 'zen') {
+          boss = null; drones = []; bossProjectiles = []; webBlasts = [];
+          nextHeroTimer = Math.min(nextHeroTimer, 1.5);
+          showToast('🌈', 'Tự Do: Không Boss/địch — Ngắm cảnh NYC & gặp 12 Siêu Anh Hùng!');
+        } else {
+          skyBalloons = [];
+          showToast('⚔️', 'Thử Thách: Chiến đấu 6 Boss & 3 loại địch bằng Bắn Tơ!');
+        }
         if (state === 'gameover') resetGame(true); else updateHud();
       }
       document.getElementById('btn-mode-arcade').addEventListener('click', () => setMode('arcade'));
