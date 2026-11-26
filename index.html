@@ -1930,7 +1930,10 @@ body {
           midSkyline.push({ x: nextMidX, w, h, seed, hasAntenna: Math.random() < 0.42, slanted: Math.random() < 0.32, hueShift: Math.floor(Math.random() * 4), warmWins, coolWins });
           nextMidX += w + 10 + Math.random() * 34;
         }
-        while (midSkyline.length && midSkyline[0].x + midSkyline[0].w < camX * 0.42 - 420) midSkyline.shift();
+        while (midSkyline.length && midSkyline[0].x + midSkyline[0].w < camX * 0.42 - 420) {
+          const oldM = midSkyline.shift();
+          if (oldM._spr) { oldM._spr.width = 0; oldM._spr.height = 0; oldM._spr = null; }
+        }
       }
 
       function generateBuildingsAndEntities() {
@@ -2048,7 +2051,10 @@ body {
         }
 
         const cullX = camX - 550;
-        while (buildings.length && buildings[0].x + buildings[0].w < cullX) buildings.shift();
+        while (buildings.length && buildings[0].x + buildings[0].w < cullX) {
+          const oldB = buildings.shift();
+          if (oldB._spr) { oldB._spr.width = 0; oldB._spr.height = 0; oldB._spr = null; }
+        }
         while (tokens.length && tokens[0].x < cullX) tokens.shift();
         while (boostRings.length && boostRings[0].x < cullX) boostRings.shift();
         while (powerups.length && powerups[0].x < cullX) powerups.shift();
@@ -2165,7 +2171,7 @@ body {
             } else if (h.type === 'wanda') {
               bonusScore += Math.round(480 * combo * scoreMult);
               player.vy = -240; player.magnetTimer = Math.max(player.magnetTimer, 7.0);
-              spawnFireworkBurst(targetX, h.y - 60);
+              spawnFirework(targetX, h.y - 60);
             } else {
               bonusScore += Math.round(320 * combo * scoreMult); combo = Math.min(10, combo + 2); comboTimer = 5.0; recordStat('maxCombo', combo, true);
             }
@@ -2266,7 +2272,7 @@ body {
 
         if (gameMode === 'zen') {
           const fx = player.x + 175, fy = Math.max(85, player.y - 55);
-          spawnFireworkBurst(fx, fy);
+          spawnFirework(fx, fy);
           spawnShockwave(fx, fy, suit.webColor, 78);
           const pts = Math.round(120 * combo * (suit.perks.scoreMult || 1)); bonusScore += pts;
           spawnPopup(fx, fy - 24, `🎆 PHÁO HOA TƠ! +${pts}`, '#fde047', 17);
@@ -2468,7 +2474,8 @@ body {
 
       function spawnFirework(wx, wy) {
         const palette = ['#f43f5e', '#fde047', '#38bdf8', '#4ade80', '#f97316', '#e879f9'];
-        const col = palette[Math.floor(Math.random() * palette.length)], count = settings.liteMode ? 12 : 22;
+        const col = palette[Math.floor(Math.random() * palette.length)], count = settings.liteMode ? 12 : 20;
+        if (fireworks.length > 72) fireworks.splice(0, fireworks.length - 72);
         for (let i = 0; i < count; i++) {
           const ang = (i / count) * Math.PI * 2 + Math.random() * 0.2, spd = 65 + Math.random() * 95;
           fireworks.push({ x: wx, y: wy, vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd, life: 1.0, color: col, size: 2 + Math.random() * 1.8 });
@@ -3117,7 +3124,7 @@ body {
               combo = Math.min(10, combo + 1); comboTimer = 5.0; recordStat('maxCombo', combo, true);
               const pts = Math.round(300 * combo * scoreMult); bonusScore += pts;
               AudioFX.playHeroTeamup();
-              spawnFireworkBurst(bl.x, bl.y - 30);
+              spawnFirework(bl.x, bl.y - 30);
               spawnShockwave(bl.x, bl.y, bl.col1, 86);
               spawnPopup(bl.x, bl.y - 36, `🎈 NHÚN KHINH KHÍ CẦU! +${pts}`, bl.col2, 19);
             }
@@ -3125,7 +3132,7 @@ body {
           fireworkCooldown -= dt;
           if (fireworkCooldown <= 0) {
             fireworkCooldown = 2.6 + Math.random() * 2.4;
-            spawnFireworkBurst(camX + viewW * (0.45 + Math.random() * 0.45), 75 + Math.random() * 140);
+            spawnFirework(camX + viewW * (0.45 + Math.random() * 0.45), 75 + Math.random() * 140);
           }
         }
 
@@ -3605,7 +3612,7 @@ body {
         }
 
         const midOff = camX * 0.42;
-        const midSprScale = settings.liteMode ? 1 : (dpr > 1.15 ? 2 : 1.5);
+        const midSprScale = settings.liteMode ? 1 : 1.15;
         const midKey = `${Math.round(L.daylight * 5)}|${Math.round(L.windowGlow * 5)}|${Math.round(env.snowAccum * 4)}|${midSprScale}`;
         const midTints = [[52, 88, 136], [134, 72, 62], [36, 108, 118], [122, 104, 86]];
         let midRebakeBudget = 1;
@@ -3828,7 +3835,7 @@ body {
       }
 
       function drawForegroundBuildings(L) {
-        const fgSprScale = settings.liteMode ? 1 : (dpr > 1.15 ? 2 : 1.5);
+        const fgSprScale = settings.liteMode ? 1 : (isPortrait ? 1.4 : 1.25);
         const fgKey = `${Math.round(L.daylight * 5)}|${Math.round(L.windowGlow * 5)}|${Math.round(env.snowAccum * 4)}|${Math.round(env.wetness * 3)}|${env.wFog > 0.3 ? 1 : 0}|${fgSprScale}`;
         let fgRebakeBudget = 1;
         for (let i = 0; i < buildings.length; i++) {
@@ -5345,11 +5352,16 @@ body {
       let fpsFrames = 0, fpsLastSample = lastTime, lastFpsText = '';
       let perfFrames = 0, perfLastCheck = lastTime, highFpsStreak = 0;
       function loop(now) {
+        requestAnimationFrame(loop);
         const rawDelta = now - lastTime;
         const dt = Math.min(Math.max(rawDelta / 1000, 0), 0.033);
         lastTime = now;
-        update(dt);
-        render();
+        try {
+          update(dt);
+          render();
+        } catch (err) {
+          console.error('Frame error:', err);
+        }
 
         if (state === 'playing' || state === 'start') {
           perfFrames++;
@@ -5381,7 +5393,6 @@ body {
             fpsFrames = 0; fpsLastSample = now;
           }
         }
-        requestAnimationFrame(loop);
       }
 
       // ============================================================
