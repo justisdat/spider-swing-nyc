@@ -91,7 +91,8 @@ Check your Browserslist config to be sure that your targets are set up correctly
 /*! https://mths.be/cssesc v3.0.0 by @mathias */
 </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23e11d48%27/%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2722%27 fill=%27none%27 stroke=%27white%27 stroke-width=%273%27/%3E%3Cpath d=%27M32 10v44M10 32h44M16 16l32 32M48 16L16 48%27 stroke=%27white%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2710%27 fill=%27none%27 stroke=%27white%27 stroke-width=%272.5%27/%3E%3C/svg%3E" />
-    <meta name="theme-color" content="#e11d48" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <meta name="theme-color" content="#e11d48" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <style>
@@ -270,6 +271,16 @@ body {
   top: max(10px, env(safe-area-inset-top));
   left: max(10px, env(safe-area-inset-left));
   right: max(10px, env(safe-area-inset-right));
+}
+
+.toast-safe-top {
+  top: calc(max(10px, env(safe-area-inset-top)) + 54px);
+}
+
+@media (min-width: 640px) {
+  .toast-safe-top {
+    top: 68px;
+  }
 }
 
 .safe-bottom {
@@ -527,8 +538,8 @@ body {
     </div>
   </header>
 
-  <!-- TOAST (Bottom-center above thumb bar on mobile, top-center on desktop — NEVER overlaps HUD!) -->
-  <div id="weather-toast" class="fixed bottom-[76px] sm:bottom-auto sm:top-[68px] left-1/2 -translate-x-1/2 z-40 pointer-events-none opacity-0 transition-opacity duration-400 max-w-[92vw]">
+  <!-- TOAST (Top-center right under top HUD on both mobile & desktop — airy & never blocks swinging!) -->
+  <div id="weather-toast" class="toast-safe-top fixed left-1/2 -translate-x-1/2 z-40 pointer-events-none opacity-0 transition-opacity duration-400 max-w-[92vw]">
     <div id="weather-toast-box" class="hud-glass rounded-full px-3.5 py-1.5 text-[11px] sm:text-xs font-bold tracking-wide text-white flex items-center gap-1.5 whitespace-nowrap border border-white/20 overflow-hidden text-ellipsis">
       <span id="weather-toast-icon">🏆</span>
       <span id="weather-toast-text" class="truncate">Thông báo</span>
@@ -572,11 +583,16 @@ body {
   </div>
 
   <!-- BOTTOM HUD -->
-  <footer id="hud-bottom" class="fixed safe-bottom z-30 flex items-end justify-between gap-2 pointer-events-none transition-opacity duration-200">
+  <footer id="hud-bottom" class="fixed safe-bottom z-30 flex items-end justify-between gap-1.5 sm:gap-2 pointer-events-none transition-opacity duration-200">
     <div class="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
-      <button id="btn-reel" class="hud-glass hud-btn px-3 sm:px-3.5 py-2.5 sm:py-2 rounded-2xl text-xs font-extrabold text-sky-300 flex items-center gap-1 whitespace-nowrap" title="Giữ để thu ngắn dây tơ (W)">
-        <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+      <button id="btn-reel" class="hud-glass hud-btn px-2.5 sm:px-3.5 py-2.5 sm:py-2 rounded-2xl text-[11px] sm:text-xs font-extrabold text-sky-300 flex items-center gap-1 whitespace-nowrap" title="Giữ để thu ngắn dây tơ (W)">
+        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
         <span>THU DÂY</span>
+      </button>
+
+      <button id="btn-web-blast" class="hud-glass hud-btn px-2.5 sm:px-3 py-2.5 sm:py-2 rounded-2xl text-[11px] sm:text-xs font-extrabold text-emerald-300 flex items-center gap-1 whitespace-nowrap" title="Bắn Tơ Tấn Công / Phản đòn địch & Boss (F)">
+        <span>🕸️</span>
+        <span>BẮN</span>
       </button>
 
       <button id="btn-focus" class="hud-glass hud-btn px-2.5 sm:px-3 py-2.5 sm:py-2 rounded-2xl text-xs font-extrabold text-amber-300 flex items-center gap-1 whitespace-nowrap" title="Giữ để làm chậm thời gian (Q)">
@@ -585,7 +601,9 @@ body {
       </button>
 
       <div id="controls-hint" class="hud-glass rounded-xl px-3 py-2 text-[11px] text-slate-200/90 hidden xl:flex items-center gap-2.5 transition-opacity duration-500">
-        <span class="flex items-center gap-1"><span class="keycap">Chuột</span> / <span class="keycap">Space</span> Bắn tơ</span>
+        <span class="flex items-center gap-1"><span class="keycap">Chuột</span> / <span class="keycap">Space</span> Đu tơ</span>
+        <span class="text-white/25">•</span>
+        <span class="flex items-center gap-1"><span class="keycap">F</span> Bắn tơ</span>
         <span class="text-white/25">•</span>
         <span class="flex items-center gap-1"><span class="keycap">W</span> Thu dây</span>
         <span class="text-white/25">•</span>
@@ -593,7 +611,7 @@ body {
         <span class="text-white/25">•</span>
         <span class="flex items-center gap-1"><span class="keycap">Shift</span> Bứt tốc</span>
         <span class="text-white/25">•</span>
-        <span class="flex items-center gap-1"><span class="keycap">C</span> Chụp ảnh</span>
+        <span class="flex items-center gap-1"><span class="keycap">C</span> Ảnh</span>
       </div>
     </div>
 
@@ -637,17 +655,17 @@ body {
 
       <h1 class="comic-title text-2xl sm:text-4xl font-black text-white mb-1.5">NGƯỜI NHỆN ĐU DÂY</h1>
       <p class="text-xs sm:text-sm text-slate-200/90 leading-relaxed mb-3.5 sm:mb-4">
-        Đu tơ xuyên <strong>7 khu vực New York</strong>, chiến đấu với <strong>4 Boss &amp; 3 loại địch</strong>, gặp <strong>9 Siêu Anh Hùng Marvel</strong> và mở khóa đủ <strong>22 bộ Giáp + 8 Vệt bay</strong>!
+        Đu tơ xuyên <strong>7 khu vực New York</strong>, chiến đấu với <strong>6 Boss phim &amp; 3 loại bot</strong> bằng <strong>Bắn Tơ</strong>, gặp <strong>9 Siêu Anh Hùng Marvel</strong> và mở khóa đủ <strong>22 bộ Giáp + 8 Vệt bay</strong>!
       </p>
 
       <div class="grid grid-cols-3 gap-2 text-left mb-4 sm:mb-5">
         <div class="rounded-xl bg-white/5 border border-white/10 p-2">
           <div class="text-[11px] font-extrabold text-rose-400 mb-0.5">🕷️ 22 Giáp &amp; 8 Vệt</div>
-          <div class="text-[10px] sm:text-[11px] text-slate-300 leading-snug">Kỹ năng, tiếng tơ &amp; vệt bay riêng biệt.</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-300 leading-snug">Kỹ năng, bắn tơ &amp; vệt bay riêng biệt.</div>
         </div>
         <div class="rounded-xl bg-white/5 border border-white/10 p-2">
-          <div class="text-[11px] font-extrabold text-amber-300 mb-0.5">⚡ 4 Boss &amp; 9 Hero</div>
-          <div class="text-[10px] sm:text-[11px] text-slate-300 leading-snug">Goblin, Electro, Vulture, Mysterio &amp; Avengers.</div>
+          <div class="text-[11px] font-extrabold text-amber-300 mb-0.5">⚡ 6 Boss &amp; 9 Hero</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-300 leading-snug">Doc Ock, Venom, Goblin, Electro &amp; Avengers.</div>
         </div>
         <div class="rounded-xl bg-white/5 border border-white/10 p-2">
           <div class="text-[11px] font-extrabold text-sky-300 mb-0.5">🏙️ 7 Khu NYC</div>
@@ -824,12 +842,13 @@ body {
         const h = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
         isPortrait = h > w * 1.05;
         const scaleByH = h / WORLD_H;
-        const scaleByW = w / MIN_VIEW_W;
+        const targetMinW = isPortrait ? 470 : MIN_VIEW_W;
+        const scaleByW = w / targetMinW;
         baseScale = Math.min(scaleByH, scaleByW);
         const s = baseScale * camZoom;
         viewW = w / s;
         viewH = h / s;
-        const bottomReserve = isPortrait ? 46 : 0;
+        const bottomReserve = isPortrait ? 52 : 0;
         worldOffsetY = Math.max(0, viewH - WORLD_H - bottomReserve);
       }
 
@@ -864,17 +883,56 @@ body {
       const numFmt = new Intl.NumberFormat('vi-VN');
 
       // ============================================================
-      // AUDIO ENGINE WITH 16 DISTINCT SUIT WEB-SHOOTING SOUNDS!
+      // AUDIO ENGINE (22 SUIT SOUNDS + BULLETPROOF iOS/ANDROID UNLOCK!)
       // ============================================================
       const AudioFX = {
-        ctx: null, enabled: true, rainGain: null, windGain: null, windFilter: null, ambientReady: false,
+        ctx: null, master: null, enabled: true, rainGain: null, windGain: null, windFilter: null, ambientReady: false,
+        unlocked: false, iosPrimed: false,
         _lastRain: -1, _lastWind: -1, _lastAmbMs: 0,
 
+        primeMobileSession() {
+          if (this.iosPrimed) return;
+          this.iosPrimed = true;
+          try {
+            if (navigator.audioSession && navigator.audioSession.type !== 'playback') {
+              navigator.audioSession.type = 'playback';
+            }
+          } catch (_) {}
+          try {
+            // Tiny valid 1-sample silent WAV to route iOS Safari audio through Media/Playback speaker
+            const a = document.createElement('audio');
+            a.setAttribute('playsinline', '');
+            a.setAttribute('webkit-playsinline', '');
+            a.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
+            const p = a.play();
+            if (p && p.catch) p.catch(() => {});
+          } catch (_) {}
+        },
+
         init() {
-          if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
-          if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume().catch(() => {});
+          this.primeMobileSession();
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (!this.ctx && AC) {
+            this.ctx = new AC();
+            this.master = this.ctx.createGain();
+            this.master.gain.value = (window.innerWidth <= 820) ? 1.35 : 1.05;
+            this.master.connect(this.ctx.destination);
+          }
+          if (this.ctx && this.ctx.state !== 'running') {
+            this.ctx.resume().catch(() => {});
+          }
+          if (this.ctx && !this.unlocked) {
+            try {
+              const b = this.ctx.createBuffer(1, 1, 22050);
+              const s = this.ctx.createBufferSource();
+              s.buffer = b; s.connect(this.master || this.ctx.destination); s.start(0);
+              this.unlocked = true;
+            } catch (_) {}
+          }
           if (this.ctx && !this.ambientReady) this.setupAmbientChannels();
         },
+
+        out() { return this.master || (this.ctx && this.ctx.destination); },
 
         setupAmbientChannels() {
           try {
@@ -884,13 +942,13 @@ body {
             const rSrc = this.ctx.createBufferSource(); rSrc.buffer = buf; rSrc.loop = true;
             const rFilt = this.ctx.createBiquadFilter(); rFilt.type = 'bandpass'; rFilt.frequency.value = 1150; rFilt.Q.value = 0.7;
             const rGain = this.ctx.createGain(); rGain.gain.value = 0;
-            rSrc.connect(rFilt); rFilt.connect(rGain); rGain.connect(this.ctx.destination); rSrc.start();
+            rSrc.connect(rFilt); rFilt.connect(rGain); rGain.connect(this.out()); rSrc.start();
             this.rainGain = rGain;
 
             const wSrc = this.ctx.createBufferSource(); wSrc.buffer = buf; wSrc.loop = true;
             const wFilt = this.ctx.createBiquadFilter(); wFilt.type = 'bandpass'; wFilt.frequency.value = 380; wFilt.Q.value = 1.4;
             const wGain = this.ctx.createGain(); wGain.gain.value = 0;
-            wSrc.connect(wFilt); wFilt.connect(wGain); wGain.connect(this.ctx.destination); wSrc.start();
+            wSrc.connect(wFilt); wFilt.connect(wGain); wGain.connect(this.out()); wSrc.start();
             this.windFilter = wFilt; this.windGain = wGain;
             this.ambientReady = true;
           } catch (_) {}
@@ -912,7 +970,7 @@ body {
         playThwip(soundType = 'classic') {
           if (!this.enabled) return;
           this.init(); if (!this.ctx) return;
-          const t = this.ctx.currentTime;
+          const t = this.ctx.currentTime, dest = this.out();
           const makeNoise = (dur, fStart, fEnd, q, vol) => {
             const bufLen = Math.floor(this.ctx.sampleRate * dur), buffer = this.ctx.createBuffer(1, bufLen, this.ctx.sampleRate), data = buffer.getChannelData(0);
             for (let i = 0; i < bufLen; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufLen, 1.7);
@@ -920,13 +978,13 @@ body {
             const filter = this.ctx.createBiquadFilter(); filter.type = 'bandpass';
             filter.frequency.setValueAtTime(fStart, t); filter.frequency.exponentialRampToValueAtTime(fEnd, t + dur * 0.9); filter.Q.value = q;
             const g = this.ctx.createGain(); g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-            noise.connect(filter); filter.connect(g); g.connect(this.ctx.destination); noise.start(t);
+            noise.connect(filter); filter.connect(g); g.connect(dest); noise.start(t);
           };
           const makeTone = (type, f1, f2, dur, vol, delay = 0) => {
             const osc = this.ctx.createOscillator(), g = this.ctx.createGain();
             osc.type = type; osc.frequency.setValueAtTime(f1, t + delay); osc.frequency.exponentialRampToValueAtTime(Math.max(30, f2), t + delay + dur);
             g.gain.setValueAtTime(vol, t + delay); g.gain.exponentialRampToValueAtTime(0.001, t + delay + dur);
-            osc.connect(g); g.connect(this.ctx.destination); osc.start(t + delay); osc.stop(t + delay + dur + 0.01);
+            osc.connect(g); g.connect(dest); osc.start(t + delay); osc.stop(t + delay + dur + 0.01);
           };
 
           switch (soundType) {
@@ -955,6 +1013,26 @@ body {
           }
         },
 
+        playWebBlast() {
+          if (!this.enabled) return;
+          this.init(); if (!this.ctx) return;
+          const t = this.ctx.currentTime, dest = this.out();
+          const osc = this.ctx.createOscillator(), g = this.ctx.createGain();
+          osc.type = 'sawtooth'; osc.frequency.setValueAtTime(1450, t); osc.frequency.exponentialRampToValueAtTime(340, t + 0.12);
+          g.gain.setValueAtTime(0.15, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.13);
+          osc.connect(g); g.connect(dest); osc.start(t); osc.stop(t + 0.14);
+        },
+
+        playEnemyShot() {
+          if (!this.enabled) return;
+          this.init(); if (!this.ctx) return;
+          const t = this.ctx.currentTime, dest = this.out();
+          const osc = this.ctx.createOscillator(), g = this.ctx.createGain();
+          osc.type = 'triangle'; osc.frequency.setValueAtTime(640, t); osc.frequency.exponentialRampToValueAtTime(190, t + 0.11);
+          g.gain.setValueAtTime(0.09, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+          osc.connect(g); g.connect(dest); osc.start(t); osc.stop(t + 0.13);
+        },
+
         playThunder() {
           if (!this.enabled || !this.ctx) return;
           const t = this.ctx.currentTime, len = Math.floor(this.ctx.sampleRate * 1.35), buf = this.ctx.createBuffer(1, len, this.ctx.sampleRate), data = buf.getChannelData(0);
@@ -962,7 +1040,7 @@ body {
           const src = this.ctx.createBufferSource(); src.buffer = buf;
           const lp = this.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.setValueAtTime(160, t); lp.frequency.exponentialRampToValueAtTime(55, t + 1.25);
           const g = this.ctx.createGain(); g.gain.setValueAtTime(0.22, t); g.gain.exponentialRampToValueAtTime(0.001, t + 1.3);
-          src.connect(lp); lp.connect(g); g.connect(this.ctx.destination); src.start(t);
+          src.connect(lp); lp.connect(g); g.connect(this.out()); src.start(t);
         },
 
         playRelease(perfect) {
@@ -971,42 +1049,42 @@ body {
           const t = this.ctx.currentTime, osc = this.ctx.createOscillator(), gain = this.ctx.createGain();
           osc.type = perfect ? 'sine' : 'triangle'; osc.frequency.setValueAtTime(perfect ? 440 : 280, t); osc.frequency.exponentialRampToValueAtTime(perfect ? 920 : 190, t + (perfect ? 0.16 : 0.09));
           gain.gain.setValueAtTime(perfect ? 0.12 : 0.05, t); gain.gain.exponentialRampToValueAtTime(0.001, t + (perfect ? 0.18 : 0.1));
-          osc.connect(gain); gain.connect(this.ctx.destination); osc.start(t); osc.stop(t + 0.19);
+          osc.connect(gain); gain.connect(this.out()); osc.start(t); osc.stop(t + 0.19);
         },
 
         playToken(combo) {
           if (!this.enabled) return;
           this.init(); if (!this.ctx) return;
-          const t = this.ctx.currentTime, base = 540 + Math.min(combo, 8) * 55;
+          const t = this.ctx.currentTime, base = 540 + Math.min(combo, 8) * 55, dest = this.out();
           [base, base * 1.25].forEach((freq, idx) => {
             const osc = this.ctx.createOscillator(), gain = this.ctx.createGain();
             osc.type = 'sine'; osc.frequency.setValueAtTime(freq, t + idx * 0.042);
             gain.gain.setValueAtTime(0.10, t + idx * 0.042); gain.gain.exponentialRampToValueAtTime(0.001, t + idx * 0.042 + 0.15);
-            osc.connect(gain); gain.connect(this.ctx.destination); osc.start(t + idx * 0.042); osc.stop(t + idx * 0.042 + 0.16);
+            osc.connect(gain); gain.connect(dest); osc.start(t + idx * 0.042); osc.stop(t + idx * 0.042 + 0.16);
           });
         },
 
         playFanfare() {
           if (!this.enabled) return;
           this.init(); if (!this.ctx) return;
-          const t = this.ctx.currentTime;
+          const t = this.ctx.currentTime, dest = this.out();
           [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
             const osc = this.ctx.createOscillator(), g = this.ctx.createGain();
             osc.type = 'triangle'; osc.frequency.setValueAtTime(freq, t + idx * 0.065);
             g.gain.setValueAtTime(0.13, t + idx * 0.065); g.gain.exponentialRampToValueAtTime(0.001, t + idx * 0.065 + 0.25);
-            osc.connect(g); g.connect(this.ctx.destination); osc.start(t + idx * 0.065); osc.stop(t + idx * 0.065 + 0.27);
+            osc.connect(g); g.connect(dest); osc.start(t + idx * 0.065); osc.stop(t + idx * 0.065 + 0.27);
           });
         },
 
         playHeroTeamup() {
           if (!this.enabled) return;
           this.init(); if (!this.ctx) return;
-          const t = this.ctx.currentTime;
+          const t = this.ctx.currentTime, dest = this.out();
           [392, 523.25, 659.25, 783.99].forEach((freq, idx) => {
             const osc = this.ctx.createOscillator(), g = this.ctx.createGain();
             osc.type = 'sine'; osc.frequency.setValueAtTime(freq, t + idx * 0.05);
             g.gain.setValueAtTime(0.12, t + idx * 0.05); g.gain.exponentialRampToValueAtTime(0.001, t + idx * 0.05 + 0.28);
-            osc.connect(g); g.connect(this.ctx.destination); osc.start(t + idx * 0.05); osc.stop(t + idx * 0.05 + 0.30);
+            osc.connect(g); g.connect(dest); osc.start(t + idx * 0.05); osc.stop(t + idx * 0.05 + 0.30);
           });
         },
 
@@ -1016,7 +1094,7 @@ body {
           const t = this.ctx.currentTime, osc = this.ctx.createOscillator(), g = this.ctx.createGain();
           osc.type = 'square'; osc.frequency.setValueAtTime(1200, t); osc.frequency.exponentialRampToValueAtTime(300, t + 0.045);
           g.gain.setValueAtTime(0.12, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
-          osc.connect(g); g.connect(this.ctx.destination); osc.start(t); osc.stop(t + 0.055);
+          osc.connect(g); g.connect(this.out()); osc.start(t); osc.stop(t + 0.055);
         },
 
         playBoost() {
@@ -1026,7 +1104,7 @@ body {
           osc.type = 'sawtooth'; osc.frequency.setValueAtTime(190, t); osc.frequency.exponentialRampToValueAtTime(660, t + 0.22);
           const filter = this.ctx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.setValueAtTime(1500, t);
           gain.gain.setValueAtTime(0.12, t); gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
-          osc.connect(filter); filter.connect(gain); gain.connect(this.ctx.destination); osc.start(t); osc.stop(t + 0.26);
+          osc.connect(filter); filter.connect(gain); gain.connect(this.out()); osc.start(t); osc.stop(t + 0.26);
         },
 
         playSmash() {
@@ -1035,7 +1113,7 @@ body {
           const t = this.ctx.currentTime, osc = this.ctx.createOscillator(), gain = this.ctx.createGain();
           osc.type = 'square'; osc.frequency.setValueAtTime(170, t); osc.frequency.exponentialRampToValueAtTime(42, t + 0.18);
           gain.gain.setValueAtTime(0.16, t); gain.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
-          osc.connect(gain); gain.connect(this.ctx.destination); osc.start(t); osc.stop(t + 0.21);
+          osc.connect(gain); gain.connect(this.out()); osc.start(t); osc.stop(t + 0.21);
         },
 
         playHit() {
@@ -1044,9 +1122,20 @@ body {
           const t = this.ctx.currentTime, osc = this.ctx.createOscillator(), gain = this.ctx.createGain();
           osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, t); osc.frequency.linearRampToValueAtTime(60, t + 0.22);
           gain.gain.setValueAtTime(0.17, t); gain.gain.exponentialRampToValueAtTime(0.001, t + 0.24);
-          osc.connect(gain); gain.connect(this.ctx.destination); osc.start(t); osc.stop(t + 0.25);
+          osc.connect(gain); gain.connect(this.out()); osc.start(t); osc.stop(t + 0.25);
         }
       };
+
+      const unlockAudioOnGesture = () => { if (AudioFX.enabled) AudioFX.init(); };
+      window.addEventListener('touchstart', unlockAudioOnGesture, { passive: true });
+      window.addEventListener('touchend', unlockAudioOnGesture, { passive: true });
+      window.addEventListener('pointerdown', unlockAudioOnGesture, { passive: true });
+      window.addEventListener('click', unlockAudioOnGesture, { passive: true });
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && AudioFX.ctx && AudioFX.ctx.state !== 'running' && AudioFX.enabled) {
+          AudioFX.ctx.resume().catch(() => {});
+        }
+      });
 
       // ============================================================
       // 16 SPIDER-VERSE SUITS (2 STARTERS + 14 CHALLENGING UNLOCKS!)
@@ -1666,7 +1755,7 @@ body {
         dashEnergy: 100, dashTimer: 0, invulnTimer: 0,
         shieldTimer: 0, magnetTimer: 0, cosmicShieldCooldown: 15, nextHealDist: 350,
         hearts: 3, maxHearts: 3, trail: [], spiderSense: 0, windFactor: 0,
-        skimCooldown: 0, sonicRingCooldown: 0, breathTimer: 0
+        skimCooldown: 0, sonicRingCooldown: 0, breathTimer: 0, webBlastCooldown: 0
       };
 
       function equipSuit(suitKey) {
@@ -1694,12 +1783,13 @@ body {
       let helicopters = [], subwayTrain = { x: -400, speed: 350 }, taxis = [];
       let windRibbons = [], windStreaks = [], shockwaves = [], fireworks = [];
       let tokens = [], boostRings = [], powerups = [], drones = [];
-      let boss = null; // Alternates between Green Goblin & Electro!
+      let boss = null;
       let bossProjectiles = [];
+      let webBlasts = [];
       let heroCameos = [], roofPigeons = [], particles = [], popups = [];
 
       let nextBuildingX = -220, nextFarX = -300, nextMidX = -300, nextLandmarkX = 200;
-      let landmarkSeq = 0, lastEntityX = 480, nextBossDist = 155, bossSeq = 0, nextHeroTimer = 7, fireworkCooldown = 3.2;
+      let landmarkSeq = 0, lastEntityX = 480, nextBossDist = 95, bossSeq = 0, nextHeroTimer = 4.5, fireworkCooldown = 3.2;
 
       const MODERN_BRANDS = [
         { text: 'STARK EXPO',   bg: '#0284c7', fg: '#ffffff', glow: '#38bdf8', sub: 'NEW YORK 2026' },
@@ -1846,18 +1936,19 @@ body {
             }
 
             const distM = Math.max(0, (nextBuildingX - startX) / 14);
-            if (distM > 55 && Math.random() < Math.min(0.55, 0.16 + distM / 1200)) {
+            if (distM > 35 && Math.random() < Math.min(0.62, 0.24 + distM / 1100)) {
               const eRoll = Math.random();
-              const kind = (distM > 140 && eRoll < 0.32) ? 'laser_bot' : ((distM > 220 && eRoll < 0.58) ? 'shock_mine' : 'recon');
+              const kind = (distM > 90 && eRoll < 0.35) ? 'laser_bot' : ((distM > 140 && eRoll < 0.65) ? 'shock_mine' : 'recon');
               drones.push({
                 kind,
                 x: nextBuildingX + w + 55,
-                baseY: 210 + Math.random() * 260,
+                baseY: 205 + Math.random() * 255,
                 y: 300,
                 r: kind === 'shock_mine' ? 22 : (kind === 'laser_bot' ? 21 : 20),
-                amp: kind === 'shock_mine' ? 18 : (kind === 'laser_bot' ? 56 : 34 + Math.random() * 46),
+                amp: kind === 'shock_mine' ? 18 : (kind === 'laser_bot' ? 54 : 34 + Math.random() * 44),
                 freq: kind === 'shock_mine' ? 2.4 : (kind === 'laser_bot' ? 1.2 : 1.5 + Math.random() * 1.4),
                 phase: Math.random() * Math.PI * 2,
+                fireTimer: 0.65 + Math.random() * 0.75,
                 alive: true, nearMissed: false
               });
             }
@@ -1876,7 +1967,7 @@ body {
       }
 
       // ============================================================
-      // 9 FLYING MARVEL HERO CAMEOS (FULL ARTICULATED COMIC ART!)
+      // 9 FLYING MARVEL HERO CAMEOS (SHUFFLED BAG + FULL COMIC ART!)
       // ============================================================
       const HERO_CAMEO_TYPES = [
         { type: 'ironman',   name: 'Iron Man',         quote: 'Đua tốc độ không, nhóc?',     color: '#f59e0b', buffText: 'ĐỒNG ĐỘI IRON MAN! Đầy Bứt tốc +350' },
@@ -1889,17 +1980,27 @@ body {
         { type: 'surfer',    name: 'Silver Surfer',    quote: 'Lướt cùng dải ngân hà!',      color: '#67e8f9', buffText: 'SÓNG VŨ TRỤ SURFER! Siêu tốc +500' },
         { type: 'ally',      name: 'Spider-Gwen',      quote: 'Đu cùng nhau nào bạn!',       color: '#ec4899', buffText: 'ĐỒNG ĐỘI SPIDER-VERSE! +320' }
       ];
-      let heroSeq = 0;
+      let heroBag = [];
+      function drawNextHeroDef() {
+        if (heroBag.length === 0) {
+          heroBag = HERO_CAMEO_TYPES.slice();
+          for (let i = heroBag.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const tmp = heroBag[i]; heroBag[i] = heroBag[j]; heroBag[j] = tmp;
+          }
+        }
+        return heroBag.pop();
+      }
 
       function spawnHeroCameo() {
-        const def = HERO_CAMEO_TYPES[heroSeq % HERO_CAMEO_TYPES.length]; heroSeq++;
+        const def = drawNextHeroDef();
         const isPortal = def.type === 'strange';
         const fromRight = def.type === 'ironman' || def.type === 'thor' || def.type === 'surfer' || def.type === 'wolverine';
         heroCameos.push({
           ...def,
-          x: isPortal ? camX + viewW + 180 : (fromRight ? camX + viewW + 170 : camX - 130),
-          y: 170 + Math.random() * 195, baseY: 170 + Math.random() * 195,
-          vx: isPortal ? 0 : (fromRight ? -245 : player.vx + 225),
+          x: isPortal ? camX + viewW + 170 : (fromRight ? camX + viewW + 160 : camX - 110),
+          y: 175 + Math.random() * 195, baseY: 175 + Math.random() * 195,
+          vx: isPortal ? 0 : (fromRight ? -235 : player.vx + 225),
           phase: 0, interacted: false, life: 10.5
         });
       }
@@ -1907,7 +2008,7 @@ body {
       function updateHeroCameos(dt) {
         const freqMult = SUITS[currentSuit].perks.heroFreqMult || 1;
         nextHeroTimer -= dt;
-        if (nextHeroTimer <= 0 && heroCameos.length === 0) { spawnHeroCameo(); nextHeroTimer = (13.5 + Math.random() * 7.5) * freqMult; }
+        if (nextHeroTimer <= 0 && heroCameos.length === 0) { spawnHeroCameo(); nextHeroTimer = (7.5 + Math.random() * 4.5) * freqMult; }
         const scoreMult = SUITS[currentSuit].perks.scoreMult || 1;
         for (let i = heroCameos.length - 1; i >= 0; i--) {
           const h = heroCameos[i]; h.phase += dt * 4; h.life -= dt;
@@ -1932,7 +2033,7 @@ body {
             }
           }
           const targetX = h.type === 'strange' ? h.x + 40 : h.x;
-          if (!h.interacted && state === 'playing' && Math.hypot(player.x - targetX, player.y - h.y) < 92) {
+          if (!h.interacted && state === 'playing' && Math.hypot(player.x - targetX, player.y - h.y) < 96) {
             h.interacted = true; AudioFX.playHeroTeamup(); recordStat('heroesMet', 1);
             spawnShockwave(targetX, h.y, h.color, 98); spawnParticles(targetX, h.y, 24, h.color, 80, 280, 2.5, 5.5);
             spawnPopup(player.x, player.y - 48, h.buffText, h.color, 19);
@@ -1965,76 +2066,207 @@ body {
       }
 
       // ============================================================
-      // 4 BOSS ENCOUNTERS: GOBLIN, ELECTRO, VULTURE & MYSTERIO!
+      // 6 SPIDER-MAN MOVIE BOSSES + ACTIVE ENEMY ATTACKS + WEB-BLAST!
       // ============================================================
-      const BOSS_ORDER = ['goblin', 'electro', 'vulture', 'mysterio'];
+      const BOSS_ORDER = ['goblin', 'electro', 'vulture', 'mysterio', 'docock', 'venom'];
       const BOSS_META = {
-        goblin:   { spawn: '🎃 GREEN GOBLIN XUẤT HIỆN!', defeat: 'ĐÁNH BẠI GOBLIN!',  color: '#4ade80', pts: 620, projHit: 'TRÚNG BOM BÍ NGÔ!',  projBreak: 'PHÁ BOM!',        ko: 'Bom Bí Ngô của Green Goblin đã hạ gục Người Nhện!' },
-        electro:  { spawn: '⚡ ELECTRO XUẤT HIỆN!',      defeat: 'HẠ GỤC ELECTRO!',   color: '#38bdf8', pts: 680, projHit: 'TRÚNG SÉT ELECTRO!', projBreak: 'PHÁ CẦU SÉT!',    ko: 'Tia sét của Electro đã hạ gục Người Nhện!' },
-        vulture:  { spawn: '🦅 VULTURE XUẤT HIỆN!',      defeat: 'HẠ GỤC VULTURE!',   color: '#22c55e', pts: 720, projHit: 'TRÚNG LÔNG THÉP!',   projBreak: 'CHÉM LÔNG THÉP!', ko: 'Lưỡi lông thép của Vulture đã hạ gục Người Nhện!' },
-        mysterio: { spawn: '🔮 MYSTERIO XUẤT HIỆN!',     defeat: 'PHÁ ẢO ẢNH MYSTERIO!', color: '#c084fc', pts: 760, projHit: 'TRÚNG CẦU ẢO ẢNH!',  projBreak: 'PHÁ ẢO ẢNH!',     ko: 'Cầu ảo ảnh của Mysterio đã đánh lừa Người Nhện!' }
+        goblin:   { spawn: '🎃 GREEN GOBLIN XUẤT HIỆN!', defeat: 'ĐÁNH BẠI GOBLIN!',    color: '#4ade80', pts: 620, projHit: 'TRÚNG BOM BÍ NGÔ!',   projBreak: 'PHÁ BOM!',        ko: 'Bom Bí Ngô của Green Goblin đã hạ gục Người Nhện!' },
+        electro:  { spawn: '⚡ ELECTRO XUẤT HIỆN!',      defeat: 'HẠ GỤC ELECTRO!',     color: '#38bdf8', pts: 680, projHit: 'TRÚNG SÉT ELECTRO!',  projBreak: 'PHÁ CẦU SÉT!',    ko: 'Tia sét của Electro đã hạ gục Người Nhện!' },
+        vulture:  { spawn: '🦅 VULTURE XUẤT HIỆN!',      defeat: 'HẠ GỤC VULTURE!',     color: '#22c55e', pts: 720, projHit: 'TRÚNG LÔNG THÉP!',    projBreak: 'CHÉM LÔNG THÉP!', ko: 'Lưỡi lông thép của Vulture đã hạ gục Người Nhện!' },
+        mysterio: { spawn: '🔮 MYSTERIO XUẤT HIỆN!',     defeat: 'PHÁ ẢO ẢNH MYSTERIO!',color: '#c084fc', pts: 760, projHit: 'TRÚNG CẦU ẢO ẢNH!',   projBreak: 'PHÁ ẢO ẢNH!',     ko: 'Cầu ảo ảnh của Mysterio đã đánh lừa Người Nhện!' },
+        docock:   { spawn: '🐙 DOC OCK XUẤT HIỆN!',      defeat: 'HẠ GỤC DOC OCK!',     color: '#f97316', pts: 800, projHit: 'TRÚNG MẢNH VỠ OCK!',  projBreak: 'PHÁ MẢNH VỠ!',    ko: 'Cánh tay cơ khí của Doc Ock đã hạ gục Người Nhện!' },
+        venom:    { spawn: '🖤 VENOM XUẤT HIỆN!',        defeat: 'HẠ GỤC VENOM!',       color: '#f43f5e', pts: 850, projHit: 'TRÚNG TƠ VENOM!',     projBreak: 'PHÁ TƠ ĐEN!',     ko: 'Venom đã nuốt chửng Người Nhện trên bầu trời NYC!' },
+        bot:      { spawn: '',                           defeat: '',                    color: '#fb7185', pts: 350, projHit: 'TRÚNG ĐẠN ĐỊCH!',     projBreak: 'PHẢN ĐÒN ĐẠN!',   ko: 'Hỏa lực Drone NYC đã hạ gục Người Nhện!' }
       };
+      let bossBag = [];
+      function drawNextBossKind() {
+        if (bossBag.length === 0) {
+          bossBag = BOSS_ORDER.slice();
+          for (let i = bossBag.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const tmp = bossBag[i]; bossBag[i] = bossBag[j]; bossBag[j] = tmp;
+          }
+        }
+        return bossBag.pop();
+      }
+
+      function defeatCurrentBoss() {
+        if (!boss) return;
+        const suit = SUITS[currentSuit], scoreMult = suit.perks.scoreMult || 1;
+        const bMeta = BOSS_META[boss.kind];
+        const pts = Math.round(bMeta.pts * combo * scoreMult);
+        bonusScore += pts; combo = Math.min(10, combo + 2); comboTimer = 5.0; recordStat('maxCombo', combo, true);
+        player.dashEnergy = Math.min(100, player.dashEnergy + (suit.perks.smashDashBonus || 30));
+        AudioFX.playSmash(); addScreenShake(12, 0.3); if (settings.screenShake) impactSlowMo = 0.28;
+        spawnShockwave(boss.x, boss.y, bMeta.color, 110);
+        spawnParticles(boss.x, boss.y, 32, bMeta.color, 100, 340, 3, 6.5);
+        spawnPopup(boss.x, boss.y - 30, `${bMeta.defeat} +${pts}`, bMeta.color, 23);
+        progressMission('smash', 1); recordStat('bossesBeat', 1); recordStat('smashes', 1);
+        boss = null;
+      }
+
+      function applyPlayerDamage(hitText, hitColor, koText, bx, by) {
+        if (player.invulnTimer > 0) return false;
+        player.invulnTimer = 1.35;
+        combo = 1;
+        player.vy = -210;
+        AudioFX.playHit(); addScreenShake(10, 0.28);
+        spawnParticles(bx, by, 20, hitColor, 90, 280, 3, 6);
+        if (gameMode === 'zen') {
+          spawnPopup(player.x, player.y - 35, '🛡️ KHIÊN TỰ DO ĐỠ ĐÒN!', '#38bdf8', 19);
+          return false;
+        }
+        player.hearts--;
+        spawnPopup(player.x, player.y - 35, hitText, hitColor, 20);
+        if (player.hearts <= 0) { endGame(koText); return true; }
+        return false;
+      }
+
+      function triggerWebBlast() {
+        if (state !== 'playing' || player.webBlastCooldown > 0) return;
+        const suit = SUITS[currentSuit];
+        player.webBlastCooldown = 0.85;
+        AudioFX.playWebBlast();
+
+        // Smart auto-aim at nearest threat ahead (boss, enemy projectile, or drone)
+        let target = null, bestD = 560;
+        const checkTarget = (tx, ty) => {
+          if (tx < player.x - 20) return;
+          const d = Math.hypot(tx - player.x, ty - player.y);
+          if (d < bestD) { bestD = d; target = { x: tx, y: ty }; }
+        };
+        if (boss) checkTarget(boss.x, boss.y);
+        for (let i = 0; i < bossProjectiles.length; i++) checkTarget(bossProjectiles[i].x, bossProjectiles[i].y);
+        for (let i = 0; i < drones.length; i++) if (drones[i].alive) checkTarget(drones[i].x, drones[i].y);
+
+        const spd = Math.max(920, player.vx + 560);
+        let vx = spd, vy = 0;
+        if (target) {
+          const ang = Math.atan2(target.y - player.y, target.x - player.x);
+          vx = Math.cos(ang) * spd; vy = Math.sin(ang) * spd;
+        }
+        webBlasts.push({ x: player.x + 22, y: player.y - 4, vx, vy, r: 14, color: suit.webColor, accent: suit.accent, life: 1.0 });
+        spawnParticles(player.x + 22, player.y - 4, 8, suit.webColor, 40, 150, 2, 4);
+      }
+
+      function updateWebBlasts(dt) {
+        const suit = SUITS[currentSuit], scoreMult = suit.perks.scoreMult || 1;
+        for (let i = webBlasts.length - 1; i >= 0; i--) {
+          const wb = webBlasts[i];
+          wb.x += wb.vx * dt; wb.y += wb.vy * dt; wb.life -= dt;
+          let hit = false;
+
+          // 1. Intercept enemy / boss projectiles!
+          for (let j = bossProjectiles.length - 1; j >= 0; j--) {
+            const p = bossProjectiles[j];
+            if (Math.hypot(wb.x - p.x, wb.y - p.y) < wb.r + p.r + 10) {
+              const pts = Math.round(240 * combo * scoreMult); bonusScore += pts;
+              player.dashEnergy = Math.min(100, player.dashEnergy + 12);
+              AudioFX.playSmash(); spawnParticles(p.x, p.y, 14, wb.color, 60, 220, 2, 4.5);
+              spawnPopup(p.x, p.y - 18, `PHẢN ĐÒN TƠ! +${pts}`, wb.color, 17);
+              progressMission('smash', 1); recordStat('smashes', 1);
+              bossProjectiles.splice(j, 1); hit = true; break;
+            }
+          }
+          if (hit) { webBlasts.splice(i, 1); continue; }
+
+          // 2. Blast regular enemy bots!
+          for (let j = 0; j < drones.length; j++) {
+            const d = drones[j]; if (!d.alive) continue;
+            if (Math.hypot(wb.x - d.x, wb.y - d.y) < wb.r + d.r + 8) {
+              d.alive = false; combo = Math.min(10, combo + 1); comboTimer = 4.6; recordStat('maxCombo', combo, true);
+              const pts = Math.round(380 * combo * scoreMult); bonusScore += pts;
+              player.dashEnergy = Math.min(100, player.dashEnergy + 16);
+              AudioFX.playSmash(); addScreenShake(5, 0.14);
+              spawnParticles(d.x, d.y, 22, wb.color, 80, 280, 2.5, 5.5);
+              spawnPopup(d.x, d.y - 22, `BỌC TƠ HẠ ĐỊCH! +${pts}`, '#4ade80', 19);
+              progressMission('smash', 1); recordStat('smashes', 1);
+              hit = true; break;
+            }
+          }
+          if (hit) { webBlasts.splice(i, 1); continue; }
+
+          // 3. Damage & stun Movie Bosses (3 hits KO!)
+          if (boss && Math.hypot(wb.x - boss.x, wb.y - boss.y) < wb.r + 36) {
+            boss.hp--; boss.hitFlash = 0.22; boss.x += 28;
+            AudioFX.playSmash(); addScreenShake(6, 0.16);
+            spawnParticles(boss.x, boss.y, 18, wb.color, 70, 240, 2.5, 5);
+            if (boss.hp <= 0) {
+              defeatCurrentBoss();
+            } else {
+              const pts = Math.round(180 * combo * scoreMult); bonusScore += pts;
+              spawnPopup(boss.x, boss.y - 34, `TRÚNG TƠ! (${boss.hp}/${boss.maxHp} HP)`, '#fde047', 18);
+            }
+            webBlasts.splice(i, 1); continue;
+          }
+
+          if (wb.life <= 0 || wb.x > camX + viewW + 220 || wb.y < -80 || wb.y > GROUND_Y + 40) webBlasts.splice(i, 1);
+        }
+      }
 
       function updateBossEncounters(dt) {
-        if (gameMode !== 'arcade') return;
         const suit = SUITS[currentSuit];
         const scoreMult = suit.perks.scoreMult || 1;
 
         if (!boss && maxDistance > nextBossDist) {
-          const kind = BOSS_ORDER[bossSeq % BOSS_ORDER.length];
+          const kind = drawNextBossKind();
           bossSeq++;
           boss = {
             kind,
-            x: camX + viewW + 140, y: 175, baseY: 175,
-            phase: 0, attackTimer: 1.4, life: 12.5
+            x: camX + viewW + 140, y: 185, baseY: 185,
+            phase: 0, attackTimer: 1.15, life: 13.5,
+            hp: 3, maxHp: 3, hitFlash: 0
           };
-          nextBossDist = maxDistance + 185 + Math.random() * 105;
-          spawnPopup(player.x + 115, player.y - 60, BOSS_META[kind].spawn, BOSS_META[kind].color, 19);
+          nextBossDist = maxDistance + 135 + Math.random() * 65;
+          spawnPopup(player.x + 100, player.y - 60, BOSS_META[kind].spawn, BOSS_META[kind].color, 19);
+          showToast('🔥', `${BOSS_META[kind].spawn} — Bấm 🕸️ BẮN hoặc BỨT TỐC để hạ!`);
         }
 
         if (boss) {
           const bMeta = BOSS_META[boss.kind];
-          boss.phase += dt * (boss.kind === 'vulture' ? 4.2 : 3.3); boss.life -= dt;
-          boss.x += (player.x + (boss.kind === 'vulture' ? 270 : 295) - boss.x) * Math.min(1, dt * 2.3);
-          boss.y = boss.baseY + Math.sin(boss.phase) * (boss.kind === 'vulture' ? 78 : 62);
+          boss.phase += dt * (boss.kind === 'vulture' || boss.kind === 'venom' ? 4.2 : 3.3);
+          boss.life -= dt;
+          if (boss.hitFlash > 0) boss.hitFlash = Math.max(0, boss.hitFlash - dt);
+          const leadDist = isPortrait ? 215 : (boss.kind === 'vulture' || boss.kind === 'venom' ? 265 : 295);
+          boss.x += (player.x + leadDist - boss.x) * Math.min(1, dt * 2.4);
+          boss.y = boss.baseY + Math.sin(boss.phase) * (boss.kind === 'vulture' || boss.kind === 'venom' ? 76 : 60);
 
           if (Math.random() < 0.55) {
             particles.push({
               x: boss.x + (boss.kind === 'goblin' ? 18 : (Math.random() - 0.5) * 20),
               y: boss.y + (boss.kind === 'goblin' ? 12 : (Math.random() - 0.5) * 22),
               vx: 65 + Math.random() * 50, vy: (Math.random() - 0.5) * 45,
-              life: 0.25, maxLife: 0.25, size: 3.4,
-              color: boss.kind === 'mysterio' ? '#c084fc' : boss.kind === 'vulture' ? '#4ade80' : boss.kind === 'electro' ? '#38bdf8' : '#a855f7'
+              life: 0.25, maxLife: 0.25, size: 3.4, color: bMeta.color
             });
           }
 
           boss.attackTimer -= dt;
-          if (boss.attackTimer <= 0 && boss.life > 1.5) {
-            boss.attackTimer = (boss.kind === 'vulture' ? 2.1 : 2.35) + Math.random() * 1.15;
+          if (boss.attackTimer <= 0 && boss.life > 1.3) {
+            boss.attackTimer = (boss.kind === 'vulture' || boss.kind === 'venom' ? 1.85 : 2.1) + Math.random() * 0.9;
+            AudioFX.playEnemyShot();
             if (boss.kind === 'goblin') {
-              bossProjectiles.push({ kind: 'pumpkin', bossKind: 'goblin', x: boss.x - 10, y: boss.y + 6, vx: player.vx * 0.45 - 95, vy: -95, r: 13 });
+              bossProjectiles.push({ kind: 'pumpkin', bossKind: 'goblin', x: boss.x - 10, y: boss.y + 6, vx: player.vx * 0.45 - 105, vy: -95, r: 13 });
             } else if (boss.kind === 'electro') {
-              bossProjectiles.push({ kind: 'bolt', bossKind: 'electro', x: boss.x - 16, y: boss.y, vx: player.vx * 0.25 - 235, vy: (player.y - boss.y) * 0.35, r: 14 });
+              bossProjectiles.push({ kind: 'bolt', bossKind: 'electro', x: boss.x - 16, y: boss.y, vx: player.vx * 0.25 - 245, vy: (player.y - boss.y) * 0.36, r: 14 });
             } else if (boss.kind === 'vulture') {
-              // Vulture launches twin razor feathers!
               const dy = (player.y - boss.y) * 0.36;
-              bossProjectiles.push({ kind: 'feather', bossKind: 'vulture', x: boss.x - 16, y: boss.y - 6, vx: player.vx * 0.22 - 255, vy: dy - 42, r: 12 });
-              bossProjectiles.push({ kind: 'feather', bossKind: 'vulture', x: boss.x - 16, y: boss.y + 8, vx: player.vx * 0.22 - 255, vy: dy + 42, r: 12 });
+              bossProjectiles.push({ kind: 'feather', bossKind: 'vulture', x: boss.x - 16, y: boss.y - 6, vx: player.vx * 0.22 - 260, vy: dy - 42, r: 12 });
+              bossProjectiles.push({ kind: 'feather', bossKind: 'vulture', x: boss.x - 16, y: boss.y + 8, vx: player.vx * 0.22 - 260, vy: dy + 42, r: 12 });
+            } else if (boss.kind === 'mysterio') {
+              bossProjectiles.push({ kind: 'illusion', bossKind: 'mysterio', x: boss.x - 14, y: boss.y, vx: player.vx * 0.28 - 200, vy: (player.y - boss.y) * 0.28, r: 15, phase: 0 });
+            } else if (boss.kind === 'docock') {
+              // Doc Ock hurls burning rubble chunk!
+              bossProjectiles.push({ kind: 'rubble', bossKind: 'docock', x: boss.x - 18, y: boss.y + 4, vx: player.vx * 0.32 - 210, vy: (player.y - boss.y) * 0.32 - 40, r: 15 });
             } else {
-              // Mysterio launches wavy emerald-purple illusion orb!
-              bossProjectiles.push({ kind: 'illusion', bossKind: 'mysterio', x: boss.x - 14, y: boss.y, vx: player.vx * 0.28 - 195, vy: (player.y - boss.y) * 0.28, r: 15, phase: 0 });
+              // Venom fires twin black symbiote bursts!
+              const dy = (player.y - boss.y) * 0.38;
+              bossProjectiles.push({ kind: 'sludge', bossKind: 'venom', x: boss.x - 16, y: boss.y - 4, vx: player.vx * 0.24 - 245, vy: dy - 26, r: 13 });
+              bossProjectiles.push({ kind: 'sludge', bossKind: 'venom', x: boss.x - 16, y: boss.y + 6, vx: player.vx * 0.24 - 245, vy: dy + 28, r: 12 });
             }
           }
 
-          if (Math.hypot(player.x - boss.x, player.y - boss.y) < 52 && (player.dashTimer > 0 || player.shieldTimer > 0)) {
-            const pts = Math.round(bMeta.pts * combo * scoreMult);
-            bonusScore += pts; combo = Math.min(10, combo + 2); comboTimer = 5.0; recordStat('maxCombo', combo, true);
-            player.dashEnergy = Math.min(100, player.dashEnergy + (suit.perks.smashDashBonus || 30));
-            AudioFX.playSmash(); addScreenShake(12, 0.3); if (settings.screenShake) impactSlowMo = 0.28;
-            spawnParticles(boss.x, boss.y, 32, bMeta.color, 100, 340, 3, 6.5);
-            spawnPopup(boss.x, boss.y - 30, `${bMeta.defeat} +${pts}`, bMeta.color, 23);
-            progressMission('smash', 1); recordStat('bossesBeat', 1); recordStat('smashes', 1);
-            boss = null;
+          if (Math.hypot(player.x - boss.x, player.y - boss.y) < 54 && (player.dashTimer > 0 || player.shieldTimer > 0)) {
+            defeatCurrentBoss();
           } else if (boss.life <= 0) {
             boss.x += 480 * dt; boss.y -= 260 * dt;
             if (boss.y < -80) boss = null;
@@ -2043,8 +2275,8 @@ body {
 
         for (let i = bossProjectiles.length - 1; i >= 0; i--) {
           const b = bossProjectiles[i];
-          const bMeta = BOSS_META[b.bossKind || (b.kind === 'bolt' ? 'electro' : 'goblin')];
-          if (b.kind === 'pumpkin') b.vy += 420 * dt;
+          const bMeta = BOSS_META[b.bossKind || 'bot'];
+          if (b.kind === 'pumpkin' || b.kind === 'rubble') b.vy += (b.kind === 'rubble' ? 280 : 420) * dt;
           else if (b.kind === 'illusion') { b.phase = (b.phase || 0) + dt * 7; b.y += Math.sin(b.phase) * 145 * dt; }
           b.x += b.vx * dt; b.y += b.vy * dt;
           if (Math.hypot(player.x - b.x, player.y - b.y) < b.r + 22) {
@@ -2054,12 +2286,8 @@ body {
               spawnParticles(b.x, b.y, 18, bMeta.color, 80, 260, 2.5, 5);
               spawnPopup(b.x, b.y - 20, `${bMeta.projBreak} +${pts}`, bMeta.color, 18);
               progressMission('smash', 1); recordStat('smashes', 1);
-            } else if (player.invulnTimer <= 0) {
-              player.hearts--; player.invulnTimer = 1.4; combo = 1; player.vy = -220;
-              AudioFX.playHit(); addScreenShake(10, 0.28);
-              spawnParticles(b.x, b.y, 20, bMeta.color, 90, 280, 3, 6);
-              spawnPopup(player.x, player.y - 35, bMeta.projHit, bMeta.color, 20);
-              if (player.hearts <= 0) { endGame(bMeta.ko); return; }
+            } else {
+              if (applyPlayerDamage(bMeta.projHit, bMeta.color, bMeta.ko, b.x, b.y)) return;
             }
             bossProjectiles.splice(i, 1); continue;
           }
@@ -2184,7 +2412,7 @@ body {
         spawnParticles(player.x, player.y, 24, suit.accent, 90, 320, 3, 6);
         spawnPopup(player.x + 20, player.y - 40, suit.perks.venomPulse ? 'SÓNG SÉT VENOM!' : 'SIÊU BỨT TỐC!', suit.perks.venomPulse ? '#fde047' : '#38bdf8', 22);
 
-        if (suit.perks.venomPulse && gameMode === 'arcade') {
+        if (suit.perks.venomPulse) {
           for (let i = 0; i < drones.length; i++) {
             const d = drones[i];
             if (d.alive && Math.hypot(player.x - d.x, player.y - d.y) < 190) {
@@ -2260,16 +2488,17 @@ body {
         player.maxHearts = 3 + (s.perks.extraHeart || 0);
         player.hearts = player.maxHearts;
         player.trail = []; player.spiderSense = 0; player.windFactor = 0;
-        player.skimCooldown = 0; player.sonicRingCooldown = 0; impactSlowMo = 0;
+        player.skimCooldown = 0; player.sonicRingCooldown = 0; player.webBlastCooldown = 0; impactSlowMo = 0;
 
         startX = player.x; camZoom = 1; resizeCanvas();
-        camX = player.x - viewW * 0.28; camY = 0;
+        camX = player.x - viewW * 0.25; camY = 0;
         score = 0; bonusScore = 0; maxDistance = 0; lastRecordedDist = 0; maxSpeedKmh = 0;
-        combo = 1; comboTimer = 0; swingCount = 0; nextBossDist = 155; bossSeq = 0; nextHeroTimer = 6;
+        combo = 1; comboTimer = 0; swingCount = 0; nextBossDist = 95; bossSeq = 0; nextHeroTimer = 4.5;
+        heroBag = []; bossBag = [];
         currentDistrictIdx = 0;
 
         buildings = []; farSkyline = []; midSkyline = []; landmarks = [];
-        tokens = []; boostRings = []; powerups = []; drones = []; boss = null; bossProjectiles = [];
+        tokens = []; boostRings = []; powerups = []; drones = []; boss = null; bossProjectiles = []; webBlasts = [];
         heroCameos = []; roofPigeons = []; particles = []; popups = []; steamPuffs = []; streetSteam = [];
         rainSplashes = []; windRibbons = []; windStreaks = []; shockwaves = []; fireworks = [];
         nextBuildingX = -220; nextFarX = -300; nextMidX = -300; nextLandmarkX = 200;
@@ -2448,6 +2677,7 @@ body {
         if (player.shieldTimer > 0) player.shieldTimer = Math.max(0, player.shieldTimer - dt);
         if (player.magnetTimer > 0) player.magnetTimer = Math.max(0, player.magnetTimer - dt);
         if (player.skimCooldown > 0) player.skimCooldown = Math.max(0, player.skimCooldown - dt);
+        if (player.webBlastCooldown > 0) player.webBlastCooldown = Math.max(0, player.webBlastCooldown - dt);
         if (shakeTimer > 0) shakeTimer = Math.max(0, shakeTimer - rawDt);
         if (player.webAnim > 0) player.webAnim = Math.max(0, player.webAnim - dt * 5.2);
         if (combo > 1) { comboTimer -= dt; if (comboTimer <= 0) combo = 1; }
@@ -2503,7 +2733,6 @@ body {
           if (Math.random() < 0.65) spawnParticles(player.x - 16, player.y, 1, suit.accent, 20, 80, 2, 4);
         } else {
           let grav = preset.gravity * (1 - env.wSnow * 0.07) * (suit.perks.gravMult || 1);
-          // Future Foundation / Unlimited Wing Glider softens fall speed!
           if (!player.attached && player.vy > 0 && suit.perks.fallDamp) grav *= suit.perks.fallDamp;
           player.vy += grav * dt;
           if (env.wRain > 0.4) player.vx += (28 * env.wRain * (0.6 + 0.4 * Math.sin(elapsedTime * 2.5))) * dt;
@@ -2554,22 +2783,35 @@ body {
 
         updateWindEffects(dt, curSpeed);
 
-        const lookAhead = isPortrait ? clamp(player.vx * 0.14, 0, 110) : clamp(player.vx * 0.24, 0, 210);
-        const anchorFrac = isPortrait ? 0.20 : 0.26;
+        const lookAhead = isPortrait ? clamp(player.vx * 0.13, 0, 90) : clamp(player.vx * 0.24, 0, 210);
+        const anchorFrac = isPortrait ? 0.23 : 0.26;
         camX += (player.x - viewW * anchorFrac + lookAhead - camX) * Math.min(1, dt * 7.5);
-        camY += (clamp((player.y - 340) * 0.18, -55, 28) - camY) * Math.min(1, dt * 5.0);
+        camY += (clamp((player.y - 330) * 0.20, isPortrait ? -115 : -55, 28) - camY) * Math.min(1, dt * 5.0);
 
         generateParallaxSkyline();
         generateBuildingsAndEntities();
         updateHeroCameos(dt);
 
-        // Rooftop Skim
-        if (player.skimCooldown <= 0 && curSpeed > 440) {
+        // Rooftop Parkour Bounce + Rooftop Skim!
+        if (player.skimCooldown <= 0) {
           for (let i = 0; i < buildings.length; i++) {
             const b = buildings[i];
             if (player.x > b.x + 10 && player.x < b.x + b.w - 10) {
               const distAbove = b.topY - player.y;
-              if (distAbove > 8 && distAbove < 44) {
+              if (!player.attached && player.vy > 80 && distAbove > -8 && distAbove < 20) {
+                // Parkour Roof Vault!
+                player.skimCooldown = 1.6;
+                player.y = b.topY - 14;
+                player.vy = -440; player.vx = Math.min(maxVx, Math.max(player.vx + 95, 520));
+                player.flipping = true; player.spinVel = 11.5;
+                player.dashEnergy = Math.min(100, player.dashEnergy + 16);
+                const pts = Math.round(210 * combo * stuntMult * scoreMult); bonusScore += pts;
+                AudioFX.playRelease(true);
+                spawnShockwave(player.x, b.topY - 4, '#ffffff', 62);
+                spawnParticles(player.x, b.topY - 4, 16, env.snowAccum > 0.25 ? '#ffffff' : '#e2e8f0', 50, 180, 2.5, 5);
+                spawnPopup(player.x, player.y - 34, `NHÚN MÁI PARKOUR! +${pts}`, '#4ade80', 18);
+                progressMission('skim', 1); recordStat('skims', 1); break;
+              } else if (curSpeed > 440 && distAbove > 8 && distAbove < 44) {
                 player.skimCooldown = 2.6;
                 const pts = Math.round(180 * combo * stuntMult * scoreMult); bonusScore += pts;
                 player.dashEnergy = Math.min(100, player.dashEnergy + 14);
@@ -2636,46 +2878,61 @@ body {
           }
         }
 
-        // 3 Enemy Types: Oscorp Recon Drone, Sentinel Laser Bot & Shocker Sonic Mine
+        // 3 Active Attacking Enemy Types (in BOTH Arcade & Zen modes!)
         let dangerNear = false;
         const senseRadius = 175 + env.wFog * 165 + (suit.perks.reachMult ? 60 : 0);
-        if (gameMode === 'arcade') {
-          for (let i = 0; i < drones.length; i++) {
-            const d = drones[i]; if (!d.alive) continue;
-            d.y = d.baseY + Math.sin(elapsedTime * d.freq + d.phase) * d.amp;
-            const pulseBonus = d.kind === 'shock_mine' ? (Math.sin(elapsedTime * 5 + d.phase) > 0.65 ? 8 : 0) : 0;
-            const hitR = d.r + 22 + pulseBonus;
-            const dist = Math.hypot(player.x - d.x, player.y - d.y);
-            if (dist < senseRadius) dangerNear = true;
+        for (let i = 0; i < drones.length; i++) {
+          const d = drones[i]; if (!d.alive) continue;
+          d.y = d.baseY + Math.sin(elapsedTime * d.freq + d.phase) * d.amp;
+          const pulseBonus = d.kind === 'shock_mine' ? (Math.sin(elapsedTime * 5 + d.phase) > 0.65 ? 8 : 0) : 0;
+          const hitR = d.r + 22 + pulseBonus;
+          const dist = Math.hypot(player.x - d.x, player.y - d.y);
+          if (dist < senseRadius) dangerNear = true;
 
-            if (dist < hitR) {
-              const eName = d.kind === 'laser_bot' ? 'SENTINEL' : (d.kind === 'shock_mine' ? 'MÌN SÓNG ÂM' : 'DRONE');
-              const eColor = d.kind === 'laser_bot' ? '#e879f9' : (d.kind === 'shock_mine' ? '#facc15' : '#fb923c');
-              const basePts = d.kind === 'shock_mine' ? 480 : (d.kind === 'laser_bot' ? 440 : 400);
-              if (player.dashTimer > 0 || player.shieldTimer > 0) {
-                d.alive = false; combo = Math.min(10, combo + 1); comboTimer = 4.6; recordStat('maxCombo', combo, true);
-                const pts = Math.round(basePts * combo * scoreMult); bonusScore += pts;
-                player.dashEnergy = Math.min(100, player.dashEnergy + (suit.perks.smashDashBonus || 28));
-                AudioFX.playSmash(); addScreenShake(9, 0.25);
-                spawnParticles(d.x, d.y, 26, suit.special === 'ghost_flame' ? '#38bdf8' : eColor, 90, 320, 3, 6);
-                spawnPopup(d.x, d.y - 28, player.shieldTimer > 0 ? `KHIÊN PHÁ ${eName}! +${pts}` : `PHÁ ${eName}! +${pts}`, eColor, 22);
-                progressMission('smash', 1); recordStat('smashes', 1);
-              } else if (player.invulnTimer <= 0) {
-                d.alive = false; player.hearts--; player.invulnTimer = 1.4;
-                combo = 1; player.vx = Math.max(160, player.vx * 0.55); player.vy = -210;
-                AudioFX.playHit(); addScreenShake(11, 0.3);
-                spawnParticles(d.x, d.y, 22, '#ef4444', 80, 260, 3, 6);
-                spawnPopup(player.x, player.y - 35, `TRÚNG ${eName}!`, '#f87171', 21);
-                if (player.hearts <= 0) { endGame(`${eName} đã hạ gục Người Nhện trên bầu trời NYC!`); return; }
-              }
-            } else if (!d.nearMissed && dist < hitR + 34 && player.x > d.x + 14) {
-              d.nearMissed = true;
-              const pts = Math.round(150 * combo * stuntMult * scoreMult); bonusScore += pts;
-              spawnPopup(player.x, player.y - 36, `NÉ SÁT NÚT! +${pts}`, '#a7f3d0', 17);
+          // Active enemy shooting when ahead of Spider-Man!
+          const dxAhead = d.x - player.x;
+          if (dxAhead > 70 && dxAhead < viewW * 0.92) {
+            d.fireTimer = (d.fireTimer ?? 0.9) - dt;
+            if (d.fireTimer <= 0) {
+              d.fireTimer = d.kind === 'laser_bot' ? 1.85 : (d.kind === 'shock_mine' ? 2.15 : 2.05);
+              AudioFX.playEnemyShot();
+              const ang = Math.atan2(player.y - d.y, player.x - d.x);
+              const spd = d.kind === 'laser_bot' ? 420 : (d.kind === 'shock_mine' ? 310 : 340);
+              bossProjectiles.push({
+                kind: d.kind === 'laser_bot' ? 'laser' : (d.kind === 'shock_mine' ? 'sonic' : 'plasma'),
+                bossKind: 'bot',
+                x: d.x - 14, y: d.y,
+                vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd,
+                r: d.kind === 'shock_mine' ? 12 : 9
+              });
             }
+          }
+
+          if (dist < hitR) {
+            const eName = d.kind === 'laser_bot' ? 'SENTINEL' : (d.kind === 'shock_mine' ? 'MÌN SÓNG ÂM' : 'DRONE');
+            const eColor = d.kind === 'laser_bot' ? '#e879f9' : (d.kind === 'shock_mine' ? '#facc15' : '#fb923c');
+            const basePts = d.kind === 'shock_mine' ? 480 : (d.kind === 'laser_bot' ? 440 : 400);
+            if (player.dashTimer > 0 || player.shieldTimer > 0) {
+              d.alive = false; combo = Math.min(10, combo + 1); comboTimer = 4.6; recordStat('maxCombo', combo, true);
+              const pts = Math.round(basePts * combo * scoreMult); bonusScore += pts;
+              player.dashEnergy = Math.min(100, player.dashEnergy + (suit.perks.smashDashBonus || 28));
+              AudioFX.playSmash(); addScreenShake(9, 0.25);
+              spawnParticles(d.x, d.y, 26, suit.special === 'ghost_flame' ? '#38bdf8' : eColor, 90, 320, 3, 6);
+              spawnPopup(d.x, d.y - 28, player.shieldTimer > 0 ? `KHIÊN PHÁ ${eName}! +${pts}` : `PHÁ ${eName}! +${pts}`, eColor, 22);
+              progressMission('smash', 1); recordStat('smashes', 1);
+            } else {
+              d.alive = false;
+              player.vx = Math.max(160, player.vx * 0.65);
+              if (applyPlayerDamage(`TRÚNG ${eName}!`, '#f87171', `${eName} đã hạ gục Người Nhện trên bầu trời NYC!`, d.x, d.y)) return;
+            }
+          } else if (!d.nearMissed && dist < hitR + 34 && player.x > d.x + 14) {
+            d.nearMissed = true;
+            const pts = Math.round(150 * combo * stuntMult * scoreMult); bonusScore += pts;
+            spawnPopup(player.x, player.y - 36, `NÉ SÁT NÚT! +${pts}`, '#a7f3d0', 17);
           }
         }
 
+        updateWebBlasts(dt);
         updateBossEncounters(dt);
         if (state !== 'playing') return;
 
@@ -2753,13 +3010,14 @@ body {
       const elScore = document.getElementById('hud-score'), elDistance = document.getElementById('hud-distance'), elSpeed = document.getElementById('hud-speed');
       const elCombo = document.getElementById('hud-combo-badge'), elHearts = document.getElementById('hud-hearts'), elHeartsWrap = document.getElementById('hud-hearts-wrap');
       const elBuffs = document.getElementById('hud-buffs'), elDashBar = document.getElementById('dash-bar'), elDashText = document.getElementById('dash-status-text'), btnDash = document.getElementById('btn-dash');
+      const btnWebBlast = document.getElementById('btn-web-blast');
       const elWeatherIcon = document.getElementById('hud-weather-icon'), elWeatherLabel = document.getElementById('hud-weather-label'), elWeatherTimer = document.getElementById('hud-weather-timer');
       const elFps = document.getElementById('hud-fps');
 
       const hudCache = {
         weatherKey: '', weatherTimer: '', autoWeather: null,
         score: -1, dist: -1, speed: -1, combo: -1,
-        heartsKey: '', buffsKey: '', dashPct: -1, dashDisabled: null, dashText: '', dashCls: '',
+        heartsKey: '', buffsKey: '', dashPct: -1, dashDisabled: null, blastDisabled: null, dashText: '', dashCls: '',
         lastNumMs: 0
       };
 
@@ -2828,6 +3086,8 @@ body {
 
         const disabled = player.dashEnergy < 50 || state !== 'playing';
         if (hudCache.dashDisabled !== disabled) { hudCache.dashDisabled = disabled; btnDash.disabled = disabled; }
+        const blastCd = player.webBlastCooldown > 0 || state !== 'playing';
+        if (hudCache.blastDisabled !== blastCd && btnWebBlast) { hudCache.blastDisabled = blastCd; btnWebBlast.style.opacity = blastCd ? '0.45' : '1'; }
         updateEnvHud();
       }
 
@@ -3497,6 +3757,7 @@ body {
           const h = heroCameos[i], hx = h.x - camX, hy = h.y - camY;
           if (hx < -160 || hx > viewW + 160) continue;
           ctx.save(); ctx.translate(hx, hy);
+          ctx.save(); ctx.scale(1.18, 1.18);
           if (!h.interacted) {
             const auraX = h.type === 'strange' ? 40 : 0;
             ctx.strokeStyle = h.color; ctx.globalAlpha = 0.36 + Math.sin(elapsedTime * 7) * 0.18; ctx.lineWidth = 2;
@@ -3742,13 +4003,14 @@ body {
             ctx.beginPath(); ctx.moveTo(4, -19.5); ctx.quadraticCurveTo(10, -21, 9.5, -16); ctx.quadraticCurveTo(6, -14.5, 4, -19.5); ctx.closePath(); ctx.fill(); ctx.stroke();
             ctx.restore();
           }
+          ctx.restore();
 
           if (state !== 'photo') {
             ctx.font = '800 10px system-ui, sans-serif';
             const text = `${h.name}: "${h.quote}"`, tw = ctx.measureText(text).width + 16;
             ctx.fillStyle = 'rgba(255, 255, 255, 0.94)'; ctx.strokeStyle = '#0f172a'; ctx.lineWidth = 1.8;
-            ctx.beginPath(); ctx.roundRect(-tw * 0.5, -52, tw, 20, 10); ctx.fill(); ctx.stroke();
-            ctx.fillStyle = '#0f172a'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 0, -42);
+            ctx.beginPath(); ctx.roundRect(-tw * 0.5, -58, tw, 20, 10); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#0f172a'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 0, -48);
           }
           ctx.restore();
         }
@@ -3875,115 +4137,231 @@ body {
           ctx.restore();
         }
 
-        if (gameMode === 'arcade') {
-          for (let i = 0; i < drones.length; i++) {
-            const d = drones[i]; if (!d.alive) continue;
-            const x = d.x - camX, y = d.y - camY; if (x < -60 || x > viewW + 60) continue;
-            if (env.wFog > 0.3) { ctx.strokeStyle = `rgba(248, 113, 113, ${(env.wFog * 0.72).toFixed(2)})`; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, d.r + 12 + Math.sin(elapsedTime * 8) * 3, 0, Math.PI * 2); ctx.stroke(); }
-            const ar = d.r * 2.1;
+        for (let i = 0; i < drones.length; i++) {
+          const d = drones[i]; if (!d.alive) continue;
+          const x = d.x - camX, y = d.y - camY; if (x < -60 || x > viewW + 60) continue;
+          if (env.wFog > 0.3) { ctx.strokeStyle = `rgba(248, 113, 113, ${(env.wFog * 0.72).toFixed(2)})`; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, d.r + 12 + Math.sin(elapsedTime * 8) * 3, 0, Math.PI * 2); ctx.stroke(); }
+          const ar = d.r * 2.1;
 
-            if (d.kind === 'laser_bot') {
-              // Sentinel Laser Bot (Magenta/Violet hunter drone with scanning laser!)
-              ctx.drawImage(GLOW_SPRITES.purple, x - ar, y - ar, ar * 2, ar * 2);
-              const scanAlpha = 0.25 + 0.25 * Math.sin(elapsedTime * 9 + d.phase);
-              ctx.strokeStyle = `rgba(232, 121, 249, ${scanAlpha.toFixed(2)})`; ctx.lineWidth = 2.2;
-              ctx.beginPath(); ctx.moveTo(x - 16, y); ctx.lineTo(x - 68, y + Math.sin(elapsedTime * 4 + d.phase) * 18); ctx.stroke();
-              ctx.fillStyle = '#3b0764'; ctx.strokeStyle = '#e879f9'; ctx.lineWidth = 2.2;
-              ctx.beginPath(); ctx.moveTo(x - d.r, y); ctx.lineTo(x - 4, y - d.r * 0.88); ctx.lineTo(x + d.r, y - 6); ctx.lineTo(x + d.r, y + 6); ctx.lineTo(x - 4, y + d.r * 0.88); ctx.closePath(); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#22d3ee'; ctx.fillRect(x - 13, y - 3.5, 11, 7);
-              ctx.fillStyle = '#ffffff'; ctx.fillRect(x - 11, y - 1.5, 5, 3);
-            } else if (d.kind === 'shock_mine') {
-              // Shocker Sonic Mine (Spiked pulsing electromagnetic mine!)
-              const pulse = Math.sin(elapsedTime * 5 + d.phase);
-              ctx.drawImage(GLOW_SPRITES.gold, x - ar, y - ar, ar * 2, ar * 2);
-              ctx.strokeStyle = `rgba(250, 204, 21, ${(0.35 + pulse * 0.25).toFixed(2)})`; ctx.lineWidth = 2.2;
-              ctx.beginPath(); ctx.arc(x, y, d.r + 7 + Math.max(0, pulse) * 8, 0, Math.PI * 2); ctx.stroke();
-              ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 3;
-              ctx.beginPath();
-              for (let sp = 0; sp < 8; sp++) {
-                const a = elapsedTime * 1.6 + (sp / 8) * Math.PI * 2;
-                ctx.moveTo(x + Math.cos(a) * (d.r - 4), y + Math.sin(a) * (d.r - 4));
-                ctx.lineTo(x + Math.cos(a) * (d.r + 7), y + Math.sin(a) * (d.r + 7));
-              }
-              ctx.stroke();
-              ctx.fillStyle = '#1e1b4b'; ctx.strokeStyle = '#facc15'; ctx.lineWidth = 2.4;
-              ctx.beginPath(); ctx.arc(x, y, d.r - 2, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = pulse > 0.4 ? '#fef08a' : '#f59e0b';
-              ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI * 2); ctx.fill();
-            } else {
-              // Oscorp Recon Drone
-              ctx.drawImage(GLOW_SPRITES.green, x - ar, y - ar, ar * 2, ar * 2);
-              ctx.fillStyle = '#1e293b'; ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, d.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(x - 6, y, 6, 0, Math.PI * 2); ctx.fill();
-              ctx.fillStyle = '#fef08a'; ctx.beginPath(); ctx.arc(x - 7, y - 1, 2.2, 0, Math.PI * 2); ctx.fill();
-              ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x - d.r - 6, y - 6); ctx.lineTo(x + d.r + 6, y - 6); ctx.moveTo(x - d.r - 4, y + 7); ctx.lineTo(x + d.r + 4, y + 7); ctx.stroke();
+          if (d.kind === 'laser_bot') {
+            // Sentinel Laser Bot (Magenta/Violet hunter drone with scanning laser!)
+            ctx.drawImage(GLOW_SPRITES.purple, x - ar, y - ar, ar * 2, ar * 2);
+            const scanAlpha = 0.25 + 0.25 * Math.sin(elapsedTime * 9 + d.phase);
+            ctx.strokeStyle = `rgba(232, 121, 249, ${scanAlpha.toFixed(2)})`; ctx.lineWidth = 2.2;
+            ctx.beginPath(); ctx.moveTo(x - 16, y); ctx.lineTo(x - 68, y + Math.sin(elapsedTime * 4 + d.phase) * 18); ctx.stroke();
+            ctx.fillStyle = '#3b0764'; ctx.strokeStyle = '#e879f9'; ctx.lineWidth = 2.2;
+            ctx.beginPath(); ctx.moveTo(x - d.r, y); ctx.lineTo(x - 4, y - d.r * 0.88); ctx.lineTo(x + d.r, y - 6); ctx.lineTo(x + d.r, y + 6); ctx.lineTo(x - 4, y + d.r * 0.88); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#22d3ee'; ctx.fillRect(x - 13, y - 3.5, 11, 7);
+            ctx.fillStyle = '#ffffff'; ctx.fillRect(x - 11, y - 1.5, 5, 3);
+          } else if (d.kind === 'shock_mine') {
+            // Shocker Sonic Mine (Spiked pulsing electromagnetic mine!)
+            const pulse = Math.sin(elapsedTime * 5 + d.phase);
+            ctx.drawImage(GLOW_SPRITES.gold, x - ar, y - ar, ar * 2, ar * 2);
+            ctx.strokeStyle = `rgba(250, 204, 21, ${(0.35 + pulse * 0.25).toFixed(2)})`; ctx.lineWidth = 2.2;
+            ctx.beginPath(); ctx.arc(x, y, d.r + 7 + Math.max(0, pulse) * 8, 0, Math.PI * 2); ctx.stroke();
+            ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 3;
+            ctx.beginPath();
+            for (let sp = 0; sp < 8; sp++) {
+              const a = elapsedTime * 1.6 + (sp / 8) * Math.PI * 2;
+              ctx.moveTo(x + Math.cos(a) * (d.r - 4), y + Math.sin(a) * (d.r - 4));
+              ctx.lineTo(x + Math.cos(a) * (d.r + 7), y + Math.sin(a) * (d.r + 7));
             }
+            ctx.stroke();
+            ctx.fillStyle = '#1e1b4b'; ctx.strokeStyle = '#facc15'; ctx.lineWidth = 2.4;
+            ctx.beginPath(); ctx.arc(x, y, d.r - 2, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = pulse > 0.4 ? '#fef08a' : '#f59e0b';
+            ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI * 2); ctx.fill();
+          } else {
+            // Oscorp Recon Drone
+            ctx.drawImage(GLOW_SPRITES.green, x - ar, y - ar, ar * 2, ar * 2);
+            ctx.fillStyle = '#1e293b'; ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, d.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(x - 6, y, 6, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = '#fef08a'; ctx.beginPath(); ctx.arc(x - 7, y - 1, 2.2, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x - d.r - 6, y - 6); ctx.lineTo(x + d.r + 6, y - 6); ctx.moveTo(x - d.r - 4, y + 7); ctx.lineTo(x + d.r + 4, y + 7); ctx.stroke();
           }
+        }
 
-          if (boss) {
-            const gx = boss.x - camX, gy = boss.y - camY; ctx.save(); ctx.translate(gx, gy);
-            if (boss.kind === 'goblin') {
-              ctx.fillStyle = '#334155'; ctx.strokeStyle = '#a855f7'; ctx.lineWidth = 2.2;
-              ctx.beginPath(); ctx.moveTo(-28, 12); ctx.lineTo(0, 6); ctx.lineTo(28, 12); ctx.lineTo(15, 20); ctx.lineTo(-15, 20); ctx.closePath(); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#f97316'; ctx.beginPath(); ctx.arc(22, 14, 5.5 + Math.sin(elapsedTime * 30) * 1.5, 0, Math.PI * 2); ctx.fill();
-              ctx.fillStyle = '#16a34a'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(-9, -11, 18, 21, 5); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#7e22ce'; ctx.beginPath(); ctx.moveTo(-8, -11); ctx.lineTo(14, -18); ctx.lineTo(4, -24); ctx.lineTo(-10, -16); ctx.closePath(); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#fde047'; ctx.fillRect(-7, -15, 4.5, 3);
-            } else if (boss.kind === 'electro') {
-              ctx.drawImage(GLOW_SPRITES.cyan, -38, -38, 76, 76);
-              ctx.fillStyle = '#0284c7'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(-10, -12, 20, 25, 5); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#e0f2fe'; ctx.beginPath(); ctx.arc(0, -17, 8.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-              ctx.strokeStyle = '#fde047'; ctx.lineWidth = 2.2;
-              for (let z = 0; z < 5; z++) { const a = elapsedTime * 10 + z * 1.25; ctx.beginPath(); ctx.moveTo(0, -17); ctx.lineTo(Math.cos(a) * 22, -17 + Math.sin(a) * 22); ctx.stroke(); }
-            } else if (boss.kind === 'vulture') {
-              // VULTURE with giant flapping mechanical green turbine wings!
-              const flap = Math.sin(elapsedTime * 10) * 12;
-              ctx.fillStyle = '#14532d'; ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 2.4;
-              ctx.beginPath(); ctx.moveTo(-4, -4); ctx.lineTo(-36, -24 + flap); ctx.lineTo(-42, 4 + flap); ctx.lineTo(-8, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
-              ctx.beginPath(); ctx.moveTo(4, -4); ctx.lineTo(36, -24 - flap * 0.5); ctx.lineTo(42, 4 - flap * 0.5); ctx.lineTo(8, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
-              // Glowing green wing turbines
-              ctx.fillStyle = '#4ade80'; ctx.beginPath(); ctx.arc(-22, -4 + flap * 0.5, 4.5, 0, Math.PI * 2); ctx.arc(22, -4 - flap * 0.25, 4.5, 0, Math.PI * 2); ctx.fill();
-              // Flight jacket + white fur collar + green visor helmet
-              ctx.fillStyle = '#1e293b'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(-9, -9, 18, 22, 5); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#f1f5f9'; ctx.fillRect(-10, -12, 20, 5);
-              ctx.fillStyle = '#166534'; ctx.beginPath(); ctx.arc(0, -17, 7.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#4ade80'; ctx.fillRect(-6, -19, 8, 3.5);
-            } else {
-              // MYSTERIO floating in emerald mist with purple cape & luminous glass fishbowl!
-              ctx.drawImage(GLOW_SPRITES.purple, -40, -34, 80, 74);
-              ctx.fillStyle = '#7e22ce'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2;
-              ctx.beginPath(); ctx.moveTo(-10, -10); ctx.lineTo(-26, 22); ctx.lineTo(24, 22); ctx.lineTo(10, -10); ctx.closePath(); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#15803d'; ctx.beginPath(); ctx.roundRect(-9, -10, 18, 22, 4); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#facc15'; ctx.beginPath(); ctx.arc(-9, -9, 3.5, 0, Math.PI * 2); ctx.arc(9, -9, 3.5, 0, Math.PI * 2); ctx.fill();
-              // Luminous glass fishbowl helmet
-              ctx.fillStyle = '#e0f2fe'; ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.2;
-              ctx.beginPath(); ctx.arc(0, -18, 10.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = 'rgba(192, 132, 252, 0.55)'; ctx.beginPath(); ctx.arc(-2 + Math.sin(elapsedTime * 5) * 2, -18, 5.5, 0, Math.PI * 2); ctx.fill();
+        if (boss) {
+          const gx = boss.x - camX, gy = boss.y - camY;
+          ctx.save(); ctx.translate(gx, gy);
+          ctx.save(); ctx.scale(1.12, 1.12);
+          if (boss.kind === 'goblin') {
+            ctx.fillStyle = '#334155'; ctx.strokeStyle = '#a855f7'; ctx.lineWidth = 2.2;
+            ctx.beginPath(); ctx.moveTo(-28, 12); ctx.lineTo(0, 6); ctx.lineTo(28, 12); ctx.lineTo(15, 20); ctx.lineTo(-15, 20); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#f97316'; ctx.beginPath(); ctx.arc(22, 14, 5.5 + Math.sin(elapsedTime * 30) * 1.5, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = '#16a34a'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(-9, -11, 18, 21, 5); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#7e22ce'; ctx.beginPath(); ctx.moveTo(-8, -11); ctx.lineTo(14, -18); ctx.lineTo(4, -24); ctx.lineTo(-10, -16); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#fde047'; ctx.fillRect(-7, -15, 4.5, 3);
+          } else if (boss.kind === 'electro') {
+            ctx.drawImage(GLOW_SPRITES.cyan, -38, -38, 76, 76);
+            ctx.fillStyle = '#0284c7'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(-10, -12, 20, 25, 5); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#e0f2fe'; ctx.beginPath(); ctx.arc(0, -17, 8.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.strokeStyle = '#fde047'; ctx.lineWidth = 2.2;
+            for (let z = 0; z < 5; z++) { const a = elapsedTime * 10 + z * 1.25; ctx.beginPath(); ctx.moveTo(0, -17); ctx.lineTo(Math.cos(a) * 22, -17 + Math.sin(a) * 22); ctx.stroke(); }
+          } else if (boss.kind === 'vulture') {
+            // VULTURE with giant flapping mechanical green turbine wings!
+            const flap = Math.sin(elapsedTime * 10) * 12;
+            ctx.fillStyle = '#14532d'; ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 2.4;
+            ctx.beginPath(); ctx.moveTo(-4, -4); ctx.lineTo(-36, -24 + flap); ctx.lineTo(-42, 4 + flap); ctx.lineTo(-8, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(4, -4); ctx.lineTo(36, -24 - flap * 0.5); ctx.lineTo(42, 4 - flap * 0.5); ctx.lineTo(8, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#4ade80'; ctx.beginPath(); ctx.arc(-22, -4 + flap * 0.5, 4.5, 0, Math.PI * 2); ctx.arc(22, -4 - flap * 0.25, 4.5, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = '#1e293b'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.roundRect(-9, -9, 18, 22, 5); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#f1f5f9'; ctx.fillRect(-10, -12, 20, 5);
+            ctx.fillStyle = '#166534'; ctx.beginPath(); ctx.arc(0, -17, 7.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#4ade80'; ctx.fillRect(-6, -19, 8, 3.5);
+          } else if (boss.kind === 'docock') {
+            // DOCTOR OCTOPUS with 4 animated mechanical steel tentacles & glowing red claws!
+            const arms = [
+              [-24, -18, -36, -4 + Math.sin(elapsedTime * 7) * 8],
+              [-26, 8, -38, 22 + Math.cos(elapsedTime * 6.5) * 7],
+              [24, -18, 36, -2 + Math.cos(elapsedTime * 7.2) * 8],
+              [22, 10, 34, 24 + Math.sin(elapsedTime * 6) * 7]
+            ];
+            ctx.lineCap = 'round';
+            for (let a = 0; a < arms.length; a++) {
+              const [cx, cy, ex, ey] = arms[a];
+              ctx.strokeStyle = '#09090b'; ctx.lineWidth = 7.5; ctx.beginPath(); ctx.moveTo(0, 0); ctx.quadraticCurveTo(cx, cy, ex, ey); ctx.stroke();
+              ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 4.2; ctx.beginPath(); ctx.moveTo(0, 0); ctx.quadraticCurveTo(cx, cy, ex, ey); ctx.stroke();
+              ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(ex, ey, 4.2, 0, Math.PI * 2); ctx.fill();
+              ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(ex - 5, ey - 3); ctx.lineTo(ex, ey); ctx.lineTo(ex - 5, ey + 3); ctx.stroke();
             }
+            // Trench coat + turtleneck + iconic goggles
+            ctx.fillStyle = '#57534e'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(-11, -10); ctx.lineTo(11, -10); ctx.lineTo(15, 18); ctx.lineTo(-15, 18); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#14532d'; ctx.fillRect(-7, -10, 14, 22);
+            ctx.fillStyle = '#fde68a'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.ellipse(0, -18, 7.6, 8.2, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#451a03'; ctx.beginPath(); ctx.arc(0, -21, 7.8, Math.PI, 0); ctx.fill();
+            ctx.fillStyle = '#facc15'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(-4.2, -18, 3.2, 0, Math.PI * 2); ctx.arc(2.5, -18, 3.2, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+          } else if (boss.kind === 'venom') {
+            // VENOM Symbiote Boss with muscular silhouette, jagged white spider, tendrils & snarling tongue!
+            ctx.drawImage(GLOW_SPRITES.purple, -42, -38, 84, 80);
+            ctx.strokeStyle = '#09090b'; ctx.lineWidth = 3.5; ctx.lineCap = 'round';
+            for (let t = 0; t < 4; t++) {
+              const ang = Math.PI * 0.72 + t * 0.25 + Math.sin(elapsedTime * 8 + t) * 0.16;
+              ctx.beginPath(); ctx.moveTo(0, -2); ctx.quadraticCurveTo(Math.cos(ang) * 20, Math.sin(ang) * 18 - 8, Math.cos(ang) * 34, Math.sin(ang) * 28); ctx.stroke();
+            }
+            ctx.fillStyle = '#09090b'; ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(-16, -13); ctx.lineTo(16, -13); ctx.lineTo(11, 18); ctx.lineTo(-11, 18); ctx.closePath(); ctx.fill(); ctx.stroke();
+            // White jagged chest spider
+            ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.ellipse(0, -1, 4.5, 6.5, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.moveTo(-12, -7); ctx.lineTo(12, 3); ctx.moveTo(-12, 4); ctx.lineTo(12, -6); ctx.moveTo(-10, -1); ctx.lineTo(10, -1); ctx.stroke();
+            // Venom head, huge jagged white eyes & crimson tongue
+            ctx.fillStyle = '#09090b'; ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1.4;
+            ctx.beginPath(); ctx.ellipse(-1, -20, 10.5, 11, -0.08, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath(); ctx.moveTo(-9, -24); ctx.lineTo(-2, -19); ctx.lineTo(-7, -18); ctx.closePath(); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(7, -24); ctx.lineTo(1, -19); ctx.lineTo(6, -18); ctx.closePath(); ctx.fill();
+            // Snarling teeth & flickering red tongue
+            ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(-2, -14, 5.2, 0, Math.PI); ctx.fill();
+            ctx.strokeStyle = '#fb7185'; ctx.lineWidth = 2.6;
+            ctx.beginPath(); ctx.moveTo(-3, -12); ctx.quadraticCurveTo(-12, -9 + Math.sin(elapsedTime * 16) * 3, -16, -5); ctx.stroke();
+          } else {
+            // MYSTERIO floating in emerald mist with purple cape & luminous glass fishbowl!
+            ctx.drawImage(GLOW_SPRITES.purple, -40, -34, 80, 74);
+            ctx.fillStyle = '#7e22ce'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(-10, -10); ctx.lineTo(-26, 22); ctx.lineTo(24, 22); ctx.lineTo(10, -10); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#15803d'; ctx.beginPath(); ctx.roundRect(-9, -10, 18, 22, 4); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#facc15'; ctx.beginPath(); ctx.arc(-9, -9, 3.5, 0, Math.PI * 2); ctx.arc(9, -9, 3.5, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = '#e0f2fe'; ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.2;
+            ctx.beginPath(); ctx.arc(0, -18, 10.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = 'rgba(192, 132, 252, 0.55)'; ctx.beginPath(); ctx.arc(-2 + Math.sin(elapsedTime * 5) * 2, -18, 5.5, 0, Math.PI * 2); ctx.fill();
+          }
+          if (boss.hitFlash > 0) {
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.92)'; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.arc(0, -4, 30, 0, Math.PI * 2); ctx.stroke();
+          }
+          ctx.restore();
+
+          // Crisp Boss mini HP bar & label (shows Web-Blast damage clearly!)
+          if (state !== 'photo') {
+            const hpPct = Math.max(0, Math.min(1, (boss.hp || 0) / (boss.maxHp || 3)));
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.85)'; ctx.strokeStyle = 'rgba(255,255,255,0.45)'; ctx.lineWidth = 1.4;
+            ctx.beginPath(); ctx.roundRect(-28, -48, 56, 8, 4); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = hpPct > 0.35 ? '#f43f5e' : '#facc15';
+            if (hpPct > 0) { ctx.beginPath(); ctx.roundRect(-26.5, -46.5, 53 * hpPct, 5, 2.5); ctx.fill(); }
+            ctx.font = '900 9px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+            ctx.fillStyle = '#fef08a'; ctx.fillText(boss.name || 'BOSS', 0, -51);
+          }
+          ctx.restore();
+        }
+
+        for (let i = 0; i < bossProjectiles.length; i++) {
+          const b = bossProjectiles[i], bx = b.x - camX, by = b.y - camY;
+          if (bx < -60 || bx > viewW + 60) continue;
+          if (b.kind === 'pumpkin') {
+            ctx.drawImage(GLOW_SPRITES.orange, bx - 22, by - 22, 44, 44);
+            ctx.fillStyle = '#ea580c'; ctx.strokeStyle = '#fde047'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(bx, by, b.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#fef08a'; ctx.fillRect(bx - 5, by - 3, 3, 3); ctx.fillRect(bx + 2, by - 3, 3, 3);
+          } else if (b.kind === 'feather') {
+            ctx.save(); ctx.translate(bx, by); ctx.rotate(elapsedTime * 16);
+            ctx.fillStyle = '#4ade80'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.moveTo(-14, 0); ctx.lineTo(0, -5); ctx.lineTo(14, 0); ctx.lineTo(0, 5); ctx.closePath(); ctx.fill(); ctx.stroke();
             ctx.restore();
+          } else if (b.kind === 'illusion') {
+            ctx.drawImage(GLOW_SPRITES.purple, bx - 26, by - 26, 52, 52);
+            ctx.fillStyle = '#a855f7'; ctx.strokeStyle = '#4ade80'; ctx.lineWidth = 2.2;
+            ctx.beginPath(); ctx.arc(bx, by, b.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#f0abfc'; ctx.beginPath(); ctx.arc(bx, by, 5, 0, Math.PI * 2); ctx.fill();
+          } else if (b.kind === 'rubble') {
+            // Doc Ock hurled concrete debris
+            ctx.save(); ctx.translate(bx, by); ctx.rotate(elapsedTime * 9 + i);
+            ctx.drawImage(GLOW_SPRITES.orange, -22, -22, 44, 44);
+            ctx.fillStyle = '#64748b'; ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(-12, -6); ctx.lineTo(3, -13); ctx.lineTo(13, -3); ctx.lineTo(9, 11); ctx.lineTo(-9, 10); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.restore();
+          } else if (b.kind === 'sludge') {
+            // Venom symbiote glob
+            ctx.drawImage(GLOW_SPRITES.purple, bx - 22, by - 22, 44, 44);
+            ctx.fillStyle = '#09090b'; ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(bx, by, b.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(bx - 3, by - 3, 3.2, 0, Math.PI * 2); ctx.fill();
+          } else if (b.kind === 'laser') {
+            // Sentinel magenta laser bolt
+            const ang = Math.atan2(b.vy, b.vx);
+            ctx.save(); ctx.translate(bx, by); ctx.rotate(ang);
+            ctx.strokeStyle = 'rgba(232, 121, 249, 0.45)'; ctx.lineWidth = 10; ctx.lineCap = 'round';
+            ctx.beginPath(); ctx.moveTo(-16, 0); ctx.lineTo(10, 0); ctx.stroke();
+            ctx.strokeStyle = '#f0abfc'; ctx.lineWidth = 4;
+            ctx.beginPath(); ctx.moveTo(-14, 0); ctx.lineTo(9, 0); ctx.stroke();
+            ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(6, 0, 3.2, 0, Math.PI * 2); ctx.fill();
+            ctx.restore();
+          } else if (b.kind === 'plasma') {
+            // Oscorp Recon plasma shot
+            ctx.drawImage(GLOW_SPRITES.orange, bx - 20, by - 20, 40, 40);
+            ctx.fillStyle = '#ef4444'; ctx.strokeStyle = '#fef08a'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(bx, by, b.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(bx, by, 3.5, 0, Math.PI * 2); ctx.fill();
+          } else if (b.kind === 'sonic') {
+            // Shocker sonic pulse ring
+            ctx.drawImage(GLOW_SPRITES.gold, bx - 22, by - 22, 44, 44);
+            ctx.strokeStyle = '#facc15'; ctx.lineWidth = 3.2;
+            ctx.beginPath(); ctx.arc(bx, by, b.r, 0, Math.PI * 2); ctx.stroke();
+            ctx.strokeStyle = '#fef9c3'; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.arc(bx, by, b.r * 0.52, 0, Math.PI * 2); ctx.stroke();
+          } else {
+            ctx.drawImage(GLOW_SPRITES.cyan, bx - 24, by - 24, 48, 48);
+            ctx.fillStyle = '#38bdf8'; ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(bx, by, b.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
           }
+        }
 
-          for (let i = 0; i < bossProjectiles.length; i++) {
-            const b = bossProjectiles[i], bx = b.x - camX, by = b.y - camY;
-            if (b.kind === 'pumpkin') {
-              ctx.drawImage(GLOW_SPRITES.orange, bx - 22, by - 22, 44, 44);
-              ctx.fillStyle = '#ea580c'; ctx.strokeStyle = '#fde047'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(bx, by, b.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#fef08a'; ctx.fillRect(bx - 5, by - 3, 3, 3); ctx.fillRect(bx + 2, by - 3, 3, 3);
-            } else if (b.kind === 'feather') {
-              ctx.save(); ctx.translate(bx, by); ctx.rotate(elapsedTime * 16);
-              ctx.fillStyle = '#4ade80'; ctx.strokeStyle = '#09090b'; ctx.lineWidth = 1.8;
-              ctx.beginPath(); ctx.moveTo(-14, 0); ctx.lineTo(0, -5); ctx.lineTo(14, 0); ctx.lineTo(0, 5); ctx.closePath(); ctx.fill(); ctx.stroke();
-              ctx.restore();
-            } else if (b.kind === 'illusion') {
-              ctx.drawImage(GLOW_SPRITES.purple, bx - 26, by - 26, 52, 52);
-              ctx.fillStyle = '#a855f7'; ctx.strokeStyle = '#4ade80'; ctx.lineWidth = 2.2;
-              ctx.beginPath(); ctx.arc(bx, by, b.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-              ctx.fillStyle = '#f0abfc'; ctx.beginPath(); ctx.arc(bx, by, 5, 0, Math.PI * 2); ctx.fill();
-            } else {
-              ctx.drawImage(GLOW_SPRITES.cyan, bx - 24, by - 24, 48, 48);
-              ctx.fillStyle = '#38bdf8'; ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(bx, by, b.r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-            }
-          }
+        // Spider-Man Web-Blast shots (fast glowing webbed energy projectiles!)
+        for (let i = 0; i < webBlasts.length; i++) {
+          const wb = webBlasts[i], wx = wb.x - camX, wy = wb.y - camY;
+          const ang = Math.atan2(wb.vy, wb.vx);
+          ctx.save(); ctx.translate(wx, wy); ctx.rotate(ang);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)'; ctx.lineWidth = 9; ctx.lineCap = 'round';
+          ctx.beginPath(); ctx.moveTo(-26, 0); ctx.lineTo(4, 0); ctx.stroke();
+          ctx.strokeStyle = wb.color || '#ffffff'; ctx.lineWidth = 3.4;
+          ctx.beginPath(); ctx.moveTo(-22, 0); ctx.lineTo(6, 0); ctx.stroke();
+          ctx.fillStyle = '#ffffff'; ctx.strokeStyle = wb.accent || '#38bdf8'; ctx.lineWidth = 2.2;
+          ctx.beginPath(); ctx.arc(4, 0, 8.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+          // Crisp web cross detail inside blast
+          ctx.strokeStyle = '#0f172a'; ctx.lineWidth = 1.2;
+          ctx.beginPath(); ctx.moveTo(-1, -5); ctx.lineTo(9, 5); ctx.moveTo(9, -5); ctx.lineTo(-1, 5); ctx.stroke();
+          ctx.restore();
         }
       }
 
@@ -4450,6 +4828,15 @@ body {
 
       btnDash.addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); AudioFX.init(); triggerDash(); });
 
+      if (btnWebBlast) {
+        btnWebBlast.addEventListener('pointerdown', (e) => {
+          e.stopPropagation(); e.preventDefault(); AudioFX.init();
+          triggerWebBlast();
+          btnWebBlast.classList.add('bg-emerald-500', 'text-white');
+          setTimeout(() => btnWebBlast.classList.remove('bg-emerald-500', 'text-white'), 140);
+        });
+      }
+
       window.addEventListener('keydown', (e) => {
         if (e.repeat) return;
         const code = e.code;
@@ -4460,7 +4847,8 @@ body {
           if (state === 'paused') { togglePause(); return; }
           if (state === 'photo') { togglePhotoMode(); return; }
           keys.space = true; attachWeb(false);
-        } else if (code === 'ShiftLeft' || code === 'ShiftRight' || code === 'KeyE') triggerDash();
+        } else if (code === 'ShiftLeft' || code === 'ShiftRight' || code === 'KeyE') { AudioFX.init(); triggerDash(); }
+        else if (code === 'KeyF') { AudioFX.init(); triggerWebBlast(); }
         else if (code === 'KeyQ') keys.focus = true;
         else if (code === 'KeyC') { if (state === 'playing' || state === 'photo') togglePhotoMode(); }
         else if (code === 'KeyP' || code === 'Escape') {
