@@ -486,9 +486,9 @@ body {
           <div>
             <div class="text-[10px] uppercase tracking-wider font-bold text-slate-300 mb-1">🔭 Góc nhìn</div>
             <select id="sel-camera" class="w-full py-1.5 px-2 rounded-lg bg-white/10 border border-white/15 text-slate-100 text-xs font-bold outline-none">
-              <option value="wide" selected class="bg-slate-900">Rộng chuẩn</option>
+              <option value="wide" selected class="bg-slate-900">Rộng thoáng</option>
               <option value="ultra" class="bg-slate-900">Siêu rộng</option>
-              <option value="close" class="bg-slate-900">Gần cận cảnh</option>
+              <option value="close" class="bg-slate-900">Vừa (Gần hơn)</option>
             </select>
           </div>
           <div>
@@ -853,15 +853,15 @@ body {
         isPortrait = h > w * 1.05;
         const scaleByH = h / WORLD_H;
         const viewPreset = settings.cameraView || 'wide';
-        const portraitMinW = viewPreset === 'ultra' ? 800 : (viewPreset === 'close' ? 540 : 680);
-        const landscapeZoom = viewPreset === 'ultra' ? 0.86 : (viewPreset === 'close' ? 1.12 : 1.0);
+        const portraitMinW = viewPreset === 'ultra' ? 1220 : (viewPreset === 'close' ? 720 : 960);
+        const landscapeZoom = viewPreset === 'ultra' ? 0.72 : (viewPreset === 'close' ? 1.0 : 0.86);
         const targetMinW = isPortrait ? portraitMinW : MIN_VIEW_W;
         const scaleByW = w / targetMinW;
         baseScale = Math.min(scaleByH, scaleByW) * (isPortrait ? 1.0 : landscapeZoom);
         const s = baseScale * camZoom;
         viewW = w / s;
         viewH = h / s;
-        const bottomReserve = isPortrait ? 115 : 0;
+        const bottomReserve = isPortrait ? Math.max(190, Math.round(viewH * 0.16)) : 0;
         worldOffsetY = Math.max(0, viewH - WORLD_H - bottomReserve);
       }
 
@@ -2240,7 +2240,7 @@ body {
           boss.phase += dt * (boss.kind === 'vulture' || boss.kind === 'venom' ? 4.2 : 3.3);
           boss.life -= dt;
           if (boss.hitFlash > 0) boss.hitFlash = Math.max(0, boss.hitFlash - dt);
-          const leadDist = isPortrait ? clamp(viewW * 0.40, 225, 315) : (boss.kind === 'vulture' || boss.kind === 'venom' ? 280 : 310);
+          const leadDist = isPortrait ? clamp(viewW * 0.36, 260, 420) : (boss.kind === 'vulture' || boss.kind === 'venom' ? 310 : 350);
           const targetBossX = player.x + leadDist;
           const catchRate = boss.x < targetBossX ? 5.2 : 2.6;
           boss.x += (targetBossX - boss.x) * Math.min(1, dt * catchRate);
@@ -2798,8 +2798,8 @@ body {
 
         updateWindEffects(dt, curSpeed);
 
-        const lookAhead = isPortrait ? clamp(player.vx * 0.06, 0, 42) : clamp(player.vx * 0.22, 0, 200);
-        const anchorFrac = isPortrait ? 0.34 : 0.27;
+        const lookAhead = isPortrait ? clamp(player.vx * 0.06, 0, 48) : clamp(player.vx * 0.22, 0, 210);
+        const anchorFrac = isPortrait ? 0.35 : 0.28;
         camX += (player.x - viewW * anchorFrac + lookAhead - camX) * Math.min(1, dt * 7.5);
         camY += (clamp((player.y - 330) * 0.20, isPortrait ? -115 : -55, 28) - camY) * Math.min(1, dt * 5.0);
 
@@ -3113,7 +3113,7 @@ body {
       function drawSkyAndAtmosphere(L) {
         const skyTopY = -worldOffsetY - 12;
         const skySpanH = viewH + 140;
-        const skyLift = worldOffsetY * 0.56;
+        const skyLift = worldOffsetY * 0.62;
         const sKey = `${L.skyTop[0]|0},${L.skyTop[1]|0},${L.skyTop[2]|0}|${L.skyMid[0]|0},${L.skyMid[1]|0},${L.skyMid[2]|0}|${L.skyBot[0]|0},${L.skyBot[1]|0},${L.skyBot[2]|0}|${Math.round(worldOffsetY / 20)}`;
         if (sKey !== cachedSkyKey || !cachedSkyGrad) {
           cachedSkyKey = sKey;
@@ -3361,7 +3361,7 @@ body {
       function drawParallaxCities(L) {
         ctx.fillStyle = rgbStr(L.farCity);
         const farOff = camX * 0.16;
-        const farTall = isPortrait ? 1.45 : 1.0;
+        const farTall = isPortrait ? clamp(1 + worldOffsetY / 580, 1.45, 2.8) : 1.0;
         for (let i = 0; i < farSkyline.length; i++) {
           const b = farSkyline[i], x = b.x - farOff, bh = b.h * farTall, y = GROUND_Y - bh;
           ctx.fillRect(x, y, b.w, bh + 50);
@@ -3706,7 +3706,7 @@ body {
 
         let roadCol = lerpRgb([16, 22, 34], [12, 22, 42], env.wetness);
         roadCol = lerpRgb(roadCol, [232, 240, 248], env.snowAccum * 0.92);
-        ctx.fillStyle = rgbStr(roadCol); ctx.fillRect(0, roadY, viewW, 260);
+        ctx.fillStyle = rgbStr(roadCol); ctx.fillRect(0, roadY, viewW, Math.max(420, viewH * 0.45));
 
         if (env.snowAccum > 0.05) {
           ctx.fillStyle = `rgba(255, 255, 255, ${clamp(env.snowAccum * 0.98, 0, 0.98).toFixed(2)})`; ctx.fillRect(0, roadY - 2, viewW, 5 + env.snowAccum * 4);
@@ -3773,7 +3773,8 @@ body {
           const h = heroCameos[i], hx = h.x - camX, hy = h.y - camY;
           if (hx < -160 || hx > viewW + 160) continue;
           ctx.save(); ctx.translate(hx, hy);
-          ctx.save(); ctx.scale(1.18, 1.18);
+          const heroWideScale = (isPortrait && viewW > 800) ? clamp(viewW / 760, 1.0, 1.32) : 1.0;
+          ctx.save(); ctx.scale(1.18 * heroWideScale, 1.18 * heroWideScale);
           if (!h.interacted) {
             const auraX = h.type === 'strange' ? 40 : 0;
             ctx.strokeStyle = h.color; ctx.globalAlpha = 0.36 + Math.sin(elapsedTime * 7) * 0.18; ctx.lineWidth = 2;
@@ -4200,7 +4201,8 @@ body {
         if (boss) {
           const gx = boss.x - camX, gy = boss.y - camY;
           ctx.save(); ctx.translate(gx, gy);
-          ctx.save(); ctx.scale(1.12, 1.12);
+          const bossWideScale = (isPortrait && viewW > 800) ? clamp(viewW / 760, 1.0, 1.30) : 1.0;
+          ctx.save(); ctx.scale(1.12 * bossWideScale, 1.12 * bossWideScale);
           if (boss.kind === 'goblin') {
             ctx.fillStyle = '#334155'; ctx.strokeStyle = '#a855f7'; ctx.lineWidth = 2.2;
             ctx.beginPath(); ctx.moveTo(-28, 12); ctx.lineTo(0, 6); ctx.lineTo(28, 12); ctx.lineTo(15, 20); ctx.lineTo(-15, 20); ctx.closePath(); ctx.fill(); ctx.stroke();
@@ -4538,6 +4540,8 @@ body {
         }
 
         ctx.save(); ctx.translate(px, py);
+        const spideyWideScale = (isPortrait && viewW > 800) ? clamp(viewW / 780, 1.0, 1.28) : 1.0;
+        if (spideyWideScale > 1.001) ctx.scale(spideyWideScale, spideyWideScale);
         let webLocalAngle = -Math.PI * 0.45;
         if (player.attached && player.anchor) webLocalAngle = Math.atan2(player.anchor.y - player.y, player.anchor.x - player.x) - player.angle;
         ctx.rotate(player.angle);
