@@ -481,19 +481,29 @@ body {
           </div>
         </div>
 
-        <!-- 8 CUSTOM SPEED TRAILS -->
-        <div class="border-t border-white/10 pt-2.5">
-          <div class="text-[10px] uppercase tracking-wider font-bold text-slate-300 mb-1.5">✨ Vệt Bay Hiệu Ứng (8 kiểu)</div>
-          <select id="sel-trail" class="w-full py-1.5 px-2.5 rounded-lg bg-white/10 border border-white/15 text-slate-100 text-xs font-bold outline-none">
-            <option value="suit" class="bg-slate-900">🕷️ Mặc định theo Giáp</option>
-            <option value="prism" class="bg-slate-900">🌈 Cầu Vồng Đa Sắc</option>
-            <option value="lightning" class="bg-slate-900">⚡ Sét Xanh Venom</option>
-            <option value="fire" class="bg-slate-900">🔥 Lửa Phượng Hoàng</option>
-            <option value="galaxy" class="bg-slate-900">🌌 Ngân Hà Vũ Trụ</option>
-            <option value="neon" class="bg-slate-900">💠 Neon Cyber Kép</option>
-            <option value="sakura" class="bg-slate-900">🌸 Hoa Anh Đào &amp; Băng</option>
-            <option value="gold" class="bg-slate-900">👑 Hào Quang Hoàng Kim</option>
-          </select>
+        <!-- CAMERA VIEW + 8 CUSTOM SPEED TRAILS -->
+        <div class="border-t border-white/10 pt-2.5 grid grid-cols-2 gap-2">
+          <div>
+            <div class="text-[10px] uppercase tracking-wider font-bold text-slate-300 mb-1">🔭 Góc nhìn</div>
+            <select id="sel-camera" class="w-full py-1.5 px-2 rounded-lg bg-white/10 border border-white/15 text-slate-100 text-xs font-bold outline-none">
+              <option value="wide" selected class="bg-slate-900">Rộng chuẩn</option>
+              <option value="ultra" class="bg-slate-900">Siêu rộng</option>
+              <option value="close" class="bg-slate-900">Gần cận cảnh</option>
+            </select>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-wider font-bold text-slate-300 mb-1">✨ Vệt Bay (8 kiểu)</div>
+            <select id="sel-trail" class="w-full py-1.5 px-2 rounded-lg bg-white/10 border border-white/15 text-slate-100 text-xs font-bold outline-none">
+              <option value="suit" class="bg-slate-900">🕷️ Theo Giáp</option>
+              <option value="prism" class="bg-slate-900">🌈 Cầu Vồng</option>
+              <option value="lightning" class="bg-slate-900">⚡ Sét Venom</option>
+              <option value="fire" class="bg-slate-900">🔥 Lửa Phượng</option>
+              <option value="galaxy" class="bg-slate-900">🌌 Ngân Hà</option>
+              <option value="neon" class="bg-slate-900">💠 Neon Kép</option>
+              <option value="sakura" class="bg-slate-900">🌸 Anh Đào</option>
+              <option value="gold" class="bg-slate-900">👑 Hoàng Kim</option>
+            </select>
+          </div>
         </div>
 
         <div class="border-t border-white/10 pt-2.5">
@@ -746,7 +756,7 @@ body {
       let baseScale = 1;
       let camZoom = 1;
 
-      const settings = { physics: 'standard', windFx: true, screenShake: true, liteMode: false, trailStyle: 'suit', showFps: false };
+      const settings = { physics: 'standard', cameraView: 'wide', windFx: true, screenShake: true, liteMode: false, trailStyle: 'suit', showFps: false };
       const PHYSICS_PRESETS = {
         standard: { gravity: 880, pump: 225, maxVx: 980, reel: 275 },
         turbo:    { gravity: 1020, pump: 310, maxVx: 1180, reel: 345 },
@@ -842,13 +852,16 @@ body {
         const h = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
         isPortrait = h > w * 1.05;
         const scaleByH = h / WORLD_H;
-        const targetMinW = isPortrait ? 470 : MIN_VIEW_W;
+        const viewPreset = settings.cameraView || 'wide';
+        const portraitMinW = viewPreset === 'ultra' ? 800 : (viewPreset === 'close' ? 540 : 680);
+        const landscapeZoom = viewPreset === 'ultra' ? 0.86 : (viewPreset === 'close' ? 1.12 : 1.0);
+        const targetMinW = isPortrait ? portraitMinW : MIN_VIEW_W;
         const scaleByW = w / targetMinW;
-        baseScale = Math.min(scaleByH, scaleByW);
+        baseScale = Math.min(scaleByH, scaleByW) * (isPortrait ? 1.0 : landscapeZoom);
         const s = baseScale * camZoom;
         viewW = w / s;
         viewH = h / s;
-        const bottomReserve = isPortrait ? 52 : 0;
+        const bottomReserve = isPortrait ? 115 : 0;
         worldOffsetY = Math.max(0, viewH - WORLD_H - bottomReserve);
       }
 
@@ -2219,7 +2232,7 @@ body {
           };
           nextBossDist = maxDistance + 135 + Math.random() * 65;
           spawnPopup(player.x + 100, player.y - 60, BOSS_META[kind].spawn, BOSS_META[kind].color, 19);
-          showToast('🔥', `${BOSS_META[kind].spawn} — Bấm 🕸️ BẮN hoặc BỨT TỐC để hạ!`);
+          showToast('🔥', `${BOSS_META[kind].spawn}! Bấm 🕸️ BẮN hạ Boss!`);
         }
 
         if (boss) {
@@ -2227,8 +2240,10 @@ body {
           boss.phase += dt * (boss.kind === 'vulture' || boss.kind === 'venom' ? 4.2 : 3.3);
           boss.life -= dt;
           if (boss.hitFlash > 0) boss.hitFlash = Math.max(0, boss.hitFlash - dt);
-          const leadDist = isPortrait ? 215 : (boss.kind === 'vulture' || boss.kind === 'venom' ? 265 : 295);
-          boss.x += (player.x + leadDist - boss.x) * Math.min(1, dt * 2.4);
+          const leadDist = isPortrait ? clamp(viewW * 0.40, 225, 315) : (boss.kind === 'vulture' || boss.kind === 'venom' ? 280 : 310);
+          const targetBossX = player.x + leadDist;
+          const catchRate = boss.x < targetBossX ? 5.2 : 2.6;
+          boss.x += (targetBossX - boss.x) * Math.min(1, dt * catchRate);
           boss.y = boss.baseY + Math.sin(boss.phase) * (boss.kind === 'vulture' || boss.kind === 'venom' ? 76 : 60);
 
           if (Math.random() < 0.55) {
@@ -2619,7 +2634,7 @@ body {
       function updateWindEffects(dt, curSpeed) {
         const targetWind = settings.windFx ? clamp((curSpeed - 340) / 480, 0, 1) : 0;
         player.windFactor += (targetWind - player.windFactor) * Math.min(1, dt * 6);
-        const targetZoom = settings.windFx ? (1.0 - player.windFactor * 0.10) : 1.0;
+        const targetZoom = settings.windFx ? (1.0 - player.windFactor * (isPortrait ? 0.16 : 0.10)) : 1.0;
         if (Math.abs(targetZoom - camZoom) > 0.0008) { camZoom += (targetZoom - camZoom) * Math.min(1, dt * 4.5); syncViewportMetrics(); }
 
         if (settings.windFx && (player.windFactor > 0.15 || player.dashTimer > 0) && Math.random() < (0.28 + player.windFactor * 0.55)) {
@@ -2783,8 +2798,8 @@ body {
 
         updateWindEffects(dt, curSpeed);
 
-        const lookAhead = isPortrait ? clamp(player.vx * 0.13, 0, 90) : clamp(player.vx * 0.24, 0, 210);
-        const anchorFrac = isPortrait ? 0.23 : 0.26;
+        const lookAhead = isPortrait ? clamp(player.vx * 0.06, 0, 42) : clamp(player.vx * 0.22, 0, 200);
+        const anchorFrac = isPortrait ? 0.34 : 0.27;
         camX += (player.x - viewW * anchorFrac + lookAhead - camX) * Math.min(1, dt * 7.5);
         camY += (clamp((player.y - 330) * 0.20, isPortrait ? -115 : -55, 28) - camY) * Math.min(1, dt * 5.0);
 
@@ -3098,7 +3113,7 @@ body {
       function drawSkyAndAtmosphere(L) {
         const skyTopY = -worldOffsetY - 12;
         const skySpanH = viewH + 140;
-        const skyLift = worldOffsetY * 0.42;
+        const skyLift = worldOffsetY * 0.56;
         const sKey = `${L.skyTop[0]|0},${L.skyTop[1]|0},${L.skyTop[2]|0}|${L.skyMid[0]|0},${L.skyMid[1]|0},${L.skyMid[2]|0}|${L.skyBot[0]|0},${L.skyBot[1]|0},${L.skyBot[2]|0}|${Math.round(worldOffsetY / 20)}`;
         if (sKey !== cachedSkyKey || !cachedSkyGrad) {
           cachedSkyKey = sKey;
@@ -3346,11 +3361,12 @@ body {
       function drawParallaxCities(L) {
         ctx.fillStyle = rgbStr(L.farCity);
         const farOff = camX * 0.16;
+        const farTall = isPortrait ? 1.45 : 1.0;
         for (let i = 0; i < farSkyline.length; i++) {
-          const b = farSkyline[i], x = b.x - farOff, y = GROUND_Y - b.h;
-          ctx.fillRect(x, y, b.w, b.h + 50);
+          const b = farSkyline[i], x = b.x - farOff, bh = b.h * farTall, y = GROUND_Y - bh;
+          ctx.fillRect(x, y, b.w, bh + 50);
           if (b.stepped) ctx.fillRect(x + b.w * 0.16, y - 20, b.w * 0.68, 20);
-          if (b.spireH > 0) ctx.fillRect(x + b.w * 0.5 - 1.5, y - b.spireH, 3, b.spireH);
+          if (b.spireH > 0) ctx.fillRect(x + b.w * 0.5 - 1.5, y - b.spireH * farTall, 3, b.spireH * farTall);
         }
         drawLandmarks(L);
 
@@ -4904,6 +4920,12 @@ body {
       document.getElementById('chk-auto-weather').addEventListener('change', (e) => { env.autoWeather = e.target.checked; if (env.autoWeather) env.weatherTimer = WEATHER_DURATION; updateEnvHud(); });
 
       document.getElementById('sel-physics').addEventListener('change', (e) => { settings.physics = e.target.value; });
+      const selCamera = document.getElementById('sel-camera');
+      if (selCamera) selCamera.addEventListener('change', (e) => {
+        settings.cameraView = e.target.value;
+        syncViewportMetrics();
+        showToast('🔭', `Góc nhìn: ${e.target.options[e.target.selectedIndex].text}`);
+      });
       const selTrail = document.getElementById('sel-trail');
       if (selTrail) selTrail.addEventListener('change', (e) => {
         settings.trailStyle = e.target.value;
